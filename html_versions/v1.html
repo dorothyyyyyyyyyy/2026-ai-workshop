@@ -3,419 +3,2598 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workshop 大纲审批表 — AI 做 PPT</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>AI 全面提效实战指南 · Trip.com</title>
 <style>
-  :root {
-    --blue: #2C61FE;
-    --yellow: #FFB400;
-    --ink: #1a1a1a;
-    --grey: #6b7280;
-    --light: #f8f9fa;
-    --border: #e5e7eb;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: "Inter", "Noto Sans SC", -apple-system, sans-serif;
-    background: #fff;
-    color: var(--ink);
-    padding: 48px 56px;
-    max-width: 960px;
-    margin: 0 auto;
-    -webkit-font-smoothing: antialiased;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 40px;
-    padding-bottom: 24px;
-    border-bottom: 3px solid var(--blue);
-  }
-  .header-left h1 {
-    font-weight: 700;
-    font-size: 28px;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-  .header-left h1 span { color: var(--blue); }
-  .header-left p {
-    font-size: 14px;
-    color: var(--grey);
-    margin-top: 8px;
-    font-weight: 400;
-  }
-  .header-right {
-    text-align: right;
-    font-size: 13px;
-    color: var(--grey);
-    line-height: 1.8;
-  }
-  .header-right strong {
-    color: var(--ink);
-    font-weight: 600;
-  }
+:root{
+  --primary:#2346FF;
+  --primary-dark:#1A35CC;
+  --white:#FFFFFF;
+  --agile-blue:#59C8FF;
+  --grounded-gray:#959691;
+  --adaptive-purple:#8A73FF;
+  --yellow:#FFB400;
+  --thoughtful-green:#57D957;
+  --bright-pink:#FF6699;
+  --light-bg:#F0F5FB;
+  --text:#465573;
+  --dark-bg:#1B1E32;
+  --chapter-bg:#4B5064;
+  --chapter-dot:#FFB404;
+  --border:#E0E6F0;
+  --grid-line:#D8DEE8;
+  --font:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","SF Mono",Consolas,monospace;
+  --inter:"Inter",var(--font);
+}
 
-  .meta-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 36px;
-  }
-  .meta-card {
-    background: var(--light);
-    padding: 16px 20px;
-    border-left: 3px solid var(--blue);
-  }
-  .meta-card.yellow { border-left-color: var(--yellow); }
-  .meta-card .label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--grey);
-    margin-bottom: 4px;
-  }
-  .meta-card .value {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--ink);
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--dark-bg);font-family:var(--font);-webkit-font-smoothing:antialiased;color:var(--text)}
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-  thead th {
-    background: var(--blue);
-    color: #fff;
-    font-weight: 600;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 12px 16px;
-    text-align: left;
-    border: none;
-  }
-  thead th:first-child { width: 56px; }
-  thead th:nth-child(2) { width: 130px; }
-  tbody tr { border-bottom: 1px solid var(--border); }
-  tbody tr:hover { background: rgba(44, 97, 254, 0.03); }
-  tbody td {
-    padding: 14px 16px;
-    vertical-align: top;
-    line-height: 1.6;
-  }
-  tbody td:first-child {
-    font-family: "Inter", monospace;
-    font-weight: 600;
-    font-size: 13px;
-    color: var(--blue);
-    text-align: center;
-  }
-  tbody td:nth-child(2) {
-    font-weight: 500;
-    white-space: nowrap;
-  }
+/* ===== Deck ===== */
+#deck{position:fixed;inset:0;display:flex;flex-wrap:nowrap;transition:transform .8s cubic-bezier(.83,0,.17,1);z-index:10;will-change:transform}
+.s{width:100vw;height:100vh;flex:0 0 100vw;position:relative;overflow:hidden;background:var(--white);color:var(--dark-bg);padding:6vh 6vw;display:flex;flex-direction:column}
 
-  .act-row td {
-    background: var(--ink);
-    color: #fff;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    padding: 10px 16px;
-    border: none;
-  }
-  .act-row td:first-child { color: var(--yellow); }
+/* ===== Brand watermark on right edge ===== */
+.s::after{content:'Trip.com · Business Report · 2026';position:absolute;right:-3vw;top:50%;transform:rotate(90deg) translateX(-50%);font-size:9px;font-family:var(--inter);color:var(--grounded-gray);opacity:.35;letter-spacing:.2em;white-space:nowrap;pointer-events:none;z-index:2}
 
-  .product-tag {
-    display: inline-block;
-    background: rgba(44, 97, 254, 0.08);
-    color: var(--blue);
-    font-size: 12px;
-    font-weight: 600;
-    padding: 2px 8px;
-    margin: 2px 4px 2px 0;
-    border-radius: 2px;
-  }
-  .url-tag {
-    display: inline-block;
-    color: var(--grey);
-    font-size: 11px;
-    font-family: "Inter", monospace;
-    margin-left: 4px;
-  }
+/* ===== Variants ===== */
+.s.cover{background:var(--primary);color:#fff}
+.s.cover::after{color:rgba(255,255,255,.25)}
+.s.accent{background:var(--primary);color:#fff}
+.s.accent::after{color:rgba(255,255,255,.25)}
+.s.chapter{background:var(--chapter-bg);color:#fff}
+.s.chapter::after{color:rgba(255,255,255,.25)}
+.s.light{background:var(--light-bg)}
+.s.dark{background:var(--dark-bg);color:#fff}
+.s.dark::after{color:rgba(255,255,255,.25)}
+.s.show{background:linear-gradient(135deg,#F0F5FB 0%,#E8F0FF 100%)}
 
-  .footer {
-    margin-top: 48px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-  .footer-section h3 {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--grey);
-    margin-bottom: 12px;
-  }
-  .sign-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-  }
-  .sign-line .role { font-weight: 500; }
-  .sign-line .blank {
-    flex: 1;
-    border-bottom: 1px dashed var(--border);
-    margin: 0 16px;
-    min-width: 120px;
-  }
-  .sign-line .date-field {
-    font-size: 13px;
-    color: var(--grey);
-    min-width: 100px;
-  }
+/* ===== Typography (Swiss Style) ===== */
+.h0{font-size:clamp(40px,5.2vw,84px);font-weight:900;line-height:1.05;letter-spacing:-.025em;font-family:var(--inter)}
+.h1{font-size:clamp(28px,2.6vw,42px);font-weight:800;line-height:1.15;letter-spacing:-.015em}
+.h2{font-size:clamp(20px,1.5vw,24px);font-weight:700;line-height:1.3;color:var(--dark-bg)}
+.h3{font-size:clamp(16px,1.15vw,18px);font-weight:700;line-height:1.35}
+.body{font-size:clamp(14px,1.05vw,17px);font-weight:400;line-height:1.7;color:var(--text)}
+.small{font-size:clamp(12px,.88vw,14px);line-height:1.7;color:var(--text)}
+.caption{font-size:11px;letter-spacing:.05em;color:var(--grounded-gray);text-transform:uppercase;font-family:var(--inter);font-weight:600}
 
-  .note-box {
-    background: var(--light);
-    padding: 20px 24px;
-    font-size: 13px;
-    line-height: 1.8;
-    color: var(--grey);
-  }
-  .note-box strong { color: var(--ink); }
+.s.cover .h1,.s.accent .h1,.s.chapter .h1,.s.dark .h1{color:#fff}
+.s.cover .h2,.s.accent .h2,.s.chapter .h2,.s.dark .h2{color:rgba(255,255,255,.85)}
+.s.cover .h3,.s.accent .h3,.s.chapter .h3,.s.dark .h3{color:#fff}
+.s.cover .body,.s.accent .body,.s.chapter .body,.s.dark .body{color:rgba(255,255,255,.78)}
+.s.cover .caption,.s.accent .caption,.s.chapter .caption,.s.dark .caption{color:rgba(255,255,255,.55)}
 
-  @media print {
-    body { padding: 24px 32px; }
-    .meta-card { break-inside: avoid; }
-    tbody tr { break-inside: avoid; }
-  }
+/* ===== Label / Tag ===== */
+.label{display:inline-flex;align-items:center;gap:.5em;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--primary);font-weight:700;font-family:var(--inter);margin-bottom:2vh}
+.label::before{content:'';width:18px;height:2px;background:var(--primary)}
+.s.cover .label,.s.accent .label,.s.chapter .label,.s.dark .label{color:rgba(255,255,255,.6)}
+.s.cover .label::before,.s.accent .label::before,.s.chapter .label::before,.s.dark .label::before{background:rgba(255,255,255,.6)}
+
+.tag{display:inline-block;background:rgba(35,70,255,.08);color:var(--primary);font-size:11px;font-weight:700;padding:4px 10px;margin:2px;border-radius:4px;letter-spacing:.02em}
+.tag.y{background:rgba(255,180,0,.15);color:#b8860b}
+.tag.g{background:rgba(87,217,87,.15);color:#2d8a2d}
+.tag.p{background:rgba(138,115,255,.12);color:#6a5acd}
+.tag.k{background:var(--dark-bg);color:#fff}
+.tag.r{background:rgba(255,102,153,.12);color:#cc3366}
+
+/* ===== Grid ===== */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:2vw}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5vw}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2vw}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:1vw}
+
+/* ===== Cards ===== */
+.card{background:var(--light-bg);border-radius:12px;border:1px solid var(--border);padding:2.5vh 1.8vw;display:flex;flex-direction:column;position:relative;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(35,70,255,.12)}
+.card.a{background:var(--primary);color:#fff;border:none}
+.card.d{background:var(--dark-bg);color:#fff;border:none}
+.card.y{background:var(--yellow);color:var(--dark-bg);border:none}
+.card.purple{background:var(--adaptive-purple);color:#fff;border:none}
+.card.green{background:var(--thoughtful-green);color:#fff;border:none}
+.card.bordered{background:#fff;border:2px solid var(--primary)}
+
+/* ===== Table ===== */
+.tbl{width:100%;border-collapse:collapse;font-size:clamp(12px,.85vw,14px)}
+.tbl th{background:var(--light-bg);color:var(--primary);font-weight:700;padding:1.4vh 1.1vw;text-align:left;border-bottom:2px solid var(--grid-line);font-family:var(--inter);letter-spacing:.02em}
+.tbl td{padding:1.2vh 1.1vw;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text)}
+.tbl tr:hover td{background:rgba(35,70,255,.02)}
+
+/* ===== Prompt box ===== */
+.prompt-box{background:var(--dark-bg);color:#fff;padding:2.5vh 2vw;font-size:clamp(12px,.85vw,14px);line-height:1.7;font-family:var(--font);white-space:pre-wrap;border-left:5px solid var(--primary);border-radius:8px;overflow:hidden;position:relative}
+.prompt-box::before{content:'PROMPT';position:absolute;top:1vh;right:1vw;font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.3)}
+
+/* ===== Before / After ===== */
+.before{background:#FFF5F5;border-left:4px solid var(--bright-pink);border-radius:8px;padding:2vh 1.6vw;font-size:13px;line-height:1.5}
+.after{background:#F0FFF4;border-left:4px solid var(--thoughtful-green);border-radius:8px;padding:2vh 1.6vw;font-size:13px;line-height:1.5}
+
+/* ===== Pipeline ===== */
+.pipeline{display:flex;align-items:center;gap:.6vw;margin:1.2vh 0;flex-wrap:wrap}
+.step{background:var(--primary);color:#fff;padding:1.1vh 1.3vw;font-weight:700;font-size:13px;white-space:nowrap;border-radius:6px;transition:transform .2s}
+.step:hover{transform:scale(1.05)}
+.step.g{background:var(--light-bg);color:var(--text)}
+.step.y{background:var(--yellow);color:var(--dark-bg)}
+.step.k{background:var(--dark-bg);color:#fff}
+.arrow{color:var(--primary);font-size:18px;font-weight:700}
+
+/* ===== KPI ===== */
+.kpi{font-size:clamp(48px,5vw,80px);font-weight:900;line-height:1;font-family:var(--inter);color:var(--primary);letter-spacing:-.03em}
+.kpi.w{color:#fff}
+.kpi.y{color:var(--yellow)}
+
+/* ===== Page footer ===== */
+.page-footer{position:absolute;bottom:2vh;left:6vw;right:6vw;display:flex;justify-content:space-between;font-size:10px;font-family:var(--inter);color:var(--text);opacity:.45;z-index:2;letter-spacing:.05em}
+.page-footer .pnum{font-weight:700;font-family:var(--mono)}
+.s.cover .page-footer,.s.accent .page-footer,.s.chapter .page-footer,.s.dark .page-footer{color:rgba(255,255,255,.55)}
+
+/* ===== Progress bar (clickable nav) ===== */
+#progress-track{position:fixed;top:0;left:0;right:0;height:4px;background:rgba(0,0,0,.04);z-index:99;cursor:pointer;transition:height .2s ease}
+#progress-track:hover{height:14px;background:rgba(0,0,0,.08)}
+#progress{position:absolute;top:0;left:0;height:100%;background:var(--yellow);transition:width .8s cubic-bezier(.83,0,.17,1);pointer-events:none}
+#progress-ticks{position:absolute;inset:0;display:flex;pointer-events:none;opacity:0;transition:opacity .2s}
+#progress-track:hover #progress-ticks{opacity:1}
+#progress-ticks .tick{flex:1;border-right:1px solid rgba(255,255,255,.35)}
+#progress-ticks .tick:last-child{border-right:none}
+
+/* hover preview card */
+#progress-tip{position:fixed;top:22px;background:#fff;color:var(--dark-bg);border-radius:8px;pointer-events:none;opacity:0;transform:translateX(-50%) translateY(-4px);transition:opacity .15s ease,transform .15s ease;z-index:101;box-shadow:0 8px 24px rgba(0,0,0,.18);overflow:hidden;width:200px;border:1px solid var(--border)}
+#progress-tip.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#progress-tip .thumb-prev{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:var(--inter);font-size:13px;text-align:center;padding:8px;line-height:1.3}
+#progress-tip .label-prev{padding:7px 12px;font-size:11.5px;font-weight:600;font-family:var(--inter);color:var(--text);background:#fff;display:flex;justify-content:space-between;align-items:center}
+#progress-tip .label-prev .pg-num{color:var(--primary);font-weight:800}
+
+/* page jump input (bottom right) */
+#page-jump{position:fixed;bottom:1.8vh;right:2vw;z-index:50;display:flex;align-items:center;gap:8px;background:rgba(27,30,50,.85);color:#fff;backdrop-filter:blur(8px);padding:8px 14px;border-radius:24px;font-family:var(--inter);font-size:12px;font-weight:600;cursor:pointer;transition:background .2s,transform .15s;user-select:none;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+#page-jump:hover{background:var(--primary);transform:scale(1.05)}
+#page-jump .label-pj{opacity:.7;font-size:10px;letter-spacing:.1em}
+#page-jump .cur-pj{color:var(--yellow)}
+#page-jump input{width:38px;background:transparent;border:none;color:#fff;font-family:inherit;font-size:14px;font-weight:700;text-align:center;outline:none;padding:0;border-bottom:1px solid var(--yellow)}
+#page-jump input::-webkit-inner-spin-button,#page-jump input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+
+/* ===== Canvas backgrounds ===== */
+canvas.ascii-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.55}
+.s>*:not(canvas):not(.page-footer):not(.deco){position:relative;z-index:1}
+.deco{position:absolute;pointer-events:none;z-index:0}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bounce-soft{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.6}}
+@keyframes spin-slow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes draw-line{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(3deg)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+
+/* When slide becomes active, animate children */
+.s.active .anim{animation:fadeInUp .8s cubic-bezier(.34,1.56,.64,1) both}
+.s.active .anim-1{animation:fadeInUp .8s cubic-bezier(.34,1.56,.64,1) .1s both}
+.s.active .anim-2{animation:fadeInUp .8s cubic-bezier(.34,1.56,.64,1) .2s both}
+.s.active .anim-3{animation:fadeInUp .8s cubic-bezier(.34,1.56,.64,1) .3s both}
+.s.active .anim-4{animation:fadeInUp .8s cubic-bezier(.34,1.56,.64,1) .4s both}
+.s.active .anim-5{animation:fadeInUp .8s cubic-bezier(.34,1.56,.64,1) .5s both}
+.s.active .anim-6{animation:fadeInUp .8s cubic-bezier(.34,1.56,.64,1) .6s both}
+.s.active .fade{animation:fadeIn 1.2s ease both}
+.s.active .slide-r{animation:slideInRight .8s cubic-bezier(.34,1.56,.64,1) both}
+
+.bounce{animation:bounce-soft 2s ease-in-out infinite}
+.pulse-dot{animation:pulse-dot 2s ease-in-out infinite}
+.spin{animation:spin-slow 18s linear infinite}
+.float{animation:float 4s ease-in-out infinite}
+.wiggle{animation:wiggle 2.5s ease-in-out infinite}
+.shimmer{background:linear-gradient(90deg,var(--primary) 0%,var(--agile-blue) 50%,var(--primary) 100%);background-size:200% 100%;animation:shimmer 3s linear infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ===== Decorative shapes (Swiss style) ===== */
+.shape-dot{width:14px;height:14px;border-radius:50%;background:var(--yellow);display:inline-block}
+.shape-square{width:14px;height:14px;background:var(--primary);display:inline-block}
+.shape-triangle{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:13px solid var(--bright-pink);display:inline-block}
+.shape-ring{width:14px;height:14px;border-radius:50%;border:3px solid var(--primary);display:inline-block}
+
+/* ===== Overview ===== */
+#overview{position:fixed;inset:0;z-index:999;background:rgba(15,18,40,.96);backdrop-filter:blur(20px);display:none;overflow-y:auto;padding:3vh 3vw}
+#overview.show{display:block}
+#overview h2{color:#fff;font-family:var(--inter);font-weight:800;font-size:24px;margin-bottom:2vh}
+#overview .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1.2vh 1vw}
+#overview .thumb{cursor:pointer;border:2px solid transparent;transition:all .2s;border-radius:6px;overflow:hidden}
+#overview .thumb:hover{border-color:var(--yellow);transform:scale(1.05)}
+#overview .thumb.cur{border-color:var(--primary)}
+#overview .thumb-img{width:100%;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:var(--inter);font-size:13px;border-radius:4px;padding:6px;text-align:center;line-height:1.2}
+#overview .thumb-label{color:rgba(255,255,255,.6);font-size:10px;padding:4px 0;text-align:center;font-family:var(--inter)}
+
+.nav-hint{position:fixed;bottom:1.8vh;left:50%;transform:translateX(-50%);z-index:50;font-size:11px;color:var(--grounded-gray);opacity:.4;pointer-events:none;font-family:var(--inter);letter-spacing:.05em}
+
+/* ===== Specific decorations ===== */
+.big-num{font-family:var(--inter);font-weight:900;font-size:clamp(120px,18vw,260px);line-height:.85;color:rgba(35,70,255,.06);letter-spacing:-.05em;position:absolute;pointer-events:none}
+
+.kawaii-icon{font-size:24px;display:inline-block}
+
+/* ===== Cover specific ===== */
+.cover-title{font-family:var(--font);font-weight:900;font-size:clamp(60px,7vw,110px);line-height:1.3;letter-spacing:-.01em}
+
+/* ===== Number counter circles ===== */
+.num-circle{width:42px;height:42px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--inter);font-weight:900;font-size:18px;flex-shrink:0}
+.num-circle.y{background:var(--yellow);color:var(--dark-bg)}
+.num-circle.k{background:var(--dark-bg)}
+.num-circle.p{background:var(--adaptive-purple)}
+
+/* ===== Small badge number (more subtle than circle) ===== */
+.badge-num{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:22px;padding:0 7px;border-radius:4px;font-family:var(--inter);font-weight:700;font-size:11px;letter-spacing:.04em;flex-shrink:0;background:rgba(35,70,255,.1);color:var(--primary)}
+.badge-num.dark{background:rgba(255,255,255,.18);color:#fff}
+.badge-num.yellow{background:var(--yellow);color:var(--dark-bg)}
+.badge-num.purple{background:rgba(138,115,255,.18);color:var(--adaptive-purple)}
+
+/* ===== Corner numeral (subtle top-left) ===== */
+.corner-num{position:absolute;top:10px;left:12px;font-family:var(--inter);font-weight:800;font-size:11px;color:rgba(35,70,255,.5);letter-spacing:.05em}
+.card.a .corner-num,.card.d .corner-num,.card.purple .corner-num,.card.green .corner-num{color:rgba(255,255,255,.45)}
+.card.y .corner-num{color:rgba(0,0,0,.4)}
+
+/* ===== Big numeral for P40 — force identical size & alignment ===== */
+.big-numeral{font-family:var(--inter);font-weight:900;font-size:88px;line-height:1;letter-spacing:-.02em;color:rgba(35,70,255,.45);text-align:right;font-variant-numeric:tabular-nums;width:140px;display:block}
+.big-numeral.highlight{color:rgba(255,180,0,.85)}
+
+/* ===== Fan-out cards (P3 entrance) ===== */
+.fan-card{transition:transform .95s cubic-bezier(.34,1.3,.5,1),opacity .8s ease;opacity:0;transform-origin:center center}
+.s.active .fan-card{opacity:1;transform:translate(0,0) scale(1) rotate(0)}
+.fan-1{transform:translate(180%,18%) scale(.68) rotate(-9deg)}
+.fan-2{transform:translate(58%,8%) scale(.84) rotate(-3deg)}
+.fan-3{transform:translate(-58%,8%) scale(.84) rotate(3deg)}
+.fan-4{transform:translate(-180%,18%) scale(.68) rotate(9deg)}
+.s.active .fan-1{transition-delay:.15s}
+.s.active .fan-2{transition-delay:.25s}
+.s.active .fan-3{transition-delay:.35s}
+.s.active .fan-4{transition-delay:.45s}
+
+/* ===== AI+HTML timeline (P34) ===== */
+.ai-html-timeline{position:relative;padding-left:32px}
+.ai-html-timeline::before{content:'';position:absolute;left:13px;top:14px;bottom:14px;width:2px;background:linear-gradient(to bottom,var(--primary),var(--dark-bg),var(--adaptive-purple),var(--yellow));border-radius:2px;opacity:.4}
+.ai-html-step{position:relative;margin-bottom:1.2vh}
+.ai-html-step:last-child{margin-bottom:0}
+.ai-html-dot{position:absolute;left:-25px;top:50%;width:14px;height:14px;border-radius:50%;transform:translateY(-50%);box-shadow:0 0 0 3px #fff,0 0 0 4px rgba(35,70,255,.18);z-index:2}
+
+/* ===== Flip card ===== */
+.flip-card{perspective:1200px;position:relative;min-height:0;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.4,1.6,.5,1);transform-style:preserve-3d}
+.flip-card:hover .flip-inner{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;padding:1.8vh 1vw;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border:1px solid var(--border)}
+.flip-back-face{transform:rotateY(180deg)}
+.flip-illust{width:54px;height:54px;display:block;margin:0 auto 1vh;flex-shrink:0}
+.flip-tip{font-size:10.5px;opacity:.6;line-height:1.5;padding-top:.7vh;margin-top:.7vh;border-top:1px dashed rgba(255,255,255,.18)}
+.flip-back-face.light-back .flip-tip{border-top-color:rgba(0,0,0,.12);opacity:.7}
+.flip-hint{font-size:10px;opacity:.55;letter-spacing:.04em;margin-top:.8vh}
+
+@media print{#deck{position:static;width:auto;flex-wrap:wrap;transform:none!important}.s{page-break-after:always;height:auto;min-height:100vh}}
 </style>
 </head>
 <body>
+<div id="progress-track"><div id="progress-ticks"></div><div id="progress"></div></div>
+<div id="progress-tip"></div>
+<div id="deck">
 
-<div class="header">
-  <div class="header-left">
-    <h1>Workshop <span>大纲审批表</span></h1>
-    <p>「用 AI 做 PPT — 5 种方法，选你顺手的」· 携程销售团队内部培训</p>
+<!-- ============================================================ -->
+<!-- P1 · 封面 -->
+<!-- ============================================================ -->
+<div class="s cover" id="p1">
+<canvas class="ascii-bg" data-worldmap></canvas>
+<div style="position:absolute;top:6vh;left:6vw;right:6vw;display:flex;justify-content:space-between;align-items:center;z-index:2">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="shape-dot" style="background:var(--yellow)"></div>
+    <span style="font-family:var(--inter);font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.7);font-weight:700">TRIP.COM · WORKSHOP 2026</span>
   </div>
-  <div class="header-right">
-    <strong>携程集团</strong><br>
-    销售团队 · 内部培训<br>
-    编制日期：2026-05-11
+  <span class="caption" style="color:rgba(255,255,255,.5)">VOL.01</span>
+</div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;z-index:1">
+  <div class="cover-title anim-2">AI 全面提效<br><span style="color:var(--yellow)">实战指南</span><span class="bounce" style="display:inline-block;color:var(--yellow);margin-left:.1em">.</span></div>
+  <div class="anim-3" style="margin-top:4vh;font-size:clamp(15px,1.15vw,18px);color:rgba(255,255,255,.78);max-width:55vw;line-height:1.7">
+    标书 · 合同 · 数据 · PPT — 四个场景，一套方法<br>
+    <span style="opacity:.7">让 AI 替你处理那些琐事，把好时间留给客户</span>
   </div>
 </div>
 
-<div class="meta-row">
-  <div class="meta-card">
-    <div class="label">培训对象</div>
-    <div class="value">销售团队</div>
+<div style="position:absolute;bottom:5vh;left:6vw;right:6vw;display:flex;justify-content:space-between;align-items:flex-end;z-index:2">
+  <div class="anim-4" style="font-family:var(--inter);font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.1em">
+    <div style="font-weight:700;color:#fff;margin-bottom:6px">42 PAGES · 4 SECTIONS</div>
+    <div>← → 翻页 · ESC 索引 · 触屏可滑动</div>
   </div>
-  <div class="meta-card">
-    <div class="label">预计时长</div>
-    <div class="value">30 分钟</div>
+  <div class="anim-5" style="display:flex;gap:6px;align-items:center">
+    <span class="shape-dot pulse-dot" style="background:var(--yellow)"></span>
+    <span class="shape-dot pulse-dot" style="background:var(--agile-blue);animation-delay:.3s"></span>
+    <span class="shape-dot pulse-dot" style="background:var(--bright-pink);animation-delay:.6s"></span>
   </div>
-  <div class="meta-card yellow">
-    <div class="label">总页数</div>
-    <div class="value">18 页</div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P2 · 时间节省对比 -->
+<!-- ============================================================ -->
+<div class="s" id="p2">
+<div class="label anim">导入篇 · 01</div>
+<div class="h1 anim-1">AI 帮你节约更多时间花在客户身上<span class="bounce" style="display:inline-block;color:var(--yellow);margin-left:.15em">.</span></div>
+<div class="body anim-2" style="margin-top:1vh;max-width:55vw">把每周省下的 10 小时还给你，去做真正重要的事</div>
+<div class="big-num" style="top:8vh;right:5vw">10h</div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:2vh;margin-top:2vh">
+  <table class="tbl anim-3">
+    <thead><tr><th>工作类型</th><th>传统耗时</th><th style="color:var(--primary)">AI 辅助后</th><th>节省</th><th>每周省</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag p">重点</span>标书撰写</td><td>3-4 小时</td><td style="color:var(--primary);font-weight:700">1 小时</td><td>~70%</td><td>≈ 3h</td></tr>
+      <tr><td>合同审阅</td><td>2-3 小时</td><td style="color:var(--primary);font-weight:700">30 分钟</td><td>~80%</td><td>≈ 2h</td></tr>
+      <tr><td>数据整理 & 图表</td><td>2-3 小时</td><td style="color:var(--primary);font-weight:700">40 分钟</td><td>~75%</td><td>≈ 2h</td></tr>
+      <tr><td>PPT 制作</td><td>6-8 小时</td><td style="color:var(--primary);font-weight:700">1-2 小时</td><td>~80%</td><td>≈ 5h</td></tr>
+      <tr style="font-weight:700;background:rgba(35,70,255,.05)"><td>合计</td><td>约 13-18h/周</td><td style="color:var(--primary)">约 3-4h/周</td><td style="color:var(--primary)">~80%</td><td style="color:var(--primary)">≈ 10h</td></tr>
+    </tbody>
+  </table>
+  <div class="anim-4" style="background:var(--primary);color:#fff;padding:2.5vh 2.5vw;font-size:clamp(15px,1.15vw,18px);font-weight:700;border-radius:10px;display:flex;align-items:center;gap:1vw">
+    <span class="kawaii-icon wiggle" style="font-size:28px">🎯</span>
+    <span>今天的目标 — 帮你省出 <span class="kpi" style="display:inline;font-size:28px;color:var(--yellow)">10h</span>/周，把时间花在客户身上</span>
   </div>
-  <div class="meta-card">
-    <div class="label">计划日期</div>
-    <div class="value">2026 年 5 月底</div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">02 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P3 · 全场地图 -->
+<!-- ============================================================ -->
+<div class="s" id="p3">
+<div class="label anim">导入篇 · 02</div>
+<div class="h1 anim-1">今天讲什么：四个板块速览</div>
+<div class="body anim-2" style="margin-top:1vh">每个板块都从"成品展示"开始 — 先看 AI 能做出什么，再倒推怎么做</div>
+
+<div class="grid4" style="flex:1;margin-top:3vh;align-items:stretch">
+  <div class="card fan-card fan-1" style="background:var(--adaptive-purple);color:#fff;border:none;padding:3vh 1.8vw;justify-content:space-between">
+    <div>
+      <div style="font-family:var(--inter);font-weight:900;font-size:48px;opacity:.25;line-height:1">A</div>
+      <div style="font-weight:700;font-size:18px;margin-top:1vh">合同 & 标书</div>
+      <span style="display:inline-block;background:var(--yellow);color:var(--dark-bg);font-weight:700;font-size:11px;padding:3px 10px;border-radius:4px;margin-top:1vh;letter-spacing:.02em">★ 重点 · 15 页</span>
+      <div style="font-size:12px;margin-top:1.5vh;opacity:.85;line-height:1.5">8 大标书场景 + 合同 3 合 1。从招标文件解读到合规检查，覆盖标书全流程</div>
+    </div>
+    <div style="font-family:var(--inter);font-weight:700;font-size:11px;opacity:.6;letter-spacing:.1em">25 MIN</div>
+  </div>
+  <div class="card fan-card fan-2" style="background:var(--yellow);color:var(--dark-bg);border:none;padding:3vh 1.8vw;justify-content:space-between">
+    <div>
+      <div style="font-family:var(--inter);font-weight:900;font-size:48px;opacity:.2;line-height:1">B</div>
+      <div style="font-weight:700;font-size:18px;margin-top:1vh">数据可视化分析</div>
+      <span class="tag k" style="margin:1vh 0 0 0;display:inline-block">9 页</span>
+      <div style="font-size:12px;margin-top:1.5vh;opacity:.85;line-height:1.5">从 Excel 到洞察的五步法 + 2026 新一代数据工具</div>
+    </div>
+    <div style="font-family:var(--inter);font-weight:700;font-size:11px;opacity:.6;letter-spacing:.1em">15 MIN</div>
+  </div>
+  <div class="card fan-card fan-3" style="background:var(--thoughtful-green);color:#fff;border:none;padding:3vh 1.8vw;justify-content:space-between">
+    <div>
+      <div style="font-family:var(--inter);font-weight:900;font-size:48px;opacity:.25;line-height:1">C</div>
+      <div style="font-weight:700;font-size:18px;margin-top:1vh">AI PPT 设计</div>
+      <span class="tag k" style="margin:1vh 0 0 0;display:inline-block">10 页</span>
+      <div style="font-size:12px;margin-top:1.5vh;opacity:.85;line-height:1.5">5 条路线做 PPT — 从入门级到代码级定制</div>
+    </div>
+    <div style="font-family:var(--inter);font-weight:700;font-size:11px;opacity:.6;letter-spacing:.1em">20 MIN</div>
+  </div>
+  <div class="card fan-card fan-4" style="background:var(--bright-pink);color:#fff;border:none;padding:3vh 1.8vw;justify-content:space-between">
+    <div>
+      <div style="font-family:var(--inter);font-weight:900;font-size:48px;opacity:.25;line-height:1">D</div>
+      <div style="font-weight:700;font-size:18px;margin-top:1vh">收尾彩蛋</div>
+      <span class="tag k" style="margin:1vh 0 0 0;display:inline-block">5 页</span>
+      <div style="font-size:12px;margin-top:1.5vh;opacity:.85;line-height:1.5">那些一直默默帮我的小工具 — 现场演示 + 行动清单</div>
+    </div>
+    <div style="font-family:var(--inter);font-weight:700;font-size:11px;opacity:.6;letter-spacing:.1em">5 MIN</div>
   </div>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>页码</th>
-      <th>类型</th>
-      <th>内容</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>P1</td>
-      <td>封面</td>
-      <td>「用 AI 做 PPT — 5 种方法，选你顺手的」</td>
-    </tr>
-    <tr>
-      <td>P2</td>
-      <td>开场钩子</td>
-      <td>抛痛点：你花多少时间在 PPT 上？<br>数据锚点：「销售人均每周 <strong style="color:var(--blue)">6-8 小时</strong> 做 PPT」</td>
-    </tr>
-    <tr>
-      <td>P3</td>
-      <td>议程页</td>
-      <td>今天讲什么：5 条路线一览，每条路线用一句话概括</td>
-    </tr>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">03 / 42</span></div>
+</div>
 
-    <tr class="act-row">
-      <td>ACT 1</td>
-      <td colspan="2">第一幕 · 问题 —— PPT 做不好看，到底卡在哪？</td>
-    </tr>
-    <tr>
-      <td>P4</td>
-      <td>幕封</td>
-      <td>「PPT 做不好看，到底卡在哪？」</td>
-    </tr>
-    <tr>
-      <td>P5</td>
-      <td>对比页</td>
-      <td>Before / After — 丑 PPT vs 好看 PPT 的三个关键差距<br>
-        <span class="product-tag">排版</span><span class="product-tag">配色</span><span class="product-tag">数据可视化</span>
-      </td>
-    </tr>
-
-    <tr class="act-row">
-      <td>ACT 2</td>
-      <td colspan="2">第二幕 · 5 种 AI 做 PPT 的路线</td>
-    </tr>
-    <tr>
-      <td>P6</td>
-      <td>幕封</td>
-      <td>「5 条路线，从傻瓜到专业」</td>
-    </tr>
-    <tr>
-      <td>P7</td>
-      <td>路线一<br>本地 AI 插件</td>
-      <td>
-        <span class="product-tag">WPS AI</span><span class="url-tag">ai.wps.cn</span>
-        <span class="product-tag">Microsoft Copilot</span><span class="url-tag">copilot.microsoft.com</span><br>
-        优势：Excel 图表处理强、自动优化布局、兼容本地文件<br>
-        劣势：文案偏模板化、不擅长从零创作
-      </td>
-    </tr>
-    <tr>
-      <td>P8</td>
-      <td>路线二<br>云端 AI PPT</td>
-      <td>
-        <span class="product-tag">AIPPT</span><span class="url-tag">aippt.cn</span>
-        <span class="product-tag">Gamma</span><span class="url-tag">gamma.app</span>
-        <span class="product-tag">MindShow</span><span class="url-tag">mindshow.fun</span><br>
-        输入文本一键生成，下载兼容性好，适合快速出稿
-      </td>
-    </tr>
-    <tr>
-      <td>P9</td>
-      <td>路线三<br>大模型对话</td>
-      <td>
-        <span class="product-tag">Kimi</span><span class="url-tag">kimi.moonshot.cn</span>
-        <span class="product-tag">豆包</span><span class="url-tag">doubao.com</span><br>
-        提取 Markdown 直出 PPT，从 0 开始最快，前端酷炫可编辑
-      </td>
-    </tr>
-    <tr>
-      <td>P10</td>
-      <td>路线四<br>AI + HTML</td>
-      <td>
-        <span class="product-tag">Claude</span><span class="url-tag">claude.ai</span>
-        <span class="product-tag">Bolt</span><span class="url-tag">bolt.new</span>
-        <span class="product-tag">Cursor</span><span class="url-tag">cursor.com</span><br>
-        输入内容 → AI 写前端代码 → 导出 PDF，长远最稳定、结构化程度最高
-      </td>
-    </tr>
-    <tr>
-      <td>P11</td>
-      <td>路线五<br>混合工作流</td>
-      <td>先用大模型理内容 → 再用云平台出初版 → 本地 AI 插件微调<br>
-        组合拳：取长补短，适合大多数场景
-      </td>
-    </tr>
-    <tr>
-      <td>P12</td>
-      <td>横向对比矩阵</td>
-      <td>5 种路线 × 4 个维度打分对比<br>
-        <span class="product-tag">上手难度</span><span class="product-tag">视觉质量</span><span class="product-tag">数据图表</span><span class="product-tag">适合场景</span>
-      </td>
-    </tr>
-
-    <tr class="act-row">
-      <td>ACT 3</td>
-      <td colspan="2">第三幕 · 怎么选 —— 你的场景决定你的工具</td>
-    </tr>
-    <tr>
-      <td>P13</td>
-      <td>幕封</td>
-      <td>「你的场景决定你的工具」</td>
-    </tr>
-    <tr>
-      <td>P14</td>
-      <td>决策流程图</td>
-      <td>简单决策树：<br>
-        赶时间？→ 路线 2/3 · 要好看？→ 路线 4/5 · 数据多？→ 路线 1
-      </td>
-    </tr>
-    <tr>
-      <td>P15</td>
-      <td>推荐组合</td>
-      <td>给销售团队的 3 个实战推荐场景：<br>
-        ① 客户提案（快 + 好看）<br>
-        ② 季度汇报（数据多 + 严谨）<br>
-        ③ 产品介绍（要惊艳 + 有个性）
-      </td>
-    </tr>
-
-    <tr class="act-row">
-      <td>END</td>
-      <td colspan="2">收束</td>
-    </tr>
-    <tr>
-      <td>P16</td>
-      <td>核心 Takeaway</td>
-      <td>3 条金句总结：<br>
-        ① 工具不重要，内容才重要<br>
-        ② 没有最好，只有最顺手<br>
-        ③ 混合工作流是安全牌
-      </td>
-    </tr>
-    <tr>
-      <td>P17</td>
-      <td>行动建议</td>
-      <td>「今天回去试一个工具」— 推荐从 Gamma 或 Kimi 开始，零门槛，5 分钟出第一版</td>
-    </tr>
-    <tr>
-      <td>P18</td>
-      <td>Q&A / 致谢</td>
-      <td>收尾 + 全部工具链接汇总 + 欢迎提问</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="footer">
-  <div class="footer-section">
-    <h3>审批签字</h3>
-    <div class="sign-line">
-      <span class="role">编制人</span>
-      <span class="blank"></span>
-      <span class="date-field">日期：____.____.____</span>
-    </div>
-    <div class="sign-line">
-      <span class="role">审批人</span>
-      <span class="blank"></span>
-      <span class="date-field">日期：____.____.____</span>
+<!-- ============================================================ -->
+<!-- P4 · 板块 A 章节封面 -->
+<!-- ============================================================ -->
+<div class="s chapter" id="p4">
+<canvas class="ascii-bg" data-grid></canvas>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;z-index:1">
+  <div>
+    <div class="label anim" style="color:rgba(255,255,255,.6)"><span style="background:rgba(255,255,255,.6)"></span>板块 A</div>
+    <div class="anim-1" style="font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.15em;font-family:var(--inter);font-weight:600;margin-top:1vh">SECTION 01 OF 04</div>
+  </div>
+  <div>
+    <div class="cover-title anim-2" style="font-size:clamp(58px,6.4vw,108px);font-weight:900;color:#fff;line-height:1.12">合同 &<br>标书<span style="color:var(--chapter-dot);display:inline-block" class="bounce">.</span></div>
+    <div class="anim-3" style="margin-top:3vh;font-size:clamp(15px,1.25vw,20px);color:rgba(255,255,255,.85);font-weight:500;line-height:1.8">你的 AI 法务助手 &amp; 标书写作教练</div>
+    <div class="anim-4" style="margin-top:2vh;display:flex;gap:1vw;flex-wrap:wrap">
+      <span class="tag y">8 大标书场景</span>
+      <span class="tag" style="background:rgba(255,255,255,.12);color:#fff">合同 3 合 1</span>
+      <span class="tag" style="background:rgba(255,255,255,.12);color:#fff">重点中的重点</span>
     </div>
   </div>
-  <div class="footer-section">
-    <h3>备注</h3>
-    <div class="note-box">
-      <strong>交付形式：</strong>单文件 HTML 网页，浏览器直接打开演示<br>
-      <strong>演示方式：</strong>← → 方向键翻页，ESC 查看索引，支持触屏<br>
-      <strong>设计风格：</strong>瑞士国际主义（Swiss Style），携程蓝 #2C61FE 为主色<br>
-      <strong>涉及产品：</strong>WPS AI / Copilot / AIPPT / Gamma / MindShow / Kimi / 豆包 / Claude / Bolt / Cursor
+  <div class="anim-5" style="display:flex;gap:8px">
+    <span class="shape-dot pulse-dot" style="background:var(--chapter-dot)"></span>
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P5 · 成品展示 -->
+<!-- ============================================================ -->
+<div class="s show" id="p5">
+<div class="label anim">板块 A · 先看成品</div>
+<div class="h1 anim-1">先看 AI 能产出什么样的标书<span class="kawaii-icon wiggle" style="margin-left:.2em">✨</span></div>
+<div class="body anim-2" style="margin-top:1vh">不讲过程，先看结果 — 这是终点，接下来 13 页教你怎么走到这里</div>
+
+<div class="grid3 anim-3" style="flex:1;margin-top:3vh">
+  <div class="card bordered" style="padding:2.5vh 1.5vw;display:flex;flex-direction:column">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--primary);opacity:.25;line-height:1">01</div>
+    <div class="h3" style="margin-top:1vh;color:var(--primary)">项目案例段落</div>
+    <div class="before" style="margin-top:1vh;font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">120 字的口语化素材<br>"我们做过类似的项目，效果不错"</div>
+    <div style="text-align:center;color:var(--primary);font-size:18px;margin:.5vh 0">↓ AI</div>
+    <div class="after" style="font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">350 字的专业表述<br>含量化指标 · 客户证言 · 行业背景</div>
+  </div>
+  <div class="card bordered" style="padding:2.5vh 1.5vw;display:flex;flex-direction:column">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--primary);opacity:.25;line-height:1">02</div>
+    <div class="h3" style="margin-top:1vh;color:var(--primary)">技术方案章节</div>
+    <div class="before" style="margin-top:1vh;font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">3 个要点的口语笔记</div>
+    <div style="text-align:center;color:var(--primary);font-size:18px;margin:.5vh 0">↓ AI</div>
+    <div class="after" style="font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">完整章节结构：项目背景 · 需求理解 · 总体架构 · 功能设计 · 部署方案</div>
+  </div>
+  <div class="card bordered" style="padding:2.5vh 1.5vw;display:flex;flex-direction:column">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--primary);opacity:.25;line-height:1">03</div>
+    <div class="h3" style="margin-top:1vh;color:var(--primary)">整本标书</div>
+    <div class="before" style="margin-top:1vh;font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">招标文件 + 公司素材</div>
+    <div style="text-align:center;color:var(--primary);font-size:18px;margin:.5vh 0">↓ AI 辅助</div>
+    <div class="after" style="font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">80 页投标文件 · 商务标 + 技术标 + 报价附件 · 一天交付</div>
+  </div>
+</div>
+
+<div class="anim-4" style="margin-top:2vh;background:var(--primary);color:#fff;padding:2.2vh 2.5vw;font-weight:700;font-size:15px;border-radius:10px;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon bounce" style="font-size:24px">🎬</span>
+  <span>这是终点 — 接下来 13 页，教你怎么走到这里</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">05 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P6 · Trip Coding Plan 工具申请 -->
+<!-- ============================================================ -->
+<div class="s" id="p6">
+<div class="label anim">板块 A · 准备工作</div>
+<div class="h1 anim-1">Trip Coding Plan — 免费申请 AI 编程工具<span class="kawaii-icon bounce" style="margin-left:.2em;color:var(--yellow)">🎁</span></div>
+<div class="body anim-2" style="margin-top:1vh">公司福利，<span style="color:var(--primary);font-weight:700">$50/月 Token 额度</span>，不用花你自己的钱</div>
+
+<div style="flex:1;display:grid;grid-template-columns:1fr 1.2fr;gap:2.5vw;margin-top:2.5vh">
+  <div class="anim-3" style="display:flex;flex-direction:column;gap:2vh">
+    <div class="card" style="background:#fff;border:2px solid var(--primary);padding:2.5vh 1.8vw">
+      <div class="caption" style="color:var(--primary)">STEP 01</div>
+      <div class="h3" style="margin-top:.5vh">打开申请页面</div>
+      <a href="https://aicoding.portal.ctripcorp.com/codingPlan" target="_blank" style="margin-top:1vh;font-family:var(--mono);font-size:13px;background:var(--light-bg);padding:1.1vh 1.2vw;border-radius:4px;word-break:break-all;color:var(--primary);display:block;text-decoration:none;border:1px solid var(--primary);transition:background .2s" onmouseover="this.style.background='#e0e8ff'" onmouseout="this.style.background='var(--light-bg)'">→ aicoding.portal.ctripcorp.com/codingPlan</a>
+      <div class="body" style="margin-top:1vh">Lite Plan 「查看套餐」→ <strong style="color:var(--primary)">无需审批，激活即用</strong></div>
+    </div>
+    <div class="card" style="background:#fff;border:2px solid var(--primary);padding:2.5vh 1.8vw">
+      <div class="caption" style="color:var(--primary)">STEP 02</div>
+      <div class="h3" style="margin-top:.5vh">获取 Token 安装工具</div>
+      <div class="body" style="margin-top:1vh">Console → 新建 Token → 选 AI 工具 → 按文档安装</div>
+      <div style="margin-top:1vh"><a href="https://trip.larkenterprise.com/wiki/ZX9Mw6Q6EihZAWkYYecckYvsnZh" style="color:var(--primary);font-size:12px;font-family:var(--mono)">→ 飞书 Wiki · Claude Code 安装指南</a></div>
+    </div>
+  </div>
+
+  <div class="anim-4" style="display:flex;flex-direction:column;gap:1.5vh">
+    <div class="h3">支持的 AI 工具</div>
+    <div class="card a" style="padding:2vh 1.5vw">
+      <div style="display:flex;align-items:center;gap:1vw;margin-bottom:1vh"><span class="kawaii-icon">⭐</span><span style="font-weight:700;font-size:16px">Claude Code <span style="font-size:11px;opacity:.7;font-weight:400;margin-left:.5em">推荐</span></span></div>
+      <div style="font-size:12px;opacity:.85">桌面客户端 · IDE 插件 · CLI 命令行</div>
+    </div>
+    <div class="card d" style="padding:2vh 1.5vw">
+      <div style="font-weight:700;font-size:16px;margin-bottom:.5vh">Codex</div>
+      <div style="font-size:12px;opacity:.85">桌面客户端 · CLI 命令行</div>
+    </div>
+    <div class="card" style="padding:2vh 1.5vw;border-left:5px solid var(--adaptive-purple)">
+      <div style="font-weight:700;font-size:16px;margin-bottom:.5vh">OpenCode</div>
+      <div style="font-size:12px;color:var(--text)">开源桌面客户端 · CLI 命令行</div>
+    </div>
+    <div style="font-size:11px;color:var(--text);text-align:center;margin-top:.5vh">每种工具的 Console 都挂了对应文档，跟着步骤一步步来</div>
+  </div>
+</div>
+
+<div class="anim-5" style="background:var(--yellow);color:var(--dark-bg);padding:2vh 2.5vw;font-weight:700;font-size:15px;border-radius:10px;margin-top:2vh;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon wiggle" style="font-size:22px">⚡</span>
+  <span>Lite Plan 无需审批，点击即可激活 — 3 分钟搞定</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">06 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P7 · Prompt 五要素 -->
+<!-- ============================================================ -->
+<div class="s" id="p7">
+<div class="label anim">板块 A · Prompt 基础</div>
+<div class="h1 anim-1">Prompt（提示词）— 给 AI 的「任务说明书」</div>
+<div class="body anim-2" style="margin-top:.6vh">你说得越具体、越结构化，AI 给你的结果越好</div>
+
+<!-- 类比对比 + 通用平台 -->
+<div class="grid2 anim-3" style="margin-top:1.8vh;gap:2vw">
+  <div style="display:flex;flex-direction:column;gap:1vh">
+    <div class="h3">类比：给实习生布置任务</div>
+    <div class="before" style="font-size:13.5px;padding:1.3vh 1.3vw;line-height:1.6"><strong style="color:var(--bright-pink)">模糊指令：</strong>「帮我写段标书」→ 结果一般</div>
+    <div class="after" style="font-size:13.5px;padding:1.3vh 1.3vw;line-height:1.6"><strong style="color:var(--thoughtful-green)">清晰指令：</strong>「以乙方身份，写技术方案的需求理解章节，500 字，含 3 条痛点 + 对应解决方案」→ 结果好很多</div>
+  </div>
+  <div style="background:var(--dark-bg);color:#fff;padding:1.8vh 1.6vw;border-radius:10px;display:flex;flex-direction:column;justify-content:center">
+    <div style="font-weight:700;font-size:15px;margin-bottom:1.2vh"><span style="color:var(--yellow)">💡</span> 通用 AI 平台（这就是"大脑"）</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span style="background:rgba(255,255,255,.15);color:#fff;font-size:13px;font-weight:600;padding:6px 12px;border-radius:4px">Kimi</span>
+      <span style="background:rgba(255,255,255,.15);color:#fff;font-size:13px;font-weight:600;padding:6px 12px;border-radius:4px">通义千问</span>
+      <span style="background:rgba(255,255,255,.15);color:#fff;font-size:13px;font-weight:600;padding:6px 12px;border-radius:4px">豆包</span>
+      <span style="background:rgba(255,255,255,.15);color:#fff;font-size:13px;font-weight:600;padding:6px 12px;border-radius:4px">Claude</span>
+      <span style="background:rgba(255,255,255,.15);color:#fff;font-size:13px;font-weight:600;padding:6px 12px;border-radius:4px">ChatGPT</span>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:1.2vh">本板块所有 Prompt 都可以喂给这些工具</div>
+  </div>
+</div>
+
+<!-- 五要素横排 5 列 · 翻转卡 -->
+<div class="anim-4" style="margin-top:2vh;flex:1;display:flex;flex-direction:column;min-height:0">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1vh">
+    <div class="h3">好的 Prompt = 五要素</div>
+    <div style="font-size:11px;color:var(--grounded-gray);letter-spacing:.05em">✨ 鼠标悬停查看详情</div>
+  </div>
+  <div class="grid5" style="flex:1;gap:1vw;min-height:0;grid-template-rows:1fr">
+
+    <!-- 01 角色设定 -->
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-face" style="background:var(--primary);color:#fff;border:none">
+          <span class="badge-num" style="background:var(--yellow);color:var(--dark-bg);align-self:flex-start;font-size:13px;min-width:36px;height:26px">01</span>
+          <div>
+            <div style="font-weight:700;font-size:16px">角色设定</div>
+            <div style="font-size:12.5px;opacity:.85;margin-top:.8vh;line-height:1.55">你是一名资深标书撰写专家</div>
+            <div class="flip-hint">↻ 翻一下</div>
+          </div>
+        </div>
+        <div class="flip-face flip-back-face" style="background:#1A35CC;color:#fff;border:none">
+          <svg viewBox="0 0 60 60" class="flip-illust" fill="none" stroke="#FFB400" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="30" cy="22" r="9" fill="rgba(255,180,0,.15)"/>
+            <path d="M12 52 Q30 36 48 52" fill="rgba(255,180,0,.15)"/>
+            <path d="M22 18 L38 18" stroke-width="3"/>
+            <circle cx="26" cy="23" r="1.4" fill="#FFB400" stroke="none"/>
+            <circle cx="34" cy="23" r="1.4" fill="#FFB400" stroke="none"/>
+          </svg>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--yellow)">让 AI "扮演谁"</div>
+            <div style="font-size:11.5px;opacity:.92;margin-top:.5vh;line-height:1.55">资深法务 / 金牌销售 / 数据分析师</div>
+            <div class="flip-tip">角色越清晰，输出越像那个领域的专家</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 任务描述 -->
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-face" style="background:var(--dark-bg);color:#fff;border:none">
+          <span class="badge-num" style="background:rgba(255,255,255,.2);color:#fff;align-self:flex-start;font-size:13px;min-width:36px;height:26px">02</span>
+          <div>
+            <div style="font-weight:700;font-size:16px">任务描述</div>
+            <div style="font-size:12.5px;opacity:.85;margin-top:.8vh;line-height:1.55">请写一段需求理解章节</div>
+            <div class="flip-hint">↻ 翻一下</div>
+          </div>
+        </div>
+        <div class="flip-face flip-back-face" style="background:#2A2D45;color:#fff;border:none">
+          <svg viewBox="0 0 60 60" class="flip-illust" fill="none" stroke="#59C8FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="14" y="12" width="32" height="40" rx="3" fill="rgba(89,200,255,.12)"/>
+            <rect x="24" y="8" width="12" height="6" rx="1.5" fill="#59C8FF" stroke="none"/>
+            <path d="M19 24 L23 28 L29 22" stroke-width="2.5"/>
+            <path d="M19 34 L23 38 L29 32" stroke-width="2.5"/>
+            <line x1="33" y1="26" x2="41" y2="26"/>
+            <line x1="33" y1="36" x2="41" y2="36"/>
+          </svg>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--agile-blue)">要 AI "做什么"</div>
+            <div style="font-size:11.5px;opacity:.92;margin-top:.5vh;line-height:1.55">动词开头：审阅 · 撰写 · 提取 · 对比</div>
+            <div class="flip-tip">一次只布置一个任务，不要给 AI 列长清单</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 输入信息 -->
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-face" style="background:var(--adaptive-purple);color:#fff;border:none">
+          <span class="badge-num" style="background:rgba(255,255,255,.2);color:#fff;align-self:flex-start;font-size:13px;min-width:36px;height:26px">03</span>
+          <div>
+            <div style="font-weight:700;font-size:16px">输入信息</div>
+            <div style="font-size:12.5px;opacity:.85;margin-top:.8vh;line-height:1.55">（粘贴招标文件 + 公司能力清单）</div>
+            <div class="flip-hint">↻ 翻一下</div>
+          </div>
+        </div>
+        <div class="flip-face flip-back-face" style="background:#6F5BE8;color:#fff;border:none">
+          <svg viewBox="0 0 60 60" class="flip-illust" fill="none" stroke="#FFB400" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 18 L8 48 Q8 50 10 50 L50 50 Q52 50 52 48 L52 24 Q52 22 50 22 L28 22 L24 16 L10 16 Q8 16 8 18Z" fill="rgba(255,180,0,.15)"/>
+            <path d="M30 28 L30 42" stroke-width="3"/>
+            <path d="M24 36 L30 42 L36 36" stroke-width="3"/>
+          </svg>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--yellow)">把"原材料"喂给 AI</div>
+            <div style="font-size:11.5px;opacity:.92;margin-top:.5vh;line-height:1.55">文档 · 数据表 · 拜访纪要 · 同行案例</div>
+            <div class="flip-tip">喂的材料越多越具体，结果越准</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 输出要求 -->
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-face" style="background:#fff;border:1px solid var(--border);border-left:5px solid var(--primary)">
+          <span class="badge-num" style="background:var(--primary);color:#fff;align-self:flex-start;font-size:13px;min-width:36px;height:26px">04</span>
+          <div>
+            <div style="font-weight:700;font-size:16px;color:var(--dark-bg)">输出要求</div>
+            <div style="font-size:12.5px;color:var(--text);margin-top:.8vh;line-height:1.55">800 字，含 3 条痛点 + 解决方案</div>
+            <div class="flip-hint" style="color:var(--grounded-gray)">↻ 翻一下</div>
+          </div>
+        </div>
+        <div class="flip-face flip-back-face light-back" style="background:#fff;border:1px solid var(--primary);color:var(--dark-bg)">
+          <svg viewBox="0 0 60 60" class="flip-illust" fill="none" stroke="#2346FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="12" y="10" width="36" height="44" rx="3" fill="rgba(35,70,255,.08)"/>
+            <line x1="18" y1="20" x2="36" y2="20" stroke-width="3"/>
+            <line x1="18" y1="28" x2="42" y2="28"/>
+            <line x1="18" y1="34" x2="38" y2="34"/>
+            <circle cx="44" cy="42" r="6" fill="#FFB400" stroke="#2346FF"/>
+            <path d="M41 42 L43 44 L47 40" stroke="#1B1E32" stroke-width="2"/>
+          </svg>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--primary)">指定"长什么样"</div>
+            <div style="font-size:11.5px;color:var(--text);margin-top:.5vh;line-height:1.55">字数 · 格式 · 结构 · 表格 / 列表 / Markdown</div>
+            <div class="flip-tip" style="color:var(--text)">别让 AI 猜你想要的样子</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 约束条件 -->
+    <div class="flip-card">
+      <div class="flip-inner">
+        <div class="flip-face" style="background:#fff;border:1px solid var(--border);border-left:5px solid var(--yellow)">
+          <span class="badge-num" style="background:var(--yellow);color:var(--dark-bg);align-self:flex-start;font-size:13px;min-width:36px;height:26px">05</span>
+          <div>
+            <div style="font-weight:700;font-size:16px;color:var(--dark-bg)">约束条件</div>
+            <div style="font-size:12.5px;color:var(--text);margin-top:.8vh;line-height:1.55">书面语 · 量化数据 · 不编造</div>
+            <div class="flip-hint" style="color:var(--grounded-gray)">↻ 翻一下</div>
+          </div>
+        </div>
+        <div class="flip-face flip-back-face light-back" style="background:#FFF8E1;border:1px solid var(--yellow);color:var(--dark-bg)">
+          <svg viewBox="0 0 60 60" class="flip-illust" fill="none" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30 8 L48 16 L48 32 Q48 46 30 54 Q12 46 12 32 L12 16 Z" fill="rgba(255,180,0,.25)"/>
+            <path d="M22 30 L28 36 L40 24" stroke-width="3.2" stroke="#1B1E32"/>
+          </svg>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:#B8860B">给 AI "划红线"</div>
+            <div style="font-size:11.5px;color:var(--text);margin-top:.5vh;line-height:1.55">风格限制 · 禁止虚构 · 用词偏好 · 引用要求</div>
+            <div class="flip-tip" style="color:var(--text);border-top-color:rgba(184,134,11,.3)">防止 AI 自由发挥跑偏</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="anim-5" style="background:var(--yellow);color:var(--dark-bg);padding:1.8vh 2.2vw;font-weight:700;font-size:14.5px;border-radius:10px;margin-top:1.5vh;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon" style="font-size:22px">📋</span>
+  <span>今天所有的 Prompt 我都帮你写好了 — 复制粘贴就行</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">07 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P8 · 全景图 -->
+<!-- ============================================================ -->
+<div class="s" id="p8">
+<div class="label anim">板块 A · 全景图</div>
+<div class="h1 anim-1">标书 8 大场景 + 合同 3 合 1</div>
+<div class="body anim-2" style="margin-top:1vh">按投标全流程时间轴排列 — 每个场景都有专门的 Prompt</div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.5vh;margin-top:2vh">
+  <div class="anim-3">
+    <div class="caption" style="margin-bottom:1.5vh;color:var(--primary)">标书 8 大场景 · 按时间轴 →</div>
+    <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:.8vw">
+      <div class="card a" style="padding:2.2vh 1vw;justify-content:space-between;position:relative;min-height:90px"><div class="corner-num">01</div><div style="font-size:13px;font-weight:700;line-height:1.35;margin-top:1.5vh">招标文件解读</div></div>
+      <div class="card d" style="padding:2.2vh 1vw;justify-content:space-between;position:relative;min-height:90px"><div class="corner-num">02</div><div style="font-size:13px;font-weight:700;line-height:1.35;margin-top:1.5vh">AI 搜 benchmark</div></div>
+      <div class="card a" style="padding:2.2vh 1vw;justify-content:space-between;position:relative;min-height:90px"><div class="corner-num">03</div><div style="font-size:13px;font-weight:700;line-height:1.35;margin-top:1.5vh">标书大纲生成</div></div>
+      <div class="card d" style="padding:2.2vh 1vw;justify-content:space-between;position:relative;min-height:90px"><div class="corner-num">04</div><div style="font-size:13px;font-weight:700;line-height:1.35;margin-top:1.5vh">需求理解章节</div></div>
+      <div class="card a" style="padding:2.2vh 1vw;justify-content:space-between;position:relative;min-height:90px"><div class="corner-num">05</div><div style="font-size:13px;font-weight:700;line-height:1.35;margin-top:1.5vh">技术方案撰写</div></div>
+      <div class="card d" style="padding:2.2vh 1vw;justify-content:space-between;position:relative;min-height:90px"><div class="corner-num">06</div><div style="font-size:13px;font-weight:700;line-height:1.35;margin-top:1.5vh">案例 & 公司包装</div></div>
+      <div class="card y" style="padding:2.2vh 1vw;justify-content:space-between;position:relative;min-height:90px"><div class="corner-num">07</div><div style="font-size:13px;font-weight:700;line-height:1.35;margin-top:1.5vh;color:var(--dark-bg)">措辞优化</div></div>
+      <div class="card a" style="padding:2.2vh 1vw;justify-content:space-between;position:relative;min-height:90px"><div class="corner-num">08</div><div style="font-size:13px;font-weight:700;line-height:1.35;margin-top:1.5vh">合规检查</div></div>
+    </div>
+  </div>
+
+  <div class="anim-4" style="background:var(--light-bg);padding:2.5vh 2vw;border-radius:10px">
+    <div class="caption" style="margin-bottom:1.5vh;color:var(--primary)">合同 · 3 合 1</div>
+    <div class="grid3">
+      <div style="display:flex;align-items:center;gap:1vw"><span class="badge-num purple">A</span><div><div style="font-weight:700;font-size:14px">全面审阅</div><div style="font-size:12px;color:var(--text);margin-top:.2vh">风险排查</div></div></div>
+      <div style="display:flex;align-items:center;gap:1vw"><span class="badge-num purple">B</span><div><div style="font-weight:700;font-size:14px">关键条款</div><div style="font-size:12px;color:var(--text);margin-top:.2vh">7 类信息提取</div></div></div>
+      <div style="display:flex;align-items:center;gap:1vw"><span class="badge-num purple">C</span><div><div style="font-weight:700;font-size:14px">合同对比</div><div style="font-size:12px;color:var(--text);margin-top:.2vh">续约谈判用</div></div></div>
+    </div>
+  </div>
+
+  <div class="anim-5" style="background:var(--primary);color:#fff;padding:2vh 2.5vw;font-weight:700;font-size:14px;border-radius:10px;display:flex;align-items:center;gap:1vw">
+    <span class="kawaii-icon" style="font-size:22px">🗺️</span>
+    <span>合计 <span class="kpi" style="display:inline;font-size:22px;color:var(--yellow)">11</span> 套 Prompt — 接下来逐个拆解</span>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">08 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P9 · 场景 1 招标文件解读 -->
+<!-- ============================================================ -->
+<div class="s" id="p9">
+<div class="label anim">板块 A · 场景 ① · 招标文件解读</div>
+<div class="h1 anim-1">80 页 PDF，5 分钟读完</div>
+<div class="body anim-2" style="margin-top:1vh">用 AI 长文档能力，把招标文件啃下来</div>
+
+<div style="flex:1;display:grid;grid-template-columns:1.1fr 1fr;gap:2.5vw;margin-top:2.5vh">
+  <div class="anim-3" style="display:flex;flex-direction:column;gap:1.5vh">
+    <div class="card" style="border-left:5px solid var(--bright-pink);background:#FFF5F5">
+      <div style="font-weight:700;font-size:14px;color:var(--bright-pink)">😩 痛点</div>
+      <div style="font-size:13px;color:var(--text);margin-top:.5vh;line-height:1.55">招标文件动辄几十上百页，人工读 2 小时，<strong>容易漏关键条款</strong>导致废标</div>
+    </div>
+    <div class="prompt-box" style="flex:1">你是资深投标专家，请对以下招标文件做结构化解读：
+
+【1·项目概览】项目背景 + 招标方业务现状 + 项目目标
+【2·需求清单】功能需求 / 非功能需求 / 技术要求
+【3·商务条款】预算范围 · 工期 · 付款方式 · 履约保证金
+【4·评分标准】各项权重 + 评委关注点 + 加分项识别
+【5·硬门槛】资质要求 · 业绩要求 · 财务要求（缺一即废）
+【6·关键时间】投标截止 · 答疑 · 开标 · 中标公示
+【7·红线条款】所有「应答」「须」「必须」字眼
+
+输出格式：
+- 需求矩阵表（含响应建议）
+- 评分权重热力图
+- 风险提示清单（按优先级）</div>
+  </div>
+
+  <div class="anim-4" style="display:flex;flex-direction:column;gap:1.5vh">
+    <div class="h3">🛠 配套工具</div>
+    <div class="card a" style="padding:2.5vh 1.5vw">
+      <div style="display:flex;align-items:center;gap:1vw"><span class="kawaii-icon" style="font-size:24px">⭐</span><div><div style="font-weight:700;font-size:17px">Kimi <span style="font-size:11px;opacity:.7;font-weight:400">首选</span></div><div style="font-size:12px;opacity:.8;font-family:var(--mono);margin-top:.3vh">kimi.moonshot.cn</div></div></div>
+      <div style="font-size:12px;opacity:.85;margin-top:1.2vh;line-height:1.5">支持 20 万字+ 长文档，可直接上传 PDF / Word / 图片</div>
+    </div>
+    <div class="card d" style="padding:2vh 1.5vw">
+      <div style="font-weight:700;font-size:15px">通义千问</div>
+      <div style="font-size:12px;opacity:.7;font-family:var(--mono);margin-top:.3vh">tongyi.aliyun.com</div>
+      <div style="font-size:12px;opacity:.85;margin-top:1vh;line-height:1.5">阿里系，企业安全合规更放心</div>
+    </div>
+    <div class="card" style="border-left:5px solid var(--primary);padding:2vh 1.5vw">
+      <div style="font-weight:700;font-size:15px">Claude</div>
+      <div style="font-size:12px;color:var(--text);font-family:var(--mono);margin-top:.3vh">claude.ai · trip-coding-plan</div>
+      <div style="font-size:12px;color:var(--text);margin-top:1vh;line-height:1.5">逻辑推理最强，复杂条款解读首选</div>
+    </div>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">09 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P10 · 场景 2 AI 搜 benchmark -->
+<!-- ============================================================ -->
+<div class="s" id="p10">
+<div class="label anim">板块 A · 场景 ② · AI 搜 benchmark</div>
+<div class="h1 anim-1">写之前，先找标杆</div>
+<div class="body anim-2" style="margin-top:1vh">用 AI 搜索找行业基准、竞品标书、甲方背景 — 喂给模型"对照学习"</div>
+
+<div style="flex:1;display:grid;grid-template-columns:1fr 1.1fr;gap:2.5vw;margin-top:2.5vh">
+  <div class="anim-3" style="display:flex;flex-direction:column;gap:.5vh">
+    <div class="h3" style="margin-bottom:1vh">3 类搜索任务</div>
+
+    <div style="display:grid;grid-template-columns:64px 1fr;gap:1.2vw;padding:2.2vh 0;border-bottom:1px solid var(--border);align-items:center">
+      <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--primary);line-height:1;letter-spacing:-.02em">01</div>
+      <div>
+        <div style="font-weight:700;font-size:15px;color:var(--primary)">行业基准</div>
+        <div style="font-size:12px;color:var(--text);margin-top:.6vh;line-height:1.5;font-family:var(--mono);background:var(--light-bg);padding:.6vh .9vw;border-radius:4px;display:inline-block">"[行业] [产品类型] 投标技术方案 范本"</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:64px 1fr;gap:1.2vw;padding:2.2vh 0;border-bottom:1px solid var(--border);align-items:center">
+      <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--primary);line-height:1;letter-spacing:-.02em">02</div>
+      <div>
+        <div style="font-weight:700;font-size:15px;color:var(--primary)">竞品分析</div>
+        <div style="font-size:12px;color:var(--text);margin-top:.6vh;line-height:1.5;font-family:var(--mono);background:var(--light-bg);padding:.6vh .9vw;border-radius:4px;display:inline-block">"[竞争对手] 中标公告 / 公开案例"</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:64px 1fr;gap:1.2vw;padding:2.2vh 0;align-items:center">
+      <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--primary);line-height:1;letter-spacing:-.02em">03</div>
+      <div>
+        <div style="font-weight:700;font-size:15px;color:var(--primary)">甲方背景</div>
+        <div style="font-size:12px;color:var(--text);margin-top:.6vh;line-height:1.5;font-family:var(--mono);background:var(--light-bg);padding:.6vh .9vw;border-radius:4px;display:inline-block">"[招标方] 合作伙伴 / 战略关键词"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="anim-4" style="display:flex;flex-direction:column;gap:1.5vh">
+    <div class="h3">🛠 配套工具 · AI 搜索</div>
+    <div class="card a" style="padding:2vh 1.5vw">
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700;font-size:16px">秘塔 AI 搜索</div><span style="font-size:11px;opacity:.7">国内首选 ⭐</span></div>
+      <a href="https://metaso.cn" target="_blank" style="font-size:12px;color:var(--yellow);font-family:var(--mono);margin-top:.3vh;display:inline-block;text-decoration:underline">→ metaso.cn</a>
+      <div style="font-size:12px;opacity:.85;margin-top:1vh">无广告 · 结构化答案 · 学术模式</div>
+    </div>
+    <div class="card d" style="padding:2vh 1.5vw">
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700;font-size:16px">Perplexity</div><span style="font-size:11px;opacity:.7">英文资料 ⭐</span></div>
+      <a href="https://perplexity.ai" target="_blank" style="font-size:12px;color:var(--yellow);font-family:var(--mono);margin-top:.3vh;display:inline-block;text-decoration:underline">→ perplexity.ai</a>
+      <div style="font-size:12px;opacity:.85;margin-top:1vh">全球最强 · 实时联网 · 来源可追溯</div>
+    </div>
+    <div class="card" style="border-left:5px solid var(--yellow);padding:2vh 1.5vw">
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-weight:700;font-size:16px">天工 AI</div><span style="font-size:11px;color:var(--text)">中文体验好</span></div>
+      <a href="https://search.tiangong.cn" target="_blank" style="font-size:12px;color:var(--primary);font-family:var(--mono);margin-top:.3vh;display:inline-block;text-decoration:underline">→ search.tiangong.cn</a>
+      <div style="font-size:12px;color:var(--text);margin-top:1vh">整合 DeepSeek-R1 · 财经学术强</div>
     </div>
   </div>
 </div>
 
+<div class="anim-5" style="background:var(--primary);color:#fff;padding:1.8vh 2.5vw;font-weight:700;font-size:13px;border-radius:10px;margin-top:1.5vh;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon wiggle" style="font-size:22px">🔍</span>
+  <span>关键用法 — 把搜到的优秀样本喂给 AI，让它"对照学习"再写</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">10 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P11 · 场景 3 标书大纲生成 -->
+<!-- ============================================================ -->
+<div class="s" id="p11">
+<div class="label anim">板块 A · 场景 ③ · 标书大纲生成</div>
+<div class="h1 anim-1">让 AI 反推标书目录</div>
+<div class="body anim-2" style="margin-top:1vh">基于招标文件 + 公司能力，输出响应框架</div>
+
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;margin-top:2.5vh">
+  <div class="anim-3">
+    <div class="prompt-box" style="height:100%">你是标书架构师。请基于以下输入生成投标文件大纲：
+
+【输入】
+1. 招标文件摘要（来自场景 ①）
+2. 公司能力清单
+3. 评分标准
+
+【输出要求】
+- 完整三级目录（一级章 / 1.1 / (1)）
+- 每章字数建议 + 重点章节标注
+- 响应招标文件中所有「应答」「须」「必须」条款，逐条对应
+- 标注每章对应的评分项 + 权重
+- 推荐 3 个差异化亮点章节</div>
+  </div>
+
+  <div class="anim-4" style="display:flex;flex-direction:column;gap:1.5vh">
+    <div class="h3">国标参考大纲模板</div>
+    <div class="card" style="background:var(--light-bg);padding:2vh 1.5vw">
+      <div style="font-weight:700;color:var(--primary);font-size:13px">第一部分 · 商务标</div>
+      <div style="font-size:12px;color:var(--text);margin-top:.5vh;line-height:1.7">投标函 · 资质证书 · 法人授权 · 承诺书 · 商务偏离表</div>
+    </div>
+    <div class="card" style="background:var(--light-bg);padding:2vh 1.5vw;border-left:4px solid var(--primary)">
+      <div style="font-weight:700;color:var(--primary);font-size:13px">第二部分 · 技术标 <span class="tag y" style="font-size:10px">核心</span></div>
+      <div style="font-size:12px;color:var(--text);margin-top:.5vh;line-height:1.7">项目背景 → 需求理解 → 设计方案（架构/功能/数据/部署/性能/安全）→ 实施方案 → 售后培训</div>
+    </div>
+    <div class="card" style="background:var(--light-bg);padding:2vh 1.5vw">
+      <div style="font-weight:700;color:var(--primary);font-size:13px">第三部分 · 报价</div>
+      <div style="font-size:12px;color:var(--text);margin-top:.5vh;line-height:1.7">分项报价 · 付款节点 · 优惠承诺</div>
+    </div>
+    <div class="card" style="background:var(--light-bg);padding:2vh 1.5vw">
+      <div style="font-weight:700;color:var(--primary);font-size:13px">附件</div>
+      <div style="font-size:12px;color:var(--text);margin-top:.5vh;line-height:1.7">业绩证明 · 团队简历 · 检测报告</div>
+    </div>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">11 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P12 · 场景 4 需求理解章节 -->
+<!-- ============================================================ -->
+<div class="s" id="p12">
+<div class="label anim">板块 A · 场景 ④ · 项目背景 & 需求理解</div>
+<div class="h1 anim-1">标书的"开场白"</div>
+<div class="body anim-2" style="margin-top:1vh">让甲方觉得你懂他 — 这章决定第一印象</div>
+
+<div style="flex:1;display:grid;grid-template-columns:1.1fr 1fr;gap:2.5vw;margin-top:2.5vh;min-height:0;align-items:end;align-content:end">
+  <div class="anim-3" style="display:flex;flex-direction:column;gap:1.5vh">
+    <div class="h3">这一章要做 3 件事</div>
+    <div class="card a" style="padding:2vh 1.5vw">
+      <div style="display:flex;gap:1vw;align-items:flex-start"><span class="badge-num yellow">01</span><div><div style="font-weight:700;font-size:14px">复述甲方业务现状</div><div style="font-size:12px;opacity:.85;margin-top:.3vh">"我懂你的处境"</div></div></div>
+    </div>
+    <div class="card d" style="padding:2vh 1.5vw">
+      <div style="display:flex;gap:1vw;align-items:flex-start"><span class="badge-num yellow">02</span><div><div style="font-weight:700;font-size:14px">提炼 3-5 个核心痛点</div><div style="font-size:12px;opacity:.85;margin-top:.3vh">"我看到了你的问题"</div></div></div>
+    </div>
+    <div class="card purple" style="padding:2vh 1.5vw">
+      <div style="display:flex;gap:1vw;align-items:flex-start"><span class="badge-num yellow">03</span><div><div style="font-weight:700;font-size:14px">引出我方解决思路</div><div style="font-size:12px;opacity:.85;margin-top:.3vh">"我有办法"</div></div></div>
+    </div>
+  </div>
+
+  <div class="anim-4" style="display:flex;flex-direction:column;gap:1.5vh">
+    <div class="prompt-box" style="font-size:11.5px;line-height:1.6;padding:1.6vh 1.4vw;max-height:40vh;overflow-y:auto">你是资深标书撰写顾问。请为我撰写【项目背景与需求理解】章节。
+
+【输入信息】
+- 客户行业：________
+- 招标方业务背景：________
+- 项目核心需求：________
+- 拜访纪要要点（来自通义听悟）：________
+- 我方拟提供的解决方案概要：________
+
+【输出结构】
+① 客户业务现状（200 字）
+    复述行业趋势 + 客户具体业务挑战
+② 项目背景与战略意义（200 字）
+    引用行业数据，证明项目对客户的战略价值
+③ 核心痛点剖析（300-400 字）
+    按 "1. 2. 3." 编号，每条包含：
+    - 痛点描述（看到了什么）
+    - 痛点根因（为什么发生）
+    - 业务影响（量化，损失多少 / 错失多少）
+④ 我方解决思路概述（200 字）
+    高层次说，不展开方案细节
+    末尾过渡句引出「技术方案」章节
+
+【风格要求】
+- 总字数 800-1200 字，书面正式语
+- 含 3-5 个行业数据引用（标注来源）
+- 避免空话套话（"高度重视""战略意义"）
+- 用具体数字代替模糊词
+- 关键数据加粗</div>
+    <div class="card" style="background:var(--yellow);color:var(--dark-bg);padding:2vh 1.5vw;border:none">
+      <div style="display:flex;align-items:center;gap:.8vw;margin-bottom:.8vh"><span class="kawaii-icon">🎤</span><span style="font-weight:700;font-size:13px">🛠 配套工具 · 通义听悟</span></div>
+      <div style="font-size:12px;line-height:1.55">把客户拜访录音转纪要 → AI 直接从中提取需求和痛点 → 喂给上面这个 Prompt</div>
+      <div style="font-family:var(--mono);font-size:11px;margin-top:.5vh;opacity:.75">tingwu.aliyun.com</div>
+    </div>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">12 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P13 · 场景 5 技术方案 -->
+<!-- ============================================================ -->
+<div class="s" id="p13">
+<div class="label anim">板块 A · 场景 ⑤ · 技术方案撰写</div>
+<div class="h1 anim-1">标书的"主菜" — 技术方案 5 个子章节</div>
+<div class="body anim-2" style="margin-top:1vh">架构 / 创新点 / 可行性论证 — 这章决定能不能中标</div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;margin-top:2.5vh">
+  <div class="grid5 anim-3" style="align-items:stretch">
+    <div class="card a" style="padding:2.8vh 1vw;text-align:left;justify-content:space-between;position:relative;min-height:130px">
+      <div class="corner-num">01</div>
+      <div style="font-weight:700;font-size:14px;margin-top:1.5vh">总体架构设计</div>
+      <div style="font-size:11px;opacity:.8;margin-top:.8vh;line-height:1.5">AI 用文字描述 + Mermaid 出图</div>
+    </div>
+    <div class="card d" style="padding:2.8vh 1vw;text-align:left;justify-content:space-between;position:relative;min-height:130px">
+      <div class="corner-num">02</div>
+      <div style="font-weight:700;font-size:14px;margin-top:1.5vh">功能设计</div>
+      <div style="font-size:11px;opacity:.8;margin-top:.8vh;line-height:1.5">按招标需求逐条对应</div>
+    </div>
+    <div class="card purple" style="padding:2.8vh 1vw;text-align:left;justify-content:space-between;position:relative;min-height:130px">
+      <div class="corner-num">03</div>
+      <div style="font-weight:700;font-size:14px;margin-top:1.5vh">技术栈 & 数据流</div>
+      <div style="font-size:11px;opacity:.8;margin-top:.8vh;line-height:1.5">选型理由 + 数据结构</div>
+    </div>
+    <div class="card y" style="padding:2.8vh 1vw;text-align:left;justify-content:space-between;position:relative;min-height:130px">
+      <div class="corner-num">04</div>
+      <div style="font-weight:700;font-size:14px;color:var(--dark-bg);margin-top:1.5vh">部署 / 性能 / 安全</div>
+      <div style="font-size:11px;color:var(--dark-bg);opacity:.8;margin-top:.8vh;line-height:1.5">非功能三件套 · 高频考点</div>
+    </div>
+    <div class="card green" style="padding:2.8vh 1vw;text-align:left;justify-content:space-between;position:relative;min-height:130px">
+      <div class="corner-num">05</div>
+      <div style="font-weight:700;font-size:14px;margin-top:1.5vh">项目实施方案</div>
+      <div style="font-size:11px;opacity:.8;margin-top:.8vh;line-height:1.5">WBS + 里程碑甘特图</div>
+    </div>
+  </div>
+
+  <div class="anim-4" style="display:grid;grid-template-columns:1fr 1fr;gap:2vw;margin-top:2vh">
+    <div class="card" style="border-left:5px solid var(--primary);padding:2vh 1.5vw">
+      <div style="font-weight:700;font-size:14px;color:var(--primary);margin-bottom:.5vh">💡 关键技巧</div>
+      <div style="font-size:13px;color:var(--text);line-height:1.55">每个子章节都要<strong style="color:var(--primary)">"踩"招标文件评分点</strong> — AI 容易写得空泛，要把评分标准粘进去</div>
+    </div>
+    <div class="card" style="border-left:5px solid var(--bright-pink);padding:2vh 1.5vw">
+      <div style="font-weight:700;font-size:14px;color:var(--bright-pink);margin-bottom:.5vh">⚠️ 避坑</div>
+      <div style="font-size:13px;color:var(--text);line-height:1.55">技术参数 / 数据指标必须从公司真实素材出，<strong style="color:var(--bright-pink)">AI 不要编</strong></div>
+    </div>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">13 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P14 · 场景 6 公司 & 案例 -->
+<!-- ============================================================ -->
+<div class="s" id="p14">
+<div class="label anim">板块 A · 场景 ⑥ · 公司 & 案例包装</div>
+<div class="h1 anim-1">把自己讲得既专业又可信</div>
+<div class="body anim-2" style="margin-top:.6vh">STAR 法 · 量化数据 · 不编造 — 三个原则</div>
+
+<!-- 上半区: 方法 (左 STAR 框架) + 工具 (右 Prompt) -->
+<div style="display:grid;grid-template-columns:.85fr 1.15fr;gap:2vw;margin-top:1.5vh">
+  <div class="anim-3" style="display:flex;flex-direction:column;gap:1vh">
+    <div class="caption" style="color:var(--primary)">方法 · STAR 框架</div>
+    <div class="grid2" style="gap:.7vw">
+      <div class="card a" style="padding:1.3vh 1vw"><div style="font-family:var(--inter);font-weight:900;font-size:18px">S</div><div style="font-weight:700;font-size:12px;margin-top:.3vh">Situation</div><div style="font-size:10.5px;opacity:.85;margin-top:.2vh">客户背景 + 规模</div></div>
+      <div class="card d" style="padding:1.3vh 1vw"><div style="font-family:var(--inter);font-weight:900;font-size:18px">T</div><div style="font-weight:700;font-size:12px;margin-top:.3vh">Task</div><div style="font-size:10.5px;opacity:.85;margin-top:.2vh">核心挑战</div></div>
+      <div class="card purple" style="padding:1.3vh 1vw"><div style="font-family:var(--inter);font-weight:900;font-size:18px">A</div><div style="font-weight:700;font-size:12px;margin-top:.3vh">Action</div><div style="font-size:10.5px;opacity:.85;margin-top:.2vh">解决方案</div></div>
+      <div class="card y" style="padding:1.3vh 1vw"><div style="font-family:var(--inter);font-weight:900;font-size:18px;color:var(--dark-bg)">R</div><div style="font-weight:700;font-size:12px;margin-top:.3vh;color:var(--dark-bg)">Result</div><div style="font-size:10.5px;color:var(--dark-bg);opacity:.85;margin-top:.2vh">量化成果</div></div>
+    </div>
+    <div style="background:var(--light-bg);padding:1.2vh 1.2vw;border-radius:8px;border-left:3px solid var(--primary);font-size:11.5px;color:var(--text);line-height:1.6">
+      <strong style="color:var(--primary)">同步升级</strong> · 公司介绍量化（X 年 / X 人 / X 客户）· 资质组织成"能力图谱"
+    </div>
+  </div>
+
+  <div class="anim-4" style="display:flex;flex-direction:column;gap:1vh;min-height:0">
+    <div class="caption" style="color:var(--primary)">工具 · Prompt</div>
+    <div class="prompt-box" style="flex:1;font-size:11.5px;line-height:1.6;padding:1.6vh 1.4vw;min-height:0;overflow:auto">你是资深标书撰写专家。请按 STAR 框架，把以下项目案例改写为标书可用版本。
+
+【输入素材】
+- 项目名称 / 周期 / 团队规模
+- 客户背景与业务规模
+- 我方提供的产品 + 服务
+- 真实成果数据（必须真实，AI 不要编！）
+
+【输出结构 · 严格按 STAR】
+S · Situation（80-100字）客户行业地位 + 业务规模 + 项目启动时的市场环境
+T · Task（80-120字）3-5 项核心挑战，按重要性排序，标注「难度等级」
+A · Action（180-250字）我方方案：技术 + 服务 + 流程，突出 vs 竞品的差异化
+R · Result（180-250字）必须量化：百分比 / 绝对数字 / 时间对比 + 客户证言 + 续约/复购
+
+【风格约束】
+- 总字数 500-800 字，商业正式语
+- 关键数字加粗
+- 末尾给一句客户引言（如有）
+- ⚠️ 严禁虚构数据 — AI 只做"措辞包装"，不做"事实虚构"</div>
+  </div>
+</div>
+
+<!-- 下半区: 携程实战案例 + 避坑提示 -->
+<div class="anim-5" style="margin-top:1.5vh">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.8vh">
+    <div style="display:flex;align-items:baseline;gap:1vw">
+      <div style="font-family:var(--inter);font-size:10px;letter-spacing:.15em;color:var(--primary);font-weight:700">CASE STUDY · 携程实战</div>
+      <div style="font-size:12px;color:var(--grounded-gray)">疗休养业务中标的 3 类典型亮点</div>
+    </div>
+    <div style="font-size:11px;color:var(--bright-pink);font-weight:700">⚠️ 真实数据喂入，AI 只包装措辞</div>
+  </div>
+  <div class="grid3" style="gap:1.2vw">
+    <div class="card" style="background:var(--light-bg);border-left:4px solid var(--primary);padding:1.3vh 1.2vw">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div style="font-weight:700;font-size:13px;color:var(--primary)">疗休养额度</div>
+        <span class="tag" style="font-size:10px;padding:1px 6px">规模派</span>
+      </div>
+      <div style="font-size:11.5px;color:var(--text);margin-top:.4vh;line-height:1.55">突出携程<strong>服务规模化 + 资源规模化</strong>（机票/酒店/度假市场地位）+ 六重保障 + 应急预案</div>
+    </div>
+    <div class="card" style="background:var(--light-bg);border-left:4px solid var(--yellow);padding:1.3vh 1.2vw">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div style="font-weight:700;font-size:13px;color:var(--primary)">线路 + 额度补充</div>
+        <span class="tag y" style="font-size:10px;padding:1px 6px">金融行业</span>
+      </div>
+      <div style="font-size:11.5px;color:var(--text);margin-top:.4vh;line-height:1.55"><strong>定制化线路</strong>合规要求 + 灵活转化为额度 + 限制出行人和使用范围</div>
+    </div>
+    <div class="card" style="background:var(--light-bg);border-left:4px solid var(--thoughtful-green);padding:1.3vh 1.2vw">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div style="font-weight:700;font-size:13px;color:var(--primary)">疗休养线路</div>
+        <span class="tag g" style="font-size:10px;padding:1px 6px">技术派</span>
+      </div>
+      <div style="font-size:11.5px;color:var(--text);margin-top:.4vh;line-height:1.55"><strong>携程平台技术优势</strong>提高组团效率 + 减轻客户组织负担（线下报名→平台报名）</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">14 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P15 · 场景 7 措辞优化 + Before/After -->
+<!-- ============================================================ -->
+<div class="s" id="p15">
+<div class="label anim">板块 A · 场景 ⑦ · 措辞优化</div>
+<div class="h1 anim-1">同一段话，AI 改完是什么样？</div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:2vh;margin-top:2vh">
+  <div class="anim-2" style="display:flex;gap:8px;flex-wrap:wrap">
+    <span class="tag p">口语→书面</span>
+    <span class="tag p">模糊→量化</span>
+    <span class="tag p">主观→客观</span>
+    <span class="tag p">感性→数据</span>
+    <span class="tag y">「尽快」→分级 SLA</span>
+  </div>
+
+  <div class="grid3 anim-3" style="gap:1.5vw">
+    <div style="display:flex;flex-direction:column;gap:1vh">
+      <div style="font-weight:700;font-size:13px;color:var(--primary)">案例 1 · 项目经验</div>
+      <div class="before" style="font-size:12px">"我们做过很多类似项目，经验丰富，客户都很满意"</div>
+      <div style="text-align:center;font-size:18px;color:var(--primary)">↓</div>
+      <div class="after" style="font-size:12px">"我方累计交付同类项目 47 个，覆盖酒店/航空/度假三大业务线，交付周期较行业基准缩短 18%，客户续约率 92.3%"</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1vh">
+      <div style="font-weight:700;font-size:13px;color:var(--primary)">案例 2 · 技术方案</div>
+      <div class="before" style="font-size:12px">"我们的系统很稳定，基本不出问题，速度也快"</div>
+      <div style="text-align:center;font-size:18px;color:var(--primary)">↓</div>
+      <div class="after" style="font-size:12px">"本系统基于分布式微服务架构，全年可用性 99.97%，平均响应 ≤200ms（P99），支持万级并发"</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1vh">
+      <div style="font-weight:700;font-size:13px;color:var(--primary)">案例 3 · 服务承诺</div>
+      <div class="before" style="font-size:12px">"出了问题我们会尽快处理"</div>
+      <div style="text-align:center;font-size:18px;color:var(--primary)">↓</div>
+      <div class="after" style="font-size:12px">"7×24 技术支持：P0 级 15min 响应 / 2h 定位；P1 级 30min / 4h；P2 级 1 工作日"</div>
+    </div>
+  </div>
+
+  <div class="anim-4" style="background:var(--primary);color:#fff;padding:1.8vh 2vw;font-weight:700;font-size:13px;border-radius:8px;display:flex;align-items:center;gap:1vw">
+    <span class="kawaii-icon" style="font-size:20px">✍️</span>
+    <span>Prompt：措辞规范 + 逻辑优化 + 格式规范 → 输出优化全文 + 修改对照表（原文/修改后/原因）</span>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">15 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P16 · 场景 8 合规检查 -->
+<!-- ============================================================ -->
+<div class="s" id="p16">
+<div class="label anim">板块 A · 场景 ⑧ · 合规检查</div>
+<div class="h1 anim-1">提交前最后一道关 — 防废标自查</div>
+
+<div style="flex:1;display:grid;grid-template-columns:1.4fr 1fr;gap:2vw;margin-top:1.8vh;min-height:0">
+  <div class="prompt-box anim-3" style="font-size:12px;line-height:1.55;padding:1.8vh 1.6vw;overflow:auto">你是投标合规审查专家。请对以下标书进行三维度检查：
+
+【格式合规】
+1. 是否响应了招标文件的所有实质性条款（逐条对照）
+2. 目录与正文页码是否一致
+3. 必填项 / 必备附件是否齐全
+4. 公司名称、项目名称前后一致（不能出现其他项目残留）
+
+【内容合规】
+5. 技术方案是否完整覆盖招标需求
+6. 报价是否符合计价要求（漏报 / 错算）
+7. 资质文件是否在有效期内
+8. 是否存在可能导致废标的硬伤
+
+【表述合规】
+9. 是否存在虚假 / 过度承诺
+10. 引用的法规标准是否现行有效
+11. 是否存在贬低竞争对手的表述
+
+【输出】序号 | 检查项 | 状态(✅/⚠️/❌) | 问题 | 建议 | 优先级(P0/P1/P2)
+【结论】是否建议提交（含主要风险点）</div>
+
+  <!-- 废标血泪教训（来自李汪雯实战分享） -->
+  <div class="anim-4" style="display:flex;flex-direction:column;gap:1vh;min-height:0">
+    <div style="background:#FFF5F5;border-left:4px solid var(--bright-pink);padding:1.6vh 1.4vw;border-radius:8px">
+      <div style="display:flex;align-items:center;gap:.6vw"><span style="font-size:18px">💔</span><strong style="font-size:13px;color:var(--bright-pink)">携程实战 · 废标红线</strong></div>
+      <div style="font-size:11.5px;color:var(--text);margin-top:.8vh;line-height:1.7">
+        ❌ 缺投标保证金支付凭证<br>
+        ❌ 缺五星级旅行社资质<br>
+        ❌ 缺企业三个月内社保信息<br>
+        ❌ 投标函未单独封装<br>
+        ❌ 业绩合同扫描件已过期
+      </div>
+    </div>
+    <div style="background:#F0FFF4;border-left:4px solid var(--thoughtful-green);padding:1.6vh 1.4vw;border-radius:8px;flex:1">
+      <div style="display:flex;align-items:center;gap:.6vw"><span style="font-size:18px">🛡️</span><strong style="font-size:13px;color:var(--thoughtful-green)">应对策略</strong></div>
+      <div style="font-size:11.5px;color:var(--text);margin-top:.8vh;line-height:1.7">
+        ✅ 建立<strong>动态资质库</strong>，每季度更新一次<br>
+        ✅ <strong>提前 3 个月</strong>启动资质增项<br>
+        ✅ 每月更新业绩合同扫描件<br>
+        ✅ 提前申请信用中国截图（注意截屏时间要求）
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="anim-5" style="background:var(--primary);color:#fff;padding:1.6vh 2.5vw;font-weight:700;font-size:14px;border-radius:10px;margin-top:1.5vh;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon bounce" style="font-size:22px">🛡️</span>
+  <span>每次提交前花 <span style="color:var(--yellow)">3 分钟</span> 跑一遍 — 避免一次废标，避免半年白干</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">16 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P17 · 合同 3 合 1 -->
+<!-- ============================================================ -->
+<div class="s" id="p17">
+<div class="label anim">板块 A · 合同 · 3 合 1</div>
+<div class="h1 anim-1">合同 — 3 个高频场景，1 页讲完</div>
+<div class="body anim-2" style="margin-top:1vh">合同审阅不是刚需，但这 3 个 Prompt 你迟早用得上</div>
+
+<div class="grid3 anim-3" style="flex:1;margin-top:2.5vh;align-items:stretch">
+  <div class="card" style="border-left:5px solid var(--primary);padding:2vh 1.4vw">
+    <div style="display:flex;align-items:center;gap:.8vw;margin-bottom:1vh"><span class="badge-num purple">A</span><div style="font-weight:700;font-size:14px">全面审阅风险排查</div></div>
+    <div style="font-size:11.5px;color:var(--text);line-height:1.55;flex:1">
+      <strong style="color:var(--primary)">Prompt：</strong>你是资深法务专家，请审阅以下合同：<br>
+      ① 基础信息：主体名称 / 编号 / 签署日期 / 金额付款<br>
+      ② 权利义务：双方义务是否对等 · 服务范围清晰 · 违约责任双向<br>
+      ③ 风险条款：无限连带 · 自动续约 · 竞业限制 · 知产 / 保密 · 不可抗力<br>
+      ④ 合规检查：民法典 · 发票税率 · 争议解决方式<br><br>
+      <strong style="color:var(--primary)">输出：</strong>检查项 | 状态(✅/⚠️/❌) | 问题 | 修改建议 + 总体风险等级（低/中/高）+ 签署建议
+    </div>
+  </div>
+  <div class="card" style="border-left:5px solid var(--yellow);padding:2vh 1.4vw">
+    <div style="display:flex;align-items:center;gap:.8vw;margin-bottom:1vh"><span class="badge-num yellow">B</span><div style="font-weight:700;font-size:14px">关键条款提取</div></div>
+    <div style="font-size:11.5px;color:var(--text);line-height:1.55;flex:1">
+      <strong style="color:var(--primary)">Prompt：</strong>请提取以下合同的 7 类关键信息：<br>
+      ① 基本信息：甲乙方 / 编号 / 有效期<br>
+      ② 商务条款：总金额 / 付款节点 / 含税<br>
+      ③ 服务交付：范围 / 验收 / 时间<br>
+      ④ 违约条款：违约金 / 赔偿上限<br>
+      ⑤ 特殊条款：排他 / 竞业 / 保密 / 知产<br>
+      ⑥ 终止续约：终止条件 / 通知期 / 自动续约<br>
+      ⑦ 争议解决：仲裁 / 诉讼 / 管辖<br><br>
+      <strong style="color:var(--primary)">输出：</strong>结构化表格 + 每项标注是否对我方有利(✅/⚠️/❌) + 末尾 3 条谈判建议
+    </div>
+  </div>
+  <div class="card" style="border-left:5px solid var(--bright-pink);padding:2vh 1.4vw">
+    <div style="display:flex;align-items:center;gap:.8vw;margin-bottom:1vh"><span class="badge-num" style="background:rgba(255,102,153,.15);color:#cc3366">C</span><div style="font-weight:700;font-size:14px">合同对比分析</div></div>
+    <div style="font-size:11.5px;color:var(--text);line-height:1.55;flex:1">
+      <strong style="color:var(--primary)">Prompt：</strong>请对比合同 A（旧版） vs 合同 B（新版）：<br>
+      ① 列出所有差异条款<br>
+      ② 重点标注：金额变化 · 责任变化 · 期限变化 · 范围变化<br>
+      ③ 评估每个差异对我方影响（有利/中性/不利）<br>
+      ④ 识别新增的不利条款（隐藏陷阱）<br><br>
+      <strong style="color:var(--primary)">输出：</strong>条款位置 | 旧版 | 新版 | 差异性质 | 对我方影响 + 按优先级排序的 5 条谈判策略 · 常用于<strong>续约</strong>
+    </div>
+  </div>
+</div>
+
+<div class="anim-4" style="background:var(--light-bg);padding:2vh 2vw;border-radius:10px;margin-top:1.5vh;display:flex;align-items:center;gap:1vw;border-left:4px solid var(--primary)">
+  <span class="kawaii-icon" style="font-size:22px">🛠️</span>
+  <span style="font-size:13px;color:var(--text)"><strong style="color:var(--primary)">用同样的 AI 平台：</strong>Kimi / 通义千问 / Claude — 拍照 / 上传 PDF 即可，跟标书共用工作流</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">17 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P18 · 板块 A 小结 -->
+<!-- ============================================================ -->
+<div class="s light" id="p18">
+<div class="label anim">板块 A · 小结</div>
+<div class="h1 anim-1">一张图看懂合同标书 AI 工作流</div>
+
+<div style="flex:1;display:flex;flex-direction:column;gap:2.2vh;justify-content:center;margin-top:1.5vh">
+  <div class="anim-3">
+    <div class="caption" style="color:var(--primary);margin-bottom:1.2vh">标书完整工作流</div>
+    <div class="pipeline" style="flex-wrap:nowrap;overflow-x:auto"><span class="step g">招标文件</span><span class="arrow">→</span><span class="step">①解读</span><span class="arrow">→</span><span class="step">②搜benchmark</span><span class="arrow">→</span><span class="step">③大纲</span><span class="arrow">→</span><span class="step">④需求理解</span><span class="arrow">→</span><span class="step">⑤技术方案</span><span class="arrow">→</span><span class="step">⑥案例包装</span><span class="arrow">→</span><span class="step y">⑦措辞优化</span><span class="arrow">→</span><span class="step k">⑧合规检查</span><span class="arrow">→</span><span class="step g">投标</span></div>
+  </div>
+  <div class="anim-4">
+    <div class="caption" style="color:var(--adaptive-purple);margin-bottom:1.2vh">合同工作流</div>
+    <div class="pipeline"><span class="step g">拿到合同</span><span class="arrow">→</span><span class="step" style="background:var(--adaptive-purple)">A 审阅风险</span><span class="arrow">→</span><span class="step" style="background:var(--adaptive-purple)">B 条款提取</span><span class="arrow">→</span><span class="step y">续约用 C 对比</span><span class="arrow">→</span><span class="step k">审阅报告</span></div>
+  </div>
+
+  <!-- 携程实战金句公式（来自李汪雯实战分享） -->
+  <div class="anim-5" style="background:var(--dark-bg);color:#fff;padding:2.5vh 2.5vw;border-radius:12px;position:relative;overflow:hidden">
+    <div class="caption" style="color:var(--yellow);margin-bottom:1.2vh">CASE STUDY · 携程实战金句</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:1.5vw;flex-wrap:wrap;font-family:var(--inter);font-weight:900;font-size:clamp(20px,2.2vw,32px)">
+      <span>招标成功</span>
+      <span style="color:var(--yellow);font-size:1.2em">=</span>
+      <span style="color:var(--agile-blue)">硬资质</span>
+      <span style="color:var(--yellow);font-size:1.2em">×</span>
+      <span style="color:var(--thoughtful-green)">好方案</span>
+      <span style="color:var(--yellow);font-size:1.2em">×</span>
+      <span style="color:var(--bright-pink)">准报价</span>
+    </div>
+    <div style="text-align:center;margin-top:1vh;font-size:13px;opacity:.7">任何一项为零，结果为零 · 低价不是目的，盈利才是终点</div>
+  </div>
+</div>
+
+<div class="anim-6" style="background:var(--primary);color:#fff;padding:1.8vh 2.5vw;font-weight:700;font-size:14px;border-radius:10px;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon bounce" style="font-size:22px">🎁</span>
+  <span><span style="color:var(--yellow)">11</span> 套 Prompt（标书 8 + 合同 3）全部可在会后获取 — 复制即用</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">18 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P19 · 板块 B 章节封面 -->
+<!-- ============================================================ -->
+<div class="s chapter" id="p19">
+<canvas class="ascii-bg" data-grid></canvas>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;z-index:1">
+  <div>
+    <div class="label anim" style="color:rgba(255,255,255,.6)">板块 B</div>
+    <div class="anim-1" style="font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.15em;font-family:var(--inter);font-weight:600;margin-top:1vh">SECTION 02 OF 04</div>
+  </div>
+  <div>
+    <div class="cover-title anim-2" style="font-size:clamp(58px,6.4vw,108px);font-weight:900;color:#fff;line-height:1.12">数据<br>可视化分析<span style="color:var(--chapter-dot);display:inline-block" class="bounce">.</span></div>
+    <div class="anim-3" style="margin-top:3vh;font-size:clamp(15px,1.25vw,20px);color:rgba(255,255,255,.85);font-weight:500;line-height:1.8">让数据自己讲故事</div>
+    <div class="anim-4" style="margin-top:2vh;display:flex;gap:1vw;flex-wrap:wrap">
+      <span class="tag y">五步工作流</span>
+      <span class="tag" style="background:rgba(255,255,255,.12);color:#fff">2026 新数据工具</span>
+    </div>
+  </div>
+  <div class="anim-5" style="display:flex;gap:8px">
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+    <span class="shape-dot pulse-dot" style="background:var(--chapter-dot)"></span>
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P20 · 成品展示 -->
+<!-- ============================================================ -->
+<div class="s show" id="p20">
+<div class="label anim">板块 B · 先看成品</div>
+<div class="h1 anim-1">先看 AI 能整理出什么样的数据洞察<span class="kawaii-icon wiggle" style="margin-left:.2em">📊</span></div>
+<div class="body anim-2" style="margin-top:1vh">这是终点 — 接下来 7 页教你怎么走到这里</div>
+
+<div class="grid3 anim-3" style="flex:1;margin-top:3vh">
+  <div class="card bordered" style="padding:2.5vh 1.5vw">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--yellow);opacity:.4;line-height:1">01</div>
+    <div class="h3" style="margin-top:1vh;color:var(--primary)">从乱到净</div>
+    <div class="before" style="margin-top:1vh;font-size:11px;padding:1.2vh 1vw">合并单元格 · 混入"约100万" · 日期 3 种格式</div>
+    <div style="text-align:center;color:var(--primary);font-size:18px;margin:.5vh 0">↓ AI</div>
+    <div class="after" style="font-size:11px;padding:1.2vh 1vw">标准长表 · 每列纯数据 · 统一 YYYY-MM-DD</div>
+  </div>
+  <div class="card bordered" style="padding:2.5vh 1.5vw">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--yellow);opacity:.4;line-height:1">02</div>
+    <div class="h3" style="margin-top:1vh;color:var(--primary)">从丑到美</div>
+    <div class="before" style="margin-top:1vh;font-size:11px;padding:1.2vh 1vw">Excel 默认柱图 · 标题"图表1"</div>
+    <div style="text-align:center;color:var(--primary);font-size:18px;margin:.5vh 0">↓ AI</div>
+    <div class="after" style="font-size:11px;padding:1.2vh 1vw">标题写观点 · 强调色 · 只标关键点</div>
+  </div>
+  <div class="card bordered" style="padding:2.5vh 1.5vw">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--yellow);opacity:.4;line-height:1">03</div>
+    <div class="h3" style="margin-top:1vh;color:var(--primary)">从数到洞察</div>
+    <div class="before" style="margin-top:1vh;font-size:11px;padding:1.2vh 1vw">2 句话的口头汇报</div>
+    <div style="text-align:center;color:var(--primary);font-size:18px;margin:.5vh 0">↓ AI</div>
+    <div class="after" style="font-size:11px;padding:1.2vh 1vw">完整复盘报告 · Executive Summary · 归因 · 预测 · 行动计划</div>
+  </div>
+</div>
+
+<div class="anim-4" style="margin-top:2vh;background:var(--yellow);color:var(--dark-bg);padding:2.2vh 2.5vw;font-weight:700;font-size:15px;border-radius:10px;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon bounce" style="font-size:24px">🚀</span>
+  <span>这是终点 — 接下来 7 页教你怎么走到这里</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">20 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P21 · 数据工具推荐 -->
+<!-- ============================================================ -->
+<div class="s" id="p21">
+<div class="label anim">板块 B · 工具</div>
+<div class="h1 anim-1">数据工具推荐（2026 升级版）<span class="kawaii-icon" style="margin-left:.2em">🛠️</span></div>
+<div class="body anim-2" style="margin-top:1vh">有了 AI，做表也能聊天</div>
+
+<div class="grid2 anim-3" style="flex:1;margin-top:2.5vh">
+  <div class="card a" style="padding:2.5vh 1.8vw;justify-content:space-between">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1vh"><span style="font-weight:700;font-size:18px">ChatExcel</span><span class="tag y" style="font-size:10px">国内最强 ⭐</span></div>
+      <a href="https://chatexcel.com" target="_blank" style="font-size:12px;color:var(--yellow);font-family:var(--mono);text-decoration:underline">→ chatexcel.com</a>
+      <div style="font-size:13px;margin-top:1.5vh;line-height:1.6;opacity:.9">PDF/图片转 Excel · 聊天式做透视表 · 自动出图 — 完全改变"做表格"的方式</div>
+    </div>
+  </div>
+  <div class="card d" style="padding:2.5vh 1.8vw;justify-content:space-between">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1vh"><span style="font-weight:700;font-size:18px">办公小浣熊</span><span class="tag y" style="font-size:10px">商汤出品</span></div>
+      <a href="https://raccoon.sensetime.com" target="_blank" style="font-size:12px;color:var(--yellow);font-family:var(--mono);text-decoration:underline">→ raccoon.sensetime.com</a>
+      <div style="font-size:13px;margin-top:1.5vh;line-height:1.6;opacity:.9">自然语言输入 → 自动出柱/饼/折线 · 支持预测分析 · 中文场景理解强</div>
+    </div>
+  </div>
+  <div class="card y" style="padding:2.5vh 1.8vw;justify-content:space-between">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1vh"><span style="font-weight:700;font-size:18px">畅图</span><span class="tag k" style="font-size:10px">可视化</span></div>
+      <a href="https://chango.cool" target="_blank" style="font-size:12px;color:var(--dark-bg);font-family:var(--mono);text-decoration:underline">→ chango.cool</a>
+      <div style="font-size:13px;margin-top:1.5vh;line-height:1.6;color:var(--dark-bg);opacity:.85">AI 对话生成思维导图 / 流程图 / 鱼骨图 / 看板 · 支持 PDF/网页解析</div>
+    </div>
+  </div>
+  <div class="card purple" style="padding:2.5vh 1.8vw;justify-content:space-between">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1vh"><span style="font-weight:700;font-size:18px">WPS AI / Copilot</span><span class="tag y" style="font-size:10px">本地插件</span></div>
+      <a href="https://ai.wps.cn" target="_blank" style="font-size:12px;color:var(--yellow);font-family:var(--mono);text-decoration:underline">→ ai.wps.cn</a>
+      <div style="font-size:13px;margin-top:1.5vh;line-height:1.6;opacity:.9">本地 Excel 直插 AI · 数据 + PPT + 文档一站式</div>
+    </div>
+  </div>
+</div>
+
+<div class="anim-4" style="margin-top:1.5vh;background:var(--light-bg);padding:2vh 2vw;border-radius:10px;border-left:4px solid var(--primary);font-size:13px;color:var(--text);display:flex;align-items:center;gap:1vw">
+  <span style="font-weight:700;color:var(--primary)">大模型辅助：</span>
+  <span class="tag">ChatGPT 上传 Excel 直接分析</span>
+  <span class="tag">Kimi 长表格摘要</span>
+  <span class="tag">通义千问 中文场景</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">21 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P22 · STEP 1 清洗 -->
+<!-- ============================================================ -->
+<div class="s" id="p22">
+<div class="label anim">板块 B · STEP 1</div>
+<div class="h1 anim-1">数据清洗 — 垃圾进，垃圾出</div>
+<div class="big-num anim-2" style="top:6vh;right:5vw">01</div>
+
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;margin-top:2.5vh">
+  <div class="anim-3" style="display:flex;flex-direction:column;gap:1.5vh;justify-content:center">
+    <div class="card" style="border-left:5px solid var(--thoughtful-green)">
+      <div style="font-weight:700;font-size:15px;color:var(--thoughtful-green);margin-bottom:1vh">✅ 正确格式</div>
+      <div style="font-size:13px;color:var(--text);line-height:1.8">
+        · 每列一个维度，第一行表头<br>
+        · 日期统一 YYYY-MM-DD<br>
+        · 数值列纯数字<br>
+        · 无合并单元格
+      </div>
+    </div>
+    <div class="card" style="border-left:5px solid var(--bright-pink)">
+      <div style="font-weight:700;font-size:15px;color:var(--bright-pink);margin-bottom:1vh">❌ 错误格式</div>
+      <div style="font-size:13px;color:var(--text);line-height:1.8">
+        · 合并单元格（AI 读不懂）<br>
+        · "约 100 万"混入文字<br>
+        · 日期格式不统一<br>
+        · 同列既有数字又有文字
+      </div>
+    </div>
+  </div>
+  <div class="anim-4">
+    <div class="prompt-box" style="height:100%">请检查以下数据表格的质量问题并修复：
+
+1. 检查空值，标注位置 + 填充策略
+2. 检查异常值（偏离均值 3σ）
+3. 日期格式统一为 YYYY-MM-DD
+4. 检查重复行
+5. 列名清晰无歧义
+
+【输出】
+- 清洗后的数据表（CSV 格式）
+- 数据质量报告（含问题清单）
+- 后续分析建议</div>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">22 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P23 · STEP 2 分析 -->
+<!-- ============================================================ -->
+<div class="s" id="p23">
+<div class="label anim">板块 B · STEP 2</div>
+<div class="h1 anim-1">分析洞察 — 先有观点，再有图表</div>
+<div class="body anim-2" style="font-weight:700;color:var(--primary);margin-top:.5vh">不要直接画图，先让 AI 帮你理解数据</div>
+<div class="big-num anim-2" style="top:6vh;right:5vw">02</div>
+
+<div class="prompt-box anim-3" style="flex:1;margin-top:1.5vh;font-size:12.5px;line-height:1.55;padding:2vh 1.8vw;overflow:auto">你是一名资深数据分析师。请对以下销售数据进行深度分析：
+
+【趋势分析】
+1. 整体趋势：上升 / 下降 / 波动？拐点在哪？
+2. 同比分析：增长率多少？哪些月份突出 / 低迷？
+3. 环比分析：是否存在季节性规律？
+
+【结构分析】
+4. 各业务线占比分布，是否依赖单一业务线？
+5. 客户分层：头部客户贡献占比（二八法则）
+6. 区域分布：各区域表现差异
+
+【异常识别】
+7. 是否有数据异常点？可能原因？
+8. 是否有反常规趋势或断崖式变化？
+
+【输出要求】
+- 先给 3 条最重要的发现（Executive Summary），每条 ≤30 字
+- 再展开详细分析（按上述维度逐一回答）
+- 推荐 5 个最适合可视化的维度 + 对应图表类型 + 推荐理由
+- 标注数据可信度 / 样本量提示
+- 末尾给 3 条「下一步深入分析」的方向建议</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">23 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P24 · STEP 3 策略 -->
+<!-- ============================================================ -->
+<div class="s" id="p24">
+<div class="label anim">板块 B · STEP 3</div>
+<div class="h1 anim-1">表达策略 — 图表是表达观点，不是展示数据</div>
+<div class="big-num anim-2" style="top:6vh;right:5vw">03</div>
+
+<div style="flex:1;display:grid;grid-template-columns:1fr 1.1fr;gap:2.5vw;margin-top:2.5vh;min-height:0;align-items:end;align-content:end">
+  <div class="anim-3" style="display:flex;flex-direction:column;gap:1.2vh;min-height:0;justify-content:flex-end">
+    <div style="flex-shrink:0">
+      <div class="h3" style="margin-bottom:.6vh">图表类型选择指南</div>
+      <table class="tbl" style="font-size:11.5px">
+        <thead><tr><th style="padding:.7vh 1vw">想表达什么</th><th style="padding:.7vh 1vw">用什么图</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:.4vh 1vw">趋势变化</td><td style="padding:.4vh 1vw;font-weight:700;color:var(--primary)">折线图</td></tr>
+          <tr><td style="padding:.4vh 1vw">大小比较</td><td style="padding:.4vh 1vw;font-weight:700;color:var(--primary)">柱状图 / 条形图</td></tr>
+          <tr><td style="padding:.4vh 1vw">占比构成</td><td style="padding:.4vh 1vw;font-weight:700;color:var(--primary)">饼图 / 堆叠柱状图</td></tr>
+          <tr><td style="padding:.4vh 1vw">两变量关系</td><td style="padding:.4vh 1vw;font-weight:700;color:var(--primary)">散点图</td></tr>
+          <tr><td style="padding:.4vh 1vw">流转过程</td><td style="padding:.4vh 1vw;font-weight:700;color:var(--primary)">桑基图 / 漏斗图</td></tr>
+          <tr><td style="padding:.4vh 1vw">地域分布</td><td style="padding:.4vh 1vw;font-weight:700;color:var(--primary)">地图热力图</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prompt-box" style="font-size:11.5px;padding:1.4vh 1.4vw;line-height:1.6;flex-shrink:0;max-height:22vh;overflow-y:auto">根据以下输入，推荐最合适的图表类型：
+
+【输入】数据字段说明 + 核心观点（一句话）
+
+【输出】
+- 推荐图表类型 + 选择理由
+- 备选方案 + 配色建议</div>
+  </div>
+  <div class="anim-4" style="display:flex;flex-direction:column;gap:1.5vh">
+    <div class="h3">表达四原则</div>
+    <div class="card a" style="padding:1.6vh 1.4vw"><div style="font-weight:700;font-size:14px">① 强调色 vs 弱化色</div><div style="font-size:12px;opacity:.85;margin-top:.3vh">重点用品牌蓝，次要用浅灰</div></div>
+    <div class="card d" style="padding:1.6vh 1.4vw"><div style="font-weight:700;font-size:14px">② 标题写观点</div><div style="font-size:12px;opacity:.85;margin-top:.3vh">不写"Q2 各区域图"，写"华东区 Q2 增速领跑 +23%"</div></div>
+    <div class="card" style="border-left:5px solid var(--yellow);padding:1.6vh 1.4vw"><div style="font-weight:700;font-size:14px">③ 数据标签少即是多</div><div style="font-size:12px;color:var(--text);margin-top:.3vh">只标最大值、最小值和关键转折点</div></div>
+    <div class="card" style="border-left:5px solid var(--primary);padding:1.6vh 1.4vw"><div style="font-weight:700;font-size:14px">④ 一图一观点</div><div style="font-size:12px;color:var(--text);margin-top:.3vh">每张图只服务一个核心信息</div></div>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">24 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P25 · STEP 4 出图 -->
+<!-- ============================================================ -->
+<div class="s" id="p25">
+<div class="label anim">板块 B · STEP 4</div>
+<div class="h1 anim-1">图表美化 — 让 AI 帮你出图</div>
+<div class="big-num anim-2" style="top:6vh;right:5vw">04</div>
+
+<div class="prompt-box anim-3" style="flex:1;margin-top:1.5vh;font-size:12.5px;line-height:1.55;padding:2vh 1.8vw;overflow:auto">请根据以下数据生成专业可视化图表：
+
+【视觉风格】
+- 配色：主色 #2346FF，辅助 #FFB400，背景白色
+- 字体：无衬线，标题 16pt 加粗，正文 11pt
+- 无多余网格线，仅保留水平参考线（浅灰）
+- 图例放在图表上方或右侧
+
+【内容要求】
+- 标题用一句话表达核心发现（不是"XX 数据图"）
+- 数据标签只标最大值、最小值和关键转折点
+- 用颜色深浅区分主要 vs 次要数据
+- 对比类图表突出差异最大的部分
+- 必要时增加注释箭头指向关键拐点
+
+【输出】
+- 高清 PNG（300dpi）+ 可编辑 Python / Excel 代码
+- 图表下方附 2-3 行文字说明（含数据来源 + 关键洞察）
+- 备注一个"如果想要不同风格"的二次微调建议</div>
+
+<div class="anim-4" style="background:var(--light-bg);padding:2vh 2vw;border-radius:10px;border-left:4px solid var(--primary);margin-top:1.5vh;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon" style="font-size:22px">🎨</span>
+  <span style="font-size:13px;color:var(--text)"><strong style="color:var(--primary)">3 种实操方式：</strong>① ChatGPT/ChatExcel 一键出图（最快）&nbsp;② 办公小浣熊自然语言出图 &nbsp;③ Kimi 分析 → 手动喂给畅图 / WPS AI</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">25 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P26 · STEP 5 复盘 -->
+<!-- ============================================================ -->
+<div class="s" id="p26">
+<div class="label anim">板块 B · STEP 5</div>
+<div class="h1 anim-1">数据复盘 — 图表不是终点，洞察才是</div>
+<div class="big-num anim-2" style="top:6vh;right:5vw">05</div>
+
+<div class="grid4 anim-3" style="margin-top:2vh">
+  <div class="card a" style="padding:2.2vh 1.2vw;position:relative"><div class="corner-num">01</div><div style="font-weight:700;font-size:15px;margin-top:1.5vh">数据表现</div><div style="font-size:12px;opacity:.85;margin-top:.5vh">一句话总结</div></div>
+  <div class="card d" style="padding:2.2vh 1.2vw;position:relative"><div class="corner-num">02</div><div style="font-weight:700;font-size:15px;margin-top:1.5vh">原因分析</div><div style="font-size:12px;opacity:.85;margin-top:.5vh">为什么会这样？</div></div>
+  <div class="card y" style="padding:2.2vh 1.2vw;position:relative"><div class="corner-num">03</div><div style="font-weight:700;font-size:15px;margin-top:1.5vh;color:var(--dark-bg)">风险提示</div><div style="font-size:12px;color:var(--dark-bg);opacity:.85;margin-top:.5vh">趋势持续会怎样？</div></div>
+  <div class="card bordered" style="padding:2.2vh 1.2vw;position:relative"><div class="corner-num">04</div><div style="font-weight:700;font-size:15px;color:var(--primary);margin-top:1.5vh">行动建议</div><div style="font-size:12px;color:var(--text);margin-top:.5vh">从哪些方面发力？</div></div>
+</div>
+
+<div class="prompt-box anim-4" style="flex:1;margin-top:1.5vh;font-size:12.5px;line-height:1.55;padding:2vh 1.8vw;overflow:auto">基于以上数据分析结果，请生成一份数据复盘报告：
+
+【核心指标回顾】本期 vs 目标 · 环比 · 同比
+【归因分析】好的指标什么驱动？差的问题在哪？异常波动原因？
+【未来预测】下季度预计？最乐观 / 最悲观 / 最可能？
+【行动计划】
+- 短期（本月）：立即可做的 3 件事
+- 中期（本季度）：需推动的 2 个改善项目
+- 长期（半年）：值得投入的 1 个战略方向
+
+【输出】先给 Executive Summary（≤5 句），再展开</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">26 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P27 · 板块 B 小结 -->
+<!-- ============================================================ -->
+<div class="s light" id="p27">
+<div class="label anim">板块 B · 小结</div>
+<div class="h1 anim-1">一张图看懂数据分析五步法</div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:5vh;margin-top:2vh">
+  <div class="grid5 anim-3" style="align-items:stretch">
+    <div class="card a" style="padding:4vh 1vw;position:relative;text-align:left"><div class="corner-num">STEP 01</div><div style="font-weight:700;font-size:24px;margin-top:2vh">清洗</div></div>
+    <div class="card d" style="padding:4vh 1vw;position:relative;text-align:left"><div class="corner-num">STEP 02</div><div style="font-weight:700;font-size:24px;margin-top:2vh">分析</div></div>
+    <div class="card y" style="padding:4vh 1vw;position:relative;text-align:left"><div class="corner-num">STEP 03</div><div style="font-weight:700;font-size:24px;color:var(--dark-bg);margin-top:2vh">策略</div></div>
+    <div class="card a" style="padding:4vh 1vw;position:relative;text-align:left"><div class="corner-num">STEP 04</div><div style="font-weight:700;font-size:24px;margin-top:2vh">出图</div></div>
+    <div class="card d" style="padding:4vh 1vw;position:relative;text-align:left"><div class="corner-num">STEP 05</div><div style="font-weight:700;font-size:24px;margin-top:2vh">复盘</div></div>
+  </div>
+  <div class="anim-4" style="text-align:center">
+    <div class="h1" style="color:var(--primary);font-size:clamp(28px,2.6vw,42px)">「先分析，再画图，最后复盘」</div>
+    <div style="margin-top:1.5vh;font-size:15px;color:var(--text)">三步让你的汇报从"展示数据"升级为"提供洞察"</div>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">27 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P28 · 板块 C 章节封面 -->
+<!-- ============================================================ -->
+<div class="s chapter" id="p28">
+<canvas class="ascii-bg" data-grid></canvas>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;z-index:1">
+  <div>
+    <div class="label anim" style="color:rgba(255,255,255,.6)">板块 C</div>
+    <div class="anim-1" style="font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.15em;font-family:var(--inter);font-weight:600;margin-top:1vh">SECTION 03 OF 04</div>
+  </div>
+  <div>
+    <div class="cover-title anim-2" style="font-size:clamp(58px,6.4vw,108px);font-weight:900;color:#fff;line-height:1.12">AI PPT<br>设计<span style="color:var(--chapter-dot);display:inline-block" class="bounce">.</span></div>
+    <div class="anim-3" style="margin-top:3vh;font-size:clamp(15px,1.25vw,20px);color:rgba(255,255,255,.85);font-weight:500;line-height:1.8">5 种方法，选你顺手的</div>
+    <div class="anim-4" style="margin-top:2vh;display:flex;gap:1vw;flex-wrap:wrap">
+      <span class="tag y">从入门级到专业级</span>
+      <span class="tag" style="background:rgba(255,255,255,.12);color:#fff">总有一条适合你</span>
+    </div>
+  </div>
+  <div class="anim-5" style="display:flex;gap:8px">
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+    <span class="shape-dot pulse-dot" style="background:var(--chapter-dot)"></span>
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P29 · 成品展示 -->
+<!-- ============================================================ -->
+<div class="s show" id="p29">
+<div class="label anim">板块 C · 先看成品</div>
+<div class="h1 anim-1">先看 AI 能做出什么样的 PPT<span class="kawaii-icon wiggle" style="margin-left:.2em">🎨</span></div>
+<div class="body anim-2" style="margin-top:1vh">这是终点 — 接下来 9 页教你怎么走到这里</div>
+
+<div class="grid3 anim-3" style="flex:1;margin-top:3vh">
+  <div class="card bordered" style="padding:2.5vh 1.5vw;display:flex;flex-direction:column">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--thoughtful-green);opacity:.4;line-height:1">01</div>
+    <div class="h3" style="margin-top:1vh;color:var(--primary)">传统 PowerPoint</div>
+    <div class="before" style="margin-top:1vh;font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">大段文字 · 默认模板 · Excel 截图</div>
+    <div style="text-align:center;color:var(--primary);font-size:18px;margin:.5vh 0">↓ WPS AI</div>
+    <div class="after" style="font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">一键优化布局 · 配色 · 图表升级</div>
+  </div>
+  <div class="card bordered" style="padding:2.5vh 1.5vw;display:flex;flex-direction:column">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--thoughtful-green);opacity:.4;line-height:1">02</div>
+    <div class="h3" style="margin-top:1vh;color:var(--primary)">Gamma 云端 AI</div>
+    <div class="before" style="margin-top:1vh;font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">3 行大纲文字</div>
+    <div style="text-align:center;color:var(--primary);font-size:18px;margin:.5vh 0">↓ AI</div>
+    <div class="after" style="font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">10 页带配图的设计感 PPT · 5 分钟</div>
+  </div>
+  <div class="card bordered" style="padding:2.5vh 1.5vw;display:flex;flex-direction:column">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;color:var(--thoughtful-green);opacity:.4;line-height:1">03</div>
+    <div class="h3" style="margin-top:1vh;color:var(--primary)">Claude + HTML <span class="tag y" style="font-size:10px">本场</span></div>
+    <div class="before" style="margin-top:1vh;font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">就是你现在看到的这个 PPT</div>
+    <div style="text-align:center;color:var(--primary);font-size:18px;margin:.5vh 0">↓ Claude</div>
+    <div class="after" style="font-size:11px;padding:1.2vh 1vw;flex:1;display:flex;align-items:center">横向滑动 · 动画 · 品牌定制 · 链接分享</div>
+  </div>
+</div>
+
+<div class="anim-4" style="margin-top:2vh;background:var(--thoughtful-green);color:#fff;padding:2.2vh 2.5vw;font-weight:700;font-size:15px;border-radius:10px;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon bounce" style="font-size:24px">🎬</span>
+  <span>这是终点 — 接下来 9 页教你怎么走到这里</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">29 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P30 · 痛点 -->
+<!-- ============================================================ -->
+<div class="s" id="p30">
+<div class="label anim">板块 C · 痛点</div>
+<div class="h1 anim-1">PPT 做不好看，到底卡在哪？</div>
+
+<div class="grid3 anim-3" style="flex:1;margin-top:3vh;align-items:stretch">
+  <div class="card a" style="padding:3.5vh 2vw;justify-content:space-between">
+    <div>
+      <div class="kawaii-icon wiggle" style="font-size:48px">📐</div>
+      <div style="font-weight:900;font-size:24px;margin-top:1.5vh">排版</div>
+    </div>
+    <div style="font-size:13px;opacity:.85;line-height:1.7;margin-top:1.5vh">
+      <strong>问题：</strong>间距不统一、元素不对齐<br>
+      <strong>AI 解法：</strong>自动栅格对齐、统一间距
+    </div>
+  </div>
+  <div class="card d" style="padding:3.5vh 2vw;justify-content:space-between">
+    <div>
+      <div class="kawaii-icon wiggle" style="font-size:48px;animation-delay:.5s">🎨</div>
+      <div style="font-weight:900;font-size:24px;margin-top:1.5vh">配色</div>
+    </div>
+    <div style="font-size:13px;opacity:.85;line-height:1.7;margin-top:1.5vh">
+      <strong>问题：</strong>颜色太多太杂<br>
+      <strong>AI 解法：</strong>一键品牌色、和谐配色
+    </div>
+  </div>
+  <div class="card y" style="padding:3.5vh 2vw;justify-content:space-between">
+    <div>
+      <div class="kawaii-icon wiggle" style="font-size:48px;animation-delay:1s">📊</div>
+      <div style="font-weight:900;font-size:24px;margin-top:1.5vh;color:var(--dark-bg)">数据可视化</div>
+    </div>
+    <div style="font-size:13px;color:var(--dark-bg);opacity:.85;line-height:1.7;margin-top:1.5vh">
+      <strong>问题：</strong>截图粘贴、图表模糊<br>
+      <strong>AI 解法：</strong>你已经在板块 B 学会了！
+    </div>
+  </div>
+</div>
+
+<div class="anim-4" style="background:var(--dark-bg);color:#fff;padding:2.5vh 2.5vw;font-weight:700;font-size:16px;margin-top:2vh;border-radius:10px;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon" style="font-size:24px">💡</span>
+  <span>PPT 的核心不是"好看"，是"<span style="color:var(--yellow)">清晰</span>" — 信息层级分明、重点突出、一页一观点</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">30 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P31 · 路线 1 -->
+<!-- ============================================================ -->
+<div class="s" id="p31">
+<div class="label anim">板块 C · ROUTE 01</div>
+<div class="h1 anim-1">路线一 · 本地 AI 插件</div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh;margin-top:2vh">
+  <div class="anim-3" style="display:flex;align-items:center;justify-content:space-between;gap:1vw;padding:1vh 0">
+    <div class="step" style="flex:1;text-align:center;padding:2vh 1vw;font-size:14px">① 打开 AI 助手</div>
+    <span class="arrow" style="font-size:22px">→</span>
+    <div class="step y" style="flex:1;text-align:center;padding:2vh 1vw;font-size:14px">② 输入主题</div>
+    <span class="arrow" style="font-size:22px">→</span>
+    <div class="step" style="flex:1;text-align:center;padding:2vh 1vw;font-size:14px">③ AI 生成初稿</div>
+    <span class="arrow" style="font-size:22px">→</span>
+    <div class="step k" style="flex:1;text-align:center;padding:2vh 1vw;font-size:14px">④ Excel 直接插入图表</div>
+  </div>
+
+  <div class="grid2 anim-4">
+    <div class="card" style="border-left:5px solid var(--primary)"><div style="font-weight:700;font-size:18px">WPS AI</div><div style="font-size:12px;color:var(--text);margin-top:.5vh;font-family:var(--mono)">ai.wps.cn · 免费 · 中文生态好</div></div>
+    <div class="card" style="border-left:5px solid var(--yellow)"><div style="font-weight:700;font-size:18px">Microsoft Copilot</div><div style="font-size:12px;color:var(--text);margin-top:.5vh;font-family:var(--mono)">copilot.microsoft.com · 需 M365 订阅</div></div>
+  </div>
+
+  <div class="grid2 anim-5">
+    <div class="card" style="border-left:5px solid var(--thoughtful-green)"><div style="font-weight:700;font-size:16px;color:var(--thoughtful-green)">✅ 优势</div><div style="font-size:13px;color:var(--text);line-height:1.7;margin-top:1vh">Excel 图表处理强 · 自动优化布局 · 兼容本地 · 熟悉的界面</div></div>
+    <div class="card" style="border-left:5px solid var(--bright-pink)"><div style="font-weight:700;font-size:16px;color:var(--bright-pink)">✗ 局限</div><div style="font-size:13px;color:var(--text);line-height:1.7;margin-top:1vh">模板化严重 · 创意有限 · 难以差异化</div></div>
+  </div>
+</div>
+<div class="anim-6" style="background:var(--yellow);color:var(--dark-bg);padding:1.6vh 2vw;font-weight:700;font-size:14px;border-radius:8px;margin-top:1.5vh">最适合：<span style="color:var(--primary)">季度汇报、数据报告</span></div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">31 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P32 · 路线 2 -->
+<!-- ============================================================ -->
+<div class="s" id="p32">
+<div class="label anim">板块 C · ROUTE 02</div>
+<div class="h1 anim-1">路线二 · 云端 AI PPT</div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4vh;margin-top:2vh">
+  <div class="anim-3" style="display:flex;align-items:center;justify-content:space-between;gap:1vw;padding:1vh 0">
+    <div class="step g" style="flex:1;text-align:center;padding:2vh 1vw;font-size:14px">① 文字大纲</div>
+    <span class="arrow" style="font-size:22px">→</span>
+    <div class="step" style="flex:1;text-align:center;padding:2vh 1vw;font-size:14px">② 粘贴 + 选风格</div>
+    <span class="arrow" style="font-size:22px">→</span>
+    <div class="step y" style="flex:1;text-align:center;padding:2vh 1vw;font-size:14px">③ AI 自动生成</div>
+    <span class="arrow" style="font-size:22px">→</span>
+    <div class="step k" style="flex:1;text-align:center;padding:2vh 1vw;font-size:14px">④ 下载 .pptx</div>
+  </div>
+
+  <div class="grid3 anim-4">
+    <div class="card a"><div style="font-weight:700;font-size:18px">AIPPT</div><a href="https://aippt.cn" target="_blank" style="opacity:.85;font-size:12px;font-family:var(--mono);color:var(--yellow);text-decoration:underline">→ aippt.cn</a><div style="font-size:13px;opacity:.85;line-height:1.5;margin-top:1.5vh">中文最友好，模板多，.pptx 兼容好</div></div>
+    <div class="card d"><div style="font-weight:700;font-size:18px">Gamma</div><a href="https://gamma.app" target="_blank" style="opacity:.85;font-size:12px;font-family:var(--mono);color:var(--yellow);text-decoration:underline">→ gamma.app</a><div style="font-size:13px;opacity:.85;line-height:1.5;margin-top:1.5vh">视觉最好看，支持网页发布</div></div>
+    <div class="card y"><div style="font-weight:700;font-size:18px">MindShow</div><a href="https://www.mindshow.fun" target="_blank" style="opacity:.85;font-size:12px;font-family:var(--mono);color:var(--dark-bg);text-decoration:underline">→ mindshow.fun</a><div style="font-size:13px;opacity:.85;line-height:1.5;margin-top:1.5vh;color:var(--dark-bg)">从 Markdown / 大纲直接生成</div></div>
+  </div>
+
+  <div class="anim-5 card a" style="padding:2vh 2vw"><div style="font-weight:700;font-size:15px"><span class="kawaii-icon">⚡</span> 进阶技巧</div><div style="font-size:13px;opacity:.85;margin-top:.8vh">用 Kimi 先生成结构化大纲 → 再喂给 Gamma → 效果翻倍</div></div>
+</div>
+<div class="anim-6" style="background:var(--yellow);color:var(--dark-bg);padding:1.6vh 2vw;font-weight:700;font-size:14px;border-radius:8px;margin-top:1.5vh">最适合：<span style="color:var(--primary)">客户提案、项目介绍</span>（快速出稿、视觉过得去）</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">32 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P33 · 路线 3 -->
+<!-- ============================================================ -->
+<div class="s" id="p33">
+<div class="label anim">板块 C · ROUTE 03</div>
+<div class="h1 anim-1">路线三 · 大模型对话</div>
+<div class="body anim-2" style="margin-top:1vh">对着 AI 说，PPT 就出来了</div>
+
+<div class="grid2 anim-3" style="flex:1;margin-top:2.5vh;gap:2.5vw">
+  <div style="display:flex;flex-direction:column;gap:1.5vh">
+    <div class="grid3" style="gap:.8vw">
+      <div class="card" style="border-left:5px solid var(--primary);padding:1.5vh 1vw"><div style="font-weight:700;font-size:16px">Kimi</div></div>
+      <div class="card" style="border-left:5px solid var(--yellow);padding:1.5vh 1vw"><div style="font-weight:700;font-size:16px">豆包</div></div>
+      <div class="card" style="border-left:5px solid var(--adaptive-purple);padding:1.5vh 1vw"><div style="font-weight:700;font-size:16px">MiniMax</div></div>
+    </div>
+    <div class="prompt-box" style="font-size:11.5px;line-height:1.6;padding:1.6vh 1.4vw;max-height:46vh;overflow-y:auto;min-height:0">你是资深演示文稿设计师。请根据【输入】生成一份完整的 PPT 大纲（10-15 页），交付物可以直接喂给 Gamma / AIPPT。
+
+【输出结构】
+- P1 封面：标题(≤15字·写观点不写主题) + 副标题 + 演讲人 + 日期
+- P2 议程目录：3-5 个章节
+- P3-N 主体：按「问题 → 现状 → 方案 → 数据 → 行动」逻辑
+- 倒数第 2 页：总结金句 + 行动呼吁
+- 最后一页：Q&A + 联系方式
+
+【每页要写清】
+1. 页面标题（写观点，不写主题）
+2. 副标题（一句话支撑标题，≤25字）
+3. 3-5 个核心要点（每点≤20字，不堆砌）
+4. 设计建议（版式 / 配色 / 推荐图表类型 / emoji 点缀）
+5. 演讲备注（讲解时强调的 2-3 句话）
+
+【风格约束】
+- 商业正式但不生硬，避免"很多""非常"等模糊词
+- 数据用具体数字（百分比 / 绝对值 / 时间对比）
+- 每页文字 ≤50 字，留白充足
+- 关键概念用「中文引号」突出
+
+【输入】（粘贴你的原始内容：汇报材料 / 产品介绍 / 培训资料）</div>
+  </div>
+  <div class="anim-4" style="display:flex;flex-direction:column;gap:1.5vh;justify-content:center">
+    <div class="h3">组合技</div>
+    <div style="display:flex;flex-direction:column;gap:1vh">
+      <span class="step" style="text-align:center;font-size:15px;padding:1.5vh">① Kimi 想内容</span>
+      <span style="text-align:center;color:var(--primary);font-size:20px">↓</span>
+      <span class="step y" style="text-align:center;font-size:15px;padding:1.5vh">② Gamma 做视觉</span>
+      <span style="text-align:center;color:var(--primary);font-size:20px">↓</span>
+      <span class="step k" style="text-align:center;font-size:15px;padding:1.5vh">③ WPS AI 加数据图表</span>
+    </div>
+  </div>
+</div>
+<div class="anim-5" style="background:var(--yellow);color:var(--dark-bg);padding:1.6vh 2vw;font-weight:700;font-size:14px;border-radius:8px;margin-top:1.5vh">最适合：<span style="color:var(--primary)">从零开始、需要 AI 帮想内容</span></div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">33 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P34 · 路线 4 AI + HTML -->
+<!-- ============================================================ -->
+<div class="s" id="p34">
+<div class="label anim">板块 C · ROUTE 04</div>
+<div class="h1 anim-1">路线四 · AI + HTML — 代码级定制</div>
+<div class="body anim-2" style="margin-top:1vh">你现在看到的这个 PPT 就是案例 <span class="kawaii-icon" style="margin-left:.3em">👀</span></div>
+
+<div style="flex:1;display:flex;flex-direction:column;gap:2vh;margin-top:1.8vh">
+
+  <!-- 上半区: 使用步骤 2×2 -->
+  <div class="anim-3">
+    <div class="caption" style="color:var(--primary);margin-bottom:1vh">使用步骤</div>
+    <div class="grid2" style="gap:1.2vw">
+      <div class="card a" style="padding:1.8vh 1.4vw;position:relative;display:flex;align-items:center;gap:1vw">
+        <div class="corner-num" style="color:rgba(255,255,255,.5)">01</div>
+        <div style="font-weight:700;font-size:15px;margin-top:.8vh">描述内容和风格</div>
+      </div>
+      <div class="card d" style="padding:1.8vh 1.4vw;position:relative;display:flex;align-items:center;gap:1vw">
+        <div class="corner-num" style="color:rgba(255,255,255,.5)">02</div>
+        <div style="font-weight:700;font-size:15px;margin-top:.8vh">要求输出单文件 HTML</div>
+      </div>
+      <div class="card purple" style="padding:1.8vh 1.4vw;position:relative;display:flex;align-items:center;gap:1vw">
+        <div class="corner-num" style="color:rgba(255,255,255,.5)">03</div>
+        <div style="font-weight:700;font-size:15px;margin-top:.8vh">保存 .html → 浏览器打开</div>
+      </div>
+      <div class="card y" style="padding:1.8vh 1.4vw;position:relative;display:flex;align-items:center;gap:1vw">
+        <div class="corner-num" style="color:rgba(0,0,0,.45)">04</div>
+        <div style="font-weight:700;font-size:15px;margin-top:.8vh;color:var(--dark-bg)">不满意继续对话调整</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 下半区: 推荐工具 + 四大优势 -->
+  <div class="grid2 anim-4" style="gap:2vw;flex:1;min-height:0">
+    <div style="display:flex;flex-direction:column">
+      <div class="caption" style="color:var(--primary);margin-bottom:1vh">推荐工具</div>
+      <div style="display:flex;flex-direction:column;gap:1vh;flex:1">
+        <div class="card a" style="padding:1.6vh 1.2vw;display:flex;align-items:center;justify-content:space-between;flex:1">
+          <div style="font-weight:700;font-size:18px">Claude</div>
+          <div style="font-size:12px;opacity:.8">代码生成最强</div>
+        </div>
+        <div class="card d" style="padding:1.6vh 1.2vw;display:flex;align-items:center;justify-content:space-between;flex:1">
+          <div style="font-weight:700;font-size:18px">Bolt</div>
+          <div style="font-size:12px;opacity:.8">在线编辑器</div>
+        </div>
+        <div class="card purple" style="padding:1.6vh 1.2vw;display:flex;align-items:center;justify-content:space-between;flex:1">
+          <div style="font-weight:700;font-size:18px">Cursor</div>
+          <div style="font-size:12px;opacity:.8">本地 IDE</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <div class="caption" style="color:var(--text);margin-bottom:1vh">四大优势</div>
+      <div class="grid2" style="gap:1vw;flex:1">
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:.6vh;background:var(--light-bg);padding:1.4vh 1.2vw;border-radius:8px"><span style="font-size:24px">✨</span><span style="font-size:13px;font-weight:700;color:var(--primary)">视觉远超传统</span><span style="font-size:11px;color:var(--text)">动画/交互/品牌定制</span></div>
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:.6vh;background:var(--light-bg);padding:1.4vh 1.2vw;border-radius:8px"><span style="font-size:24px">🎨</span><span style="font-size:13px;font-weight:700;color:var(--primary)">完全自定义</span><span style="font-size:11px;color:var(--text)">不受模板限制</span></div>
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:.6vh;background:var(--light-bg);padding:1.4vh 1.2vw;border-radius:8px"><span style="font-size:24px">🌍</span><span style="font-size:13px;font-weight:700;color:var(--primary)">一个 HTML 走天下</span><span style="font-size:11px;color:var(--text)">任何浏览器打开</span></div>
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:.6vh;background:var(--light-bg);padding:1.4vh 1.2vw;border-radius:8px"><span style="font-size:24px">📊</span><span style="font-size:13px;font-weight:700;color:var(--primary)">实时数据嵌入</span><span style="font-size:11px;color:var(--text)">可联动接口数据</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">34 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P35 · HTML PPT 四大优势 -->
+<!-- ============================================================ -->
+<div class="s light" id="p35">
+<div class="label anim">板块 C · 为什么选 HTML</div>
+<div class="h1 anim-1">HTML PPT 的四大传播优势</div>
+
+<div class="grid2 anim-3" style="flex:1;margin-top:2.5vh;gap:2vw;align-items:stretch">
+  <div class="card a" style="padding:3vh 2vw;justify-content:space-between">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;opacity:.25">01</div>
+    <div>
+      <div style="font-weight:700;font-size:18px"><span class="kawaii-icon" style="margin-right:.3em">🚪</span>零门槛打开</div>
+      <div style="font-size:13px;opacity:.85;line-height:1.7;margin-top:1vh">客户不需要装 PowerPoint，iPad、手机、微信、飞书、企业微信、邮件链接 — 有浏览器就能看</div>
+    </div>
+  </div>
+  <div class="card d" style="padding:3vh 2vw;justify-content:space-between">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;opacity:.25">02</div>
+    <div>
+      <div style="font-weight:700;font-size:18px"><span class="kawaii-icon" style="margin-right:.3em">🔗</span>传播路径短</div>
+      <div style="font-size:13px;opacity:.85;line-height:1.7;margin-top:1vh">一个链接或二维码直接发出去，不用下载、不用打开附件，客户扫码即看、随手转发</div>
+    </div>
+  </div>
+  <div class="card y" style="padding:3vh 2vw;justify-content:space-between">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;opacity:.2;color:var(--dark-bg)">03</div>
+    <div>
+      <div style="font-weight:700;font-size:18px;color:var(--dark-bg)"><span class="kawaii-icon" style="margin-right:.3em">✨</span>视觉表现强</div>
+      <div style="font-size:13px;color:var(--dark-bg);opacity:.85;line-height:1.7;margin-top:1vh">动效、滚动展示、数据可视化、视频嵌入 — 更像产品官网，不像汇报材料</div>
+    </div>
+  </div>
+  <div class="card" style="padding:3vh 2vw;border:3px solid var(--primary);justify-content:space-between">
+    <div style="font-family:var(--inter);font-weight:900;font-size:42px;opacity:.15;color:var(--primary)">04</div>
+    <div>
+      <div style="font-weight:700;font-size:18px;color:var(--primary)"><span class="kawaii-icon" style="margin-right:.3em">🔄</span>版本永远最新</div>
+      <div style="font-size:13px;color:var(--text);line-height:1.7;margin-top:1vh">放在线上改一次，所有人看到的都是最新版 — 告别 V1、V2、最终版、最终最终版</div>
+    </div>
+  </div>
+</div>
+
+<div class="anim-4" style="background:var(--primary);color:#fff;padding:2.2vh 2.5vw;font-weight:700;font-size:15px;border-radius:10px;margin-top:1.5vh;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon bounce" style="font-size:24px">👋</span>
+  <span>你现在看到的这份材料，就是最好的证明</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">35 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P36 · 路线 5 混合工作流 -->
+<!-- ============================================================ -->
+<div class="s" id="p36">
+<div class="label anim">板块 C · ROUTE 05</div>
+<div class="h1 anim-1">路线五 · 混合工作流 — 万能组合拳</div>
+<div class="body anim-2" style="margin-top:1vh">以「Q2 销售业绩汇报」为例</div>
+
+<div class="grid4 anim-3" style="margin-top:2.5vh;align-items:stretch">
+  <div class="card a" style="padding:2.5vh 1.4vw;position:relative">
+    <div class="corner-num">01</div>
+    <div style="font-weight:700;font-size:15px;margin-top:1.8vh">内容阶段</div>
+    <div style="font-size:12.5px;opacity:.85;margin-top:.8vh;line-height:1.55">Kimi → 理大纲</div>
+    <div style="font-weight:900;font-size:22px;margin-top:1.5vh;color:var(--yellow);font-family:var(--inter)">10 min</div>
+  </div>
+  <div class="card d" style="padding:2.5vh 1.4vw;position:relative">
+    <div class="corner-num">02</div>
+    <div style="font-weight:700;font-size:15px;margin-top:1.8vh">初版阶段</div>
+    <div style="font-size:12.5px;opacity:.85;margin-top:.8vh;line-height:1.55">Gamma → 出视觉</div>
+    <div style="font-weight:900;font-size:22px;margin-top:1.5vh;color:var(--yellow);font-family:var(--inter)">5 min</div>
+  </div>
+  <div class="card y" style="padding:2.5vh 1.4vw;position:relative">
+    <div class="corner-num">03</div>
+    <div style="font-weight:700;font-size:15px;margin-top:1.8vh;color:var(--dark-bg)">数据阶段</div>
+    <div style="font-size:12.5px;color:var(--dark-bg);opacity:.85;margin-top:.8vh;line-height:1.55">AI 分析 + 出图</div>
+    <div style="font-weight:900;font-size:22px;margin-top:1.5vh;color:var(--dark-bg);font-family:var(--inter)">10 min</div>
+  </div>
+  <div class="card bordered" style="padding:2.5vh 1.4vw;position:relative">
+    <div class="corner-num">04</div>
+    <div style="font-weight:700;font-size:15px;margin-top:1.8vh;color:var(--primary)">润色阶段</div>
+    <div style="font-size:12.5px;color:var(--text);margin-top:.8vh;line-height:1.55">WPS AI 微调</div>
+    <div style="font-weight:900;font-size:22px;margin-top:1.5vh;color:var(--primary);font-family:var(--inter)">5 min</div>
+  </div>
+</div>
+
+<div class="grid3 anim-4" style="flex:1;margin-top:2.5vh;align-items:center">
+  <div class="card bordered" style="text-align:center;padding:3.5vh 1.2vw"><div style="font-size:13px;color:var(--text)">传统方式</div><div class="kpi" style="color:var(--dark-bg)">6-8h</div></div>
+  <div class="card a" style="text-align:center;padding:3.5vh 1.2vw"><div style="font-size:13px;opacity:.8">混合工作流</div><div class="kpi w">30min</div></div>
+  <div class="card y" style="text-align:center;padding:3.5vh 1.2vw"><div style="font-size:13px;color:var(--dark-bg);opacity:.8">节省时间</div><div class="kpi" style="color:var(--dark-bg)">87%+</div></div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">36 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P37 · 5 路线对比 + 实战推荐 -->
+<!-- ============================================================ -->
+<div class="s" id="p37">
+<div class="label anim">板块 C · 对比 & 推荐</div>
+<div class="h1 anim-1">5 条路线哪条适合你 + 三个实战场景</div>
+
+<div class="anim-3" style="margin-top:2vh">
+  <table class="tbl">
+    <thead><tr><th>路线</th><th>上手</th><th>视觉</th><th>数据图表</th><th>定制</th><th>适合场景</th><th>推荐</th></tr></thead>
+    <tbody>
+      <tr><td style="font-weight:700">① 本地插件</td><td>★★★★</td><td>★★★</td><td style="color:var(--primary);font-weight:700">★★★★★</td><td>★★</td><td>数据报告</td><td>★★★</td></tr>
+      <tr><td style="font-weight:700">② 云端 AI</td><td style="color:var(--primary);font-weight:700">★★★★★</td><td>★★★</td><td>★★</td><td>★★</td><td>快速出稿</td><td>★★★★</td></tr>
+      <tr><td style="font-weight:700">③ 大模型</td><td style="color:var(--primary);font-weight:700">★★★★★</td><td>★★★★</td><td>★★</td><td>★★★</td><td>内容驱动</td><td>★★★★</td></tr>
+      <tr><td style="font-weight:700">④ AI+HTML</td><td>★★</td><td style="color:var(--primary);font-weight:700">★★★★★</td><td>★★★</td><td style="color:var(--primary);font-weight:700">★★★★★</td><td>高端定制</td><td>★★★</td></tr>
+      <tr style="background:rgba(35,70,255,.06)"><td style="font-weight:700;color:var(--primary)">⑤ 混合流</td><td>★★★★</td><td>★★★★</td><td>★★★★</td><td>★★★★</td><td style="font-weight:700;color:var(--primary)">万能</td><td style="color:var(--primary);font-weight:700">★★★★★</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="grid3 anim-4" style="flex:1;margin-top:2vh">
+  <div class="card a" style="padding:2.5vh 1.5vw"><div class="caption" style="color:rgba(255,255,255,.7)">实战 01</div><div style="font-weight:700;font-size:16px;margin-top:.5vh">客户提案</div><div style="font-size:12px;opacity:.85;margin-top:.8vh;line-height:1.6">Kimi 理内容 → Gamma 出视觉</div><div style="font-weight:700;font-size:16px;margin-top:1vh;color:var(--yellow)">20 分钟</div></div>
+  <div class="card d" style="padding:2.5vh 1.5vw"><div class="caption" style="color:rgba(255,255,255,.7)">实战 02</div><div style="font-weight:700;font-size:16px;margin-top:.5vh">季度汇报</div><div style="font-size:12px;opacity:.85;margin-top:.8vh;line-height:1.6">ChatGPT 分析 → WPS AI 出图</div><div style="font-weight:700;font-size:16px;margin-top:1vh;color:var(--yellow)">40 分钟</div></div>
+  <div class="card y" style="padding:2.5vh 1.5vw"><div class="caption" style="color:rgba(0,0,0,.5)">实战 03</div><div style="font-weight:700;font-size:16px;margin-top:.5vh;color:var(--dark-bg)">产品介绍</div><div style="font-size:12px;color:var(--dark-bg);opacity:.85;margin-top:.8vh;line-height:1.6">Claude 生成 HTML PPT</div><div style="font-weight:700;font-size:16px;margin-top:1vh;color:var(--dark-bg)">30 分钟</div></div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">37 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P38 · 板块 D 章节封面 -->
+<!-- ============================================================ -->
+<div class="s chapter" id="p38">
+<canvas class="ascii-bg" data-grid></canvas>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;z-index:1">
+  <div>
+    <div class="label anim" style="color:rgba(255,255,255,.6)">板块 D</div>
+    <div class="anim-1" style="font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.15em;font-family:var(--inter);font-weight:600;margin-top:1vh">SECTION 04 OF 04 · FINALE</div>
+  </div>
+  <div>
+    <div class="cover-title anim-2" style="font-size:clamp(58px,6.4vw,108px);font-weight:900;color:#fff;line-height:1.12">收尾彩蛋<span style="color:var(--chapter-dot);display:inline-block" class="bounce">.</span></div>
+    <div class="anim-3" style="margin-top:3vh;font-size:clamp(15px,1.25vw,20px);color:rgba(255,255,255,.85);font-weight:500;line-height:1.8">那些一直默默帮我的小工具，等着你回去用</div>
+    <div class="anim-4" style="margin-top:2vh;display:flex;gap:1vw;flex-wrap:wrap">
+      <span class="tag y">5 分钟 · 现场演示 · 行动清单</span>
+    </div>
+  </div>
+  <div class="anim-5" style="display:flex;gap:8px">
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+    <span class="shape-dot" style="background:rgba(255,255,255,.3)"></span>
+    <span class="shape-dot pulse-dot" style="background:var(--chapter-dot)"></span>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P39 · 小工具集锦 -->
+<!-- ============================================================ -->
+<div class="s" id="p39">
+<div class="label anim">板块 D · 小工具集锦</div>
+<div class="h1 anim-1">那些一直在帮我的小工具<span class="kawaii-icon bounce" style="margin-left:.2em">🎁</span></div>
+<div class="body anim-2" style="margin-top:1vh">现场演示 — 看完就能装</div>
+
+<div class="anim-3" style="flex:1;margin-top:2.5vh;display:grid;grid-template-columns:repeat(6,1fr);gap:.9vw;align-items:stretch">
+  <div class="card" style="background:#2446FF;color:#fff;border:none;padding:2.3vh 1vw;justify-content:space-between;position:relative">
+    <div style="position:absolute;top:1.4vh;right:.8vw;background:var(--yellow);color:var(--dark-bg);font-size:10px;font-weight:700;padding:3px 7px;border-radius:3px;letter-spacing:.05em">现场演示</div>
+    <div>
+      <div class="kawaii-icon wiggle" style="font-size:30px">🎙️</div>
+      <div style="font-weight:700;font-size:15px;margin-top:1vh">Typeless</div>
+      <a href="https://typeless.ch" target="_blank" style="font-size:11.5px;color:var(--yellow);font-family:var(--mono);margin-top:.4vh;text-decoration:underline;display:inline-block">→ typeless.ch</a>
+    </div>
+    <div style="font-size:11.5px;opacity:.95;margin-top:1vh;line-height:1.55;min-height:3.4em;display:flex;align-items:flex-start">我整场都开着它 — 刚刚很多话都是说出来的</div>
+  </div>
+  <div class="card" style="background:#0080FF;color:#fff;border:none;padding:2.3vh 1vw;justify-content:space-between">
+    <div>
+      <div class="kawaii-icon wiggle" style="font-size:30px;animation-delay:.3s">🌐</div>
+      <div style="font-weight:700;font-size:15px;margin-top:1vh">沉浸式翻译</div>
+      <a href="https://immersivetranslate.com" target="_blank" style="font-size:11.5px;color:var(--yellow);font-family:var(--mono);margin-top:.4vh;text-decoration:underline;display:inline-block">→ immersivetranslate.com</a>
+    </div>
+    <div style="font-size:11.5px;opacity:.95;margin-top:1vh;line-height:1.55;min-height:3.4em;display:flex;align-items:flex-start">看英文资料神器，浏览器一键双语</div>
+  </div>
+  <div class="card" style="background:#00C3FF;color:var(--dark-bg);border:none;padding:2.3vh 1vw;justify-content:space-between">
+    <div>
+      <div class="kawaii-icon wiggle" style="font-size:30px;animation-delay:.6s">✍️</div>
+      <div style="font-weight:700;font-size:15px;margin-top:1vh">Grammarly</div>
+      <a href="https://www.grammarly.com" target="_blank" style="font-size:11.5px;color:var(--dark-bg);font-family:var(--mono);margin-top:.4vh;text-decoration:underline;display:inline-block">→ grammarly.com</a>
+    </div>
+    <div style="font-size:11.5px;opacity:.9;margin-top:1vh;line-height:1.55;min-height:3.4em;display:flex;align-items:flex-start">英文邮件纠错润色</div>
+  </div>
+  <div class="card" style="background:#2DF7CB;color:var(--dark-bg);border:none;padding:2.3vh 1vw;justify-content:space-between">
+    <div>
+      <div class="kawaii-icon wiggle" style="font-size:30px;animation-delay:.9s">🧙</div>
+      <div style="font-weight:700;font-size:15px;margin-top:1vh">Monica</div>
+      <a href="https://monica.im" target="_blank" style="font-size:11.5px;color:var(--dark-bg);font-family:var(--mono);margin-top:.4vh;text-decoration:underline;display:inline-block">→ monica.im</a>
+    </div>
+    <div style="font-size:11.5px;opacity:.9;margin-top:1vh;line-height:1.55;min-height:3.4em;display:flex;align-items:flex-start">浏览器助手，选中即翻译/摘要/改写</div>
+  </div>
+  <div class="card" style="background:#34F567;color:var(--dark-bg);border:none;padding:2.3vh 1vw;justify-content:space-between">
+    <div>
+      <div class="kawaii-icon wiggle" style="font-size:30px;animation-delay:1.2s">📝</div>
+      <div style="font-weight:700;font-size:15px;margin-top:1vh">飞书妙记</div>
+      <a href="https://www.feishu.cn" target="_blank" style="font-size:11.5px;color:var(--dark-bg);font-family:var(--mono);margin-top:.4vh;text-decoration:underline;display:inline-block">→ feishu.cn</a>
+    </div>
+    <div style="font-size:11.5px;opacity:.9;margin-top:1vh;line-height:1.55;min-height:3.4em;display:flex;align-items:flex-start">会议自动转写 + 摘要 + 待办</div>
+  </div>
+  <div class="card" style="background:#A6FF29;color:var(--dark-bg);border:none;padding:2.3vh 1vw;justify-content:space-between">
+    <div>
+      <div class="kawaii-icon wiggle" style="font-size:30px;animation-delay:1.5s">🐈‍⬛</div>
+      <div style="font-weight:700;font-size:15px;margin-top:1vh">MEMENE</div>
+      <a href="https://memene.cn/model/2026-05-20" target="_blank" style="font-size:11.5px;color:var(--dark-bg);font-family:var(--mono);margin-top:.4vh;text-decoration:underline;display:inline-block">→ memene.cn</a>
+    </div>
+    <div style="font-size:11.5px;opacity:.9;margin-top:1vh;line-height:1.55;min-height:3.4em;display:flex;align-items:flex-start">最快最靠谱最专业的 AI 信息聚合站</div>
+  </div>
+</div>
+
+<div class="anim-4" style="background:var(--yellow);color:var(--dark-bg);padding:2vh 2.5vw;font-weight:700;font-size:14px;border-radius:10px;margin-top:1.5vh;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon" style="font-size:22px">💡</span>
+  <span>先装 <strong>Typeless + 沉浸式翻译</strong> — 立刻见效，零学习成本</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">39 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P40 · 3 条认知 -->
+<!-- ============================================================ -->
+<div class="s dark" id="p40">
+<canvas class="ascii-bg" data-ascii></canvas>
+<div class="label anim" style="z-index:1">板块 D · 认知</div>
+<div class="anim-1" style="font-size:clamp(20px,1.6vw,26px);color:var(--yellow);margin-top:.5vh;font-weight:700;z-index:1">3 条带走的认知</div>
+
+<div style="flex:1;display:flex;flex-direction:column;gap:3.5vh;justify-content:center;margin-top:3vh;z-index:1">
+  <div class="anim-3" style="display:grid;grid-template-columns:140px 1fr;gap:2.5vw;align-items:center">
+    <div class="big-numeral">01</div>
+    <div>
+      <div style="font-weight:700;font-size:clamp(22px,2vw,32px)">工具不重要，思维方式才重要</div>
+      <div style="font-size:14px;opacity:.65;margin-top:1vh;line-height:1.6">AI 是放大器，不是替代者。它放大你的能力，但不能替你思考。</div>
+    </div>
+  </div>
+  <div class="anim-4" style="display:grid;grid-template-columns:140px 1fr;gap:2.5vw;align-items:center">
+    <div class="big-numeral">02</div>
+    <div>
+      <div style="font-weight:700;font-size:clamp(22px,2vw,32px)">没有最好的工具，只有最顺手的</div>
+      <div style="font-size:14px;opacity:.65;margin-top:1vh;line-height:1.6">不要追求"最好"，先跑通一条路线再说。</div>
+    </div>
+  </div>
+  <div class="anim-5" style="display:grid;grid-template-columns:140px 1fr;gap:2.5vw;align-items:center">
+    <div class="big-numeral highlight">03</div>
+    <div>
+      <div style="font-weight:700;font-size:clamp(22px,2vw,32px);color:var(--yellow)">结构化 Prompt 是最值钱的技能</div>
+      <div style="font-size:14px;opacity:.65;margin-top:1vh;line-height:1.6">给 AI 越清晰的指令，得到越好的结果。未来 5 年越来越值钱。</div>
+    </div>
+  </div>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">40 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P41 · 行动清单 -->
+<!-- ============================================================ -->
+<div class="s" id="p41">
+<div class="label anim">板块 D · 行动</div>
+<div class="h1 anim-1">今天回去做 3 件事</div>
+
+<div style="flex:1;margin-top:3vh;display:flex;flex-direction:column;justify-content:center;max-width:80vw">
+  <div class="anim-3" style="display:flex;gap:1.5vw;align-items:flex-start;padding:3vh 0;border-bottom:1px solid var(--border)">
+    <div style="width:48px;height:48px;border:3px solid var(--primary);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--primary);font-weight:700">1</div>
+    <div style="flex:1">
+      <div style="font-weight:700;font-size:clamp(20px,1.8vw,28px)">申请 Trip Coding Plan</div>
+      <div style="font-size:14px;color:var(--text);margin-top:.8vh;line-height:1.6">3 分钟激活 Lite Plan，先把工具装上 → <a href="https://aicoding.portal.ctripcorp.com/codingPlan" target="_blank" style="font-family:var(--mono);color:var(--primary);text-decoration:underline">aicoding.portal.ctripcorp.com/codingPlan</a></div>
+    </div>
+    <span class="kawaii-icon bounce" style="font-size:32px">🚀</span>
+  </div>
+  <div class="anim-4" style="display:flex;gap:1.5vw;align-items:flex-start;padding:3vh 0;border-bottom:1px solid var(--border)">
+    <div style="width:48px;height:48px;border:3px solid var(--primary);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--primary);font-weight:700">2</div>
+    <div style="flex:1">
+      <div style="font-weight:700;font-size:clamp(20px,1.8vw,28px)">试一次标书 Prompt</div>
+      <div style="font-size:14px;color:var(--text);margin-top:.8vh;line-height:1.6">下次写标书时用板块 A 的 8 个场景挑一个跑 — 跟手工版本对比一下效率</div>
+    </div>
+    <span class="kawaii-icon bounce" style="font-size:32px;animation-delay:.3s">📝</span>
+  </div>
+  <div class="anim-5" style="display:flex;gap:1.5vw;align-items:flex-start;padding:3vh 0;border-bottom:1px solid var(--border)">
+    <div style="width:48px;height:48px;border:3px solid var(--primary);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--primary);font-weight:700">3</div>
+    <div style="flex:1">
+      <div style="font-weight:700;font-size:clamp(20px,1.8vw,28px)">做一版 AI PPT</div>
+      <div style="font-size:14px;color:var(--text);margin-top:.8vh;line-height:1.6">用 Gamma 或 Claude 做下周要用的初版 PPT — 一定要做出来，再追求完美</div>
+    </div>
+    <span class="kawaii-icon bounce" style="font-size:32px;animation-delay:.6s">🎨</span>
+  </div>
+</div>
+
+<div class="anim-6" style="background:var(--primary);color:#fff;padding:2.5vh 2.5vw;font-weight:700;font-size:clamp(15px,1.1vw,17px);border-radius:10px;display:flex;align-items:center;gap:1vw">
+  <span class="kawaii-icon" style="font-size:24px">💪</span>
+  <span>不要想太多，先做起来 — 第一次可能不完美，但第三次你就回不去了</span>
+</div>
+<div class="page-footer"><span>© Trip.com All Rights Reserved.</span><span class="pnum">41 / 42</span></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- P42 · Q&A -->
+<!-- ============================================================ -->
+<div class="s accent" id="p42">
+<canvas class="ascii-bg" data-ascii></canvas>
+<div style="position:absolute;top:6vh;left:6vw;right:6vw;display:flex;justify-content:space-between;align-items:center;z-index:2">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="shape-dot pulse-dot" style="background:var(--yellow)"></div>
+    <span style="font-family:var(--inter);font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.7);font-weight:700">Q & A · RESOURCE</span>
+  </div>
+  <span class="caption" style="color:rgba(255,255,255,.5)">END</span>
+</div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;z-index:1">
+  <div class="anim-1" style="font-size:clamp(40px,4.5vw,72px);font-weight:900;font-family:var(--inter);line-height:1.05;letter-spacing:-.02em">
+    有什么问题，<br>现在就问<span class="bounce" style="display:inline-block;color:var(--yellow)">?</span>
+  </div>
+  <div class="anim-2" style="margin-top:2vh;font-size:15px;color:rgba(255,255,255,.7)">11 套 Prompt 模板会后发到群里</div>
+
+  <div class="grid4 anim-3" style="margin-top:5vh">
+    <div>
+      <div style="font-weight:700;font-size:14px;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:.5vh;margin-bottom:1vh">核心 AI 平台</div>
+      <div style="font-size:12px;opacity:.85;line-height:1.9">Kimi · 通义千问<br>豆包 · Claude · ChatGPT</div>
+    </div>
+    <div>
+      <div style="font-weight:700;font-size:14px;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:.5vh;margin-bottom:1vh">AI 搜索</div>
+      <div style="font-size:12px;opacity:.85;line-height:1.9">秘塔 · Perplexity<br>天工 AI</div>
+    </div>
+    <div>
+      <div style="font-weight:700;font-size:14px;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:.5vh;margin-bottom:1vh">数据 & PPT</div>
+      <div style="font-size:12px;opacity:.85;line-height:1.9">ChatExcel · 办公小浣熊<br>畅图 · Gamma · AIPPT</div>
+    </div>
+    <div>
+      <div style="font-weight:700;font-size:14px;border-bottom:2px solid rgba(255,255,255,.3);padding-bottom:.5vh;margin-bottom:1vh">日常小工具</div>
+      <div style="font-size:12px;opacity:.85;line-height:1.9">Typeless · 沉浸式翻译<br>Grammarly · Monica · 飞书妙记</div>
+    </div>
+  </div>
+</div>
+
+<div style="position:absolute;bottom:5vh;left:6vw;right:6vw;display:flex;justify-content:space-between;align-items:flex-end;z-index:2">
+  <div class="anim-4" style="font-family:var(--inter);font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.1em">
+    <div style="font-weight:700;color:#fff;font-size:14px;margin-bottom:6px">谢谢大家的时间 · THANK YOU</div>
+    <div>TRIP.COM · AI WORKSHOP 2026 · VOL.01</div>
+  </div>
+  <div class="anim-5" style="display:flex;gap:6px;align-items:center">
+    <span class="shape-dot pulse-dot" style="background:var(--yellow)"></span>
+    <span class="shape-dot pulse-dot" style="background:var(--agile-blue);animation-delay:.3s"></span>
+    <span class="shape-dot pulse-dot" style="background:var(--bright-pink);animation-delay:.6s"></span>
+  </div>
+</div>
+</div>
+
+</div>
+<div id="overview"></div>
+<div id="page-jump" title="点击输入页码跳转 · 也可按 G 键"><span class="label-pj">JUMP TO</span><span class="cur-pj" id="pj-cur">01</span><span style="opacity:.5">/</span><span id="pj-total">42</span></div>
+<div class="nav-hint">← → 翻页 · ESC 索引 · G 跳转 · 触屏可滑动</div>
+
+<script>
+(function(){
+  var deck=document.getElementById('deck'),slides=deck.querySelectorAll('.s'),total=slides.length,cur=0;
+  var progress=document.getElementById('progress');
+  var track=document.getElementById('progress-track');
+  var tip=document.getElementById('progress-tip');
+  var ticksContainer=document.getElementById('progress-ticks');
+  var p=new URLSearchParams(location.search);if(p.has('slide'))cur=Math.max(0,Math.min(total-1,parseInt(p.get('slide'))-1));
+
+  /* Build tick marks (one per page) */
+  for(var ti=0;ti<total;ti++){
+    var tk=document.createElement('div');tk.className='tick';ticksContainer.appendChild(tk);
+  }
+
+  var pjCur=document.getElementById('pj-cur'),pjTotal=document.getElementById('pj-total'),pjBox=document.getElementById('page-jump');
+  pjTotal.textContent=String(total).padStart(2,'0');
+
+  function go(i){
+    cur=Math.max(0,Math.min(total-1,i));
+    deck.style.transform='translateX(-'+cur*100+'vw)';
+    history.replaceState(null,'','?slide='+(cur+1));
+    progress.style.width=((cur+1)/total*100)+'%';
+    slides.forEach(function(s,idx){s.classList.toggle('active',idx===cur)});
+    if(pjCur)pjCur.textContent=String(cur+1).padStart(2,'0');
+  }
+  go(cur);
+
+  /* Progress bar: click to jump + hover preview with thumbnail */
+  function pageFromX(clientX){
+    var r=track.getBoundingClientRect();
+    var ratio=Math.max(0,Math.min(1,(clientX-r.left)/r.width));
+    return Math.min(total-1,Math.floor(ratio*total));
+  }
+  function showTip(clientX,page){
+    var s=slides[page];
+    var h=s.querySelector('.h1,.cover-title');
+    var title=h?h.textContent.replace(/\s+/g,' ').trim():'';
+    var shortTitle=title.substring(0,22);
+    var bg=getComputedStyle(s).backgroundColor;
+    var isDark=bg.indexOf('rgb(35, 70, 255)')>-1||bg.indexOf('rgb(75, 80, 100)')>-1||bg.indexOf('rgb(27, 30, 50)')>-1;
+    tip.innerHTML='<div class="thumb-prev" style="background:'+bg+';color:'+(isDark?'#fff':'var(--dark-bg)')+'">'+(title||'P'+(page+1))+'</div><div class="label-prev"><span class="pg-num">P'+(page+1)+'</span><span style="opacity:.5">'+(page+1)+' / '+total+'</span></div>';
+    /* clamp left so the tip stays in viewport */
+    var minLeft=110,maxLeft=window.innerWidth-110;
+    tip.style.left=Math.max(minLeft,Math.min(maxLeft,clientX))+'px';
+    tip.classList.add('show');
+  }
+  track.addEventListener('mousemove',function(e){
+    var page=pageFromX(e.clientX);
+    showTip(e.clientX,page);
+  });
+  track.addEventListener('mouseleave',function(){tip.classList.remove('show')});
+  track.addEventListener('click',function(e){
+    var page=pageFromX(e.clientX);
+    go(page);
+  });
+  /* Drag support */
+  var dragging=false;
+  track.addEventListener('mousedown',function(e){dragging=true;go(pageFromX(e.clientX))});
+  document.addEventListener('mousemove',function(e){
+    if(dragging){go(pageFromX(e.clientX));showTip(e.clientX,cur)}
+  });
+  document.addEventListener('mouseup',function(){dragging=false});
+
+  /* Page jump input (click bottom-right indicator or press G) */
+  var jumpActive=false;
+  function activateJump(){
+    if(jumpActive)return;
+    jumpActive=true;
+    pjBox.innerHTML='<span class="label-pj">GO TO</span><input type="number" id="pj-input" min="1" max="'+total+'" placeholder="'+(cur+1)+'" /><span style="opacity:.5">/'+total+'</span>';
+    var inp=document.getElementById('pj-input');
+    inp.focus();
+    function commit(){
+      var v=parseInt(inp.value,10);
+      if(!isNaN(v)&&v>=1&&v<=total)go(v-1);
+      cancelJump();
+    }
+    function cancelJump(){
+      jumpActive=false;
+      pjBox.innerHTML='<span class="label-pj">JUMP TO</span><span class="cur-pj" id="pj-cur">'+String(cur+1).padStart(2,'0')+'</span><span style="opacity:.5">/</span><span id="pj-total">'+String(total).padStart(2,'0')+'</span>';
+      pjCur=document.getElementById('pj-cur');
+    }
+    inp.addEventListener('keydown',function(e){
+      if(e.key==='Enter'){e.preventDefault();commit()}
+      else if(e.key==='Escape'){e.preventDefault();cancelJump()}
+      e.stopPropagation();
+    });
+    inp.addEventListener('blur',commit);
+  }
+  pjBox.addEventListener('click',activateJump);
+
+  document.addEventListener('keydown',function(e){
+    if(e.target&&e.target.tagName==='INPUT')return;  /* don't hijack input */
+    if(e.key==='Escape'){toggleOv();return}
+    if(document.getElementById('overview').classList.contains('show'))return;
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')go(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(cur-1);
+    if(e.key==='Home')go(0);
+    if(e.key==='End')go(total-1);
+    if(e.key==='g'||e.key==='G')activateJump();
+  });
+
+  var tx=0;
+  document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX});
+  document.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){d<0?go(cur+1):go(cur-1)}});
+
+  var wt=0;
+  document.addEventListener('wheel',function(e){var n=Date.now();if(n-wt<700)return;wt=n;e.deltaY>0||e.deltaX>0?go(cur+1):go(cur-1)},{passive:true});
+
+  function toggleOv(){
+    var o=document.getElementById('overview');
+    if(o.classList.contains('show')){o.classList.remove('show');return}
+    o.innerHTML='<h2>📑 全部 '+total+' 页 — 点击跳转</h2>';
+    var g=document.createElement('div');g.className='grid';
+    slides.forEach(function(s,i){
+      var t=document.createElement('div');t.className='thumb'+(i===cur?' cur':'');
+      var l=document.createElement('div');l.className='thumb-label';
+      var h=s.querySelector('.h1,.cover-title,.h0');
+      var ttl=h?h.textContent.replace(/\s+/g,' ').trim().substring(0,18):'';
+      l.textContent='P'+(i+1)+(ttl?' · '+ttl:'');
+      var b=document.createElement('div');b.className='thumb-img';
+      b.style.background=getComputedStyle(s).backgroundColor;
+      b.textContent=ttl||('P'+(i+1));
+      t.appendChild(b);t.appendChild(l);
+      t.onclick=function(){go(i);o.classList.remove('show')};
+      g.appendChild(t);
+    });
+    o.appendChild(g);o.classList.add('show');
+  }
+
+  /* ============= ASCII Background Animation (dark slides) ============= */
+  document.querySelectorAll('canvas[data-ascii]').forEach(function(c){
+    var ctx=c.getContext('2d'),chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*',w,h,cols,rows;
+    function rs(){
+      var r=c.parentElement.getBoundingClientRect();
+      w=c.width=r.width*devicePixelRatio;h=c.height=r.height*devicePixelRatio;
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+      cols=Math.floor(r.width/12);rows=Math.floor(r.height/16);
+    }
+    rs();window.addEventListener('resize',rs);
+    function dr(t){
+      ctx.clearRect(0,0,w/devicePixelRatio,h/devicePixelRatio);
+      ctx.font='11px monospace';ctx.fillStyle='rgba(255,255,255,.12)';
+      for(var y=0;y<rows;y++)for(var x=0;x<cols;x++){
+        var n=Math.sin(x*.08+t*.0005)*Math.cos(y*.06+t*.0003)+Math.sin((x+y)*.04+t*.0007);
+        ctx.globalAlpha=Math.max(0,(n+1)*.25);
+        ctx.fillText(chars[Math.floor(Math.abs(Math.sin(x*y+t*.001))*chars.length)],x*12,y*16+12);
+      }
+      ctx.globalAlpha=1;requestAnimationFrame(dr);
+    }
+    requestAnimationFrame(dr);
+  });
+
+  /* ============= Chapter Grid (Swiss style grid + faint binary) ============= */
+  document.querySelectorAll('canvas[data-grid]').forEach(function(c){
+    var ctx=c.getContext('2d'),W,H;
+    function rs(){
+      var r=c.parentElement.getBoundingClientRect();
+      W=c.width=r.width*devicePixelRatio;H=c.height=r.height*devicePixelRatio;
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    }
+    rs();window.addEventListener('resize',rs);
+    function dr(t){
+      var rw=W/devicePixelRatio,rh=H/devicePixelRatio;
+      ctx.clearRect(0,0,rw,rh);
+      ctx.strokeStyle='rgba(255,255,255,.04)';ctx.lineWidth=1;
+      var gap=60;
+      for(var x=0;x<rw;x+=gap){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,rh);ctx.stroke()}
+      for(var y=0;y<rh;y+=gap){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(rw,y);ctx.stroke()}
+      ctx.font='10px monospace';ctx.fillStyle='rgba(255,255,255,.08)';
+      for(var i=0;i<60;i++){
+        var px=(Math.sin(i*1.7+t*.0003)*.5+.5)*rw;
+        var py=(Math.cos(i*1.3+t*.0002)*.5+.5)*rh;
+        ctx.globalAlpha=.3+Math.sin(t*.001+i)*.2;
+        ctx.fillText(Math.random()<.5?'0':'1',px,py);
+      }
+      ctx.globalAlpha=1;requestAnimationFrame(dr);
+    }
+    requestAnimationFrame(dr);
+  });
+
+  /* ============= World Map with Binary Flow (cover) ============= */
+  document.querySelectorAll('canvas[data-worldmap]').forEach(function(c){
+    var ctx=c.getContext('2d'),W,H,cellW=14,cellH=18,cols,rows;
+    var mapData=[
+      '................................................................................',
+      '................................................................................',
+      '....................####.....######.....######.................................',
+      '...................#######..########...########......................##.........',
+      '..................################.....#########....................####........',
+      '.................##################..##########....................####........',
+      '...............#####################.###########...................#####.......',
+      '..............########################.##########..................######......',
+      '.............#########################.##########.....#............######......',
+      '............############################.########....###...........######......',
+      '...........#############################.#######....####..........#######.....',
+      '...........##############################.######...#####..........#######.....',
+      '...#.......##############################..####...######..........########....',
+      '..####....################################.###...#######..........########....',
+      '..#####..#################################.##...########...........#######....',
+      '..######..################################....#########...........########...',
+      '..######...###############################...##########............#######...',
+      '..######...##############################....##########............########..',
+      '...#####...#############################.....##########.............######...',
+      '....####....############################.....##########.............######...',
+      '.....###.....##########################......##########..............#####...',
+      '.....##......########################........#########...............####....',
+      '..............######################..........########................###....',
+      '...............####################...........########................##.....',
+      '................#################.............########........................',
+      '.................###############..............#######.........................',
+      '..................#############...............######..........................',
+      '...................###########................######..........................',
+      '....................########..................#####...........................',
+      '.....................######...................####............................',
+      '......................####...................####.............................',
+      '.......................##...................####..............................',
+      '.......................................#...###...............................',
+      '........................................#..##................................',
+      '...........................................#.................................',
+      '................................................................................',
+      '................................................................................',
+      '................................................................................'
+    ];
+    var mapRows=mapData.length,mapCols=mapData[0].length;
+    var regions=[
+      {cx:25,cy:8,phase:0},{cx:30,cy:14,phase:1.2},{cx:15,cy:10,phase:2.4},
+      {cx:14,cy:20,phase:3.6},{cx:45,cy:8,phase:0.8},{cx:50,cy:13,phase:1.8},
+      {cx:58,cy:11,phase:2.0},{cx:60,cy:16,phase:3.0},{cx:65,cy:24,phase:2.6}
+    ];
+    function rs(){
+      var r=c.parentElement.getBoundingClientRect();
+      W=c.width=r.width*devicePixelRatio;H=c.height=r.height*devicePixelRatio;
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+      cols=Math.floor(r.width/cellW);rows=Math.floor(r.height/cellH);
+    }
+    rs();window.addEventListener('resize',rs);
+    function isLand(gx,gy){
+      var mx=Math.floor(gx/cols*mapCols),my=Math.floor(gy/rows*mapRows);
+      if(my<0||my>=mapRows||mx<0||mx>=mapCols)return false;
+      return mapData[my][mx]==='#';
+    }
+    function regionGlow(gx,gy,t){
+      var mx=gx/cols*mapCols,my=gy/rows*mapRows,best=0;
+      for(var i=0;i<regions.length;i++){
+        var dx=mx-regions[i].cx,dy=my-regions[i].cy;
+        var d=Math.sqrt(dx*dx+dy*dy);
+        var wave=Math.sin(t*0.0008-regions[i].phase-d*0.12);
+        var pulse=Math.max(0,wave);
+        var prox=Math.max(0,1-d/30);
+        best=Math.max(best,pulse*prox+prox*0.15);
+      }
+      return Math.min(1,best);
+    }
+    /* fixed star chars per cell (generated once based on hash) */
+    var starChars=['✦','✧','⋆','✩','·','*'];
+    var cellChars=[],cellPhase=[];
+    function genChars(){
+      cellChars=[];cellPhase=[];
+      for(var y=0;y<rows;y++){
+        var row=[],ph=[];
+        for(var x=0;x<cols;x++){
+          var seed=Math.sin(x*7.3+y*13.7)*9999;
+          row.push(starChars[Math.floor(Math.abs(seed-Math.floor(seed))*starChars.length)]);
+          ph.push(Math.abs(Math.sin(x*4.7+y*9.1))*Math.PI*2);  /* random phase per cell */
+        }
+        cellChars.push(row);cellPhase.push(ph);
+      }
+    }
+    /* meteor pool — natural arc with gravity */
+    var meteors=[];
+    function spawnMeteor(rw,rh){
+      /* launch from right edge, varying upper-half height
+         initial velocity: leftward + slight upward kick
+         gravity pulls down → parabolic arc */
+      var startY=Math.random()*rh*0.35+rh*0.03;  /* upper third */
+      var speed=9+Math.random()*3;
+      var angle=Math.PI+(Math.random()*0.25-0.05);  /* mostly leftward, slight up or down */
+      meteors.push({
+        x:rw+60,
+        y:startY,
+        vx:Math.cos(angle)*speed,        /* negative → leftward */
+        vy:Math.sin(angle)*speed-1.8,    /* initial upward kick */
+        g:0.12+Math.random()*0.05,       /* gravity per frame */
+        drag:0.998,                       /* slight air resistance */
+        trail:[]
+      });
+    }
+    function dr(t){
+      var rw=W/devicePixelRatio,rh=H/devicePixelRatio;
+      ctx.clearRect(0,0,rw,rh);
+      if(cellChars.length!==rows){genChars()}
+      ctx.font='14px monospace';ctx.textBaseline='top';
+      for(var gy=0;gy<rows;gy++){
+        for(var gx=0;gx<cols;gx++){
+          var land=isLand(gx,gy);
+          var ch=(cellChars[gy]&&cellChars[gy][gx])||'·';
+          var phase=(cellPhase[gy]&&cellPhase[gy][gx])||0;
+          var x=gx*cellW,y=gy*cellH;
+          /* twinkle: each star has its own phase, mid-speed */
+          var twinkle=(Math.sin(t*0.0018+phase)+1)*0.5;  /* 0..1 */
+          if(land){
+            var g=regionGlow(gx,gy,t*0.4);
+            ctx.globalAlpha=0.12+g*0.4+twinkle*0.22;
+            ctx.fillStyle='rgba('+Math.floor(200+55*g)+','+Math.floor(220+35*g)+','+Math.floor(220+35*g)+',1)';
+          }else{
+            ctx.globalAlpha=0.05+twinkle*0.18;
+            ctx.fillStyle='rgba(255,255,255,1)';
+            if((gx+gy*3)%5!==0){continue}
+          }
+          ctx.fillText(ch,x,y);
+        }
+      }
+      /* meteor spawn: low probability per frame */
+      if(Math.random()<0.008&&meteors.length<3)spawnMeteor(rw,rh);
+      /* draw meteors */
+      for(var i=meteors.length-1;i>=0;i--){
+        var m=meteors[i];
+        /* physics: gravity + slight drag → natural arc */
+        m.vy+=m.g;
+        m.vx*=m.drag;m.vy*=m.drag;
+        m.x+=m.vx;m.y+=m.vy;
+        m.trail.push({x:m.x,y:m.y});
+        if(m.trail.length>26)m.trail.shift();
+        /* draw tail as fading line segments */
+        for(var j=0;j<m.trail.length-1;j++){
+          var a=j/m.trail.length;
+          ctx.globalAlpha=a*0.85;
+          ctx.strokeStyle='rgba(255,255,210,1)';
+          ctx.lineWidth=1.6;
+          ctx.beginPath();
+          ctx.moveTo(m.trail[j].x,m.trail[j].y);
+          ctx.lineTo(m.trail[j+1].x,m.trail[j+1].y);
+          ctx.stroke();
+        }
+        /* head glow */
+        ctx.globalAlpha=1;
+        ctx.fillStyle='rgba(255,255,230,1)';
+        ctx.beginPath();ctx.arc(m.x,m.y,2.4,0,Math.PI*2);ctx.fill();
+        /* halo */
+        ctx.globalAlpha=0.35;
+        ctx.fillStyle='rgba(255,220,150,1)';
+        ctx.beginPath();ctx.arc(m.x,m.y,5,0,Math.PI*2);ctx.fill();
+        /* remove when off-screen left or below */
+        if(m.x<-80||m.y>H/devicePixelRatio+80)meteors.splice(i,1);
+      }
+      ctx.globalAlpha=1;requestAnimationFrame(dr);
+    }
+    requestAnimationFrame(dr);
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workshop 大纲审批表 — AI 做 PPT</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #2C61FE;
+    --yellow: #FFB400;
+    --ink: #1a1a1a;
+    --grey: #6b7280;
+    --light: #f8f9fa;
+    --border: #e5e7eb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Inter", "Noto Sans SC", -apple-system, sans-serif;
+    background: #fff;
+    color: var(--ink);
+    padding: 48px 56px;
+    max-width: 960px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 3px solid var(--blue);
+  }
+  .header-left h1 {
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .header-left h1 span { color: var(--blue); }
+  .header-left p {
+    font-size: 14px;
+    color: var(--grey);
+    margin-top: 8px;
+    font-weight: 400;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 13px;
+    color: var(--grey);
+    line-height: 1.8;
+  }
+  .header-right strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .meta-card {
+    background: var(--light);
+    padding: 16px 20px;
+    border-left: 3px solid var(--blue);
+  }
+  .meta-card.yellow { border-left-color: var(--yellow); }
+  .meta-card .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 4px;
+  }
+  .meta-card .value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    background: var(--blue);
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border: none;
+  }
+  thead th:first-child { width: 56px; }
+  thead th:nth-child(2) { width: 130px; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:hover { background: rgba(44, 97, 254, 0.03); }
+  tbody td {
+    padding: 14px 16px;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  tbody td:first-child {
+    font-family: "Inter", monospace;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--blue);
+    text-align: center;
+  }
+  tbody td:nth-child(2) {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .act-row td {
+    background: var(--ink);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    padding: 10px 16px;
+    border: none;
+  }
+  .act-row td:first-child { color: var(--yellow); }
+
+  .product-tag {
+    display: inline-block;
+    background: rgba(44, 97, 254, 0.08);
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    margin: 2px 4px 2px 0;
+    border-radius: 2px;
+  }
+  .url-tag {
+    display: inline-block;
+    color: var(--grey);
+    font-size: 11px;
+    font-family: "Inter", monospace;
+    margin-left: 4px;
+  }
+
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .footer-section h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 12px;
+  }
+  .sign-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .sign-line .role { font-weight: 500; }
+  .sign-line .blank {
+    flex: 1;
+    border-bottom: 1px dashed var(--border);
+    margin: 0 16px;
+    min-width: 120px;
+  }
+  .sign-line .date-field {
+    font-size: 13px;
+    color: var(--grey);
+    min-width: 100px;
+  }
+
+  .note-box {
+    background: var(--light);
+    padding: 20px 24px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--grey);
+  }
+  .note-box strong { color: var(--ink); }
+
+  @media print {
+    body { padding: 24px 32px; }
+    .meta-card { break-inside: avoid; }
+    tbody tr { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>Workshop <span>大纲审批表</span></h1>
+    <p>「用 AI 做 PPT — 5 种方法，选你顺手的」· 携程销售团队内部培训</p>
+  </div>
+  <div class="header-right">
+    <strong>携程集团</strong><br>
+    销售团队 · 内部培训<br>
+    编制日期：2026-05-11
+  </div>
+</div>
+
+<div class="meta-row">
+  <div class="meta-card">
+    <div class="label">培训对象</div>
+    <div class="value">销售团队</div>
+  </div>
+  <div class="meta-card">
+    <div class="label">预计时长</div>
+    <div class="value">30 分钟</div>
+  </div>
+  <div class="meta-card yellow">
+    <div class="label">总页数</div>
+    <div class="value">18 页</div>
+  </div>
+  <div class="meta-card">
+    <div class="label">计划日期</div>
+    <div class="value">2026 年 5 月底</div>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>页码</th>
+      <th>类型</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>P1</td>
+      <td>封面</td>
+      <td>「用 AI 做 PPT — 5 种方法，选你顺手的」</td>
+    </tr>
+    <tr>
+      <td>P2</td>
+      <td>开场钩子</td>
+      <td>抛痛点：你花多少时间在 PPT 上？<br>数据锚点：「销售人均每周 <strong style="color:var(--blue)">6-8 小时</strong> 做 PPT」</td>
+    </tr>
+    <tr>
+      <td>P3</td>
+      <td>议程页</td>
+      <td>今天讲什么：5 条路线一览，每条路线用一句话概括</td>
+    </tr>
+
+    <tr class="act-row">
+      <td>ACT 1</td>
+      <td colspan="2">第一幕 · 问题 —— PPT 做不好看，到底卡在哪？</td>
+    </tr>
+    <tr>
+      <td>P4</td>
+      <td>幕封</td>
+      <td>「PPT 做不好看，到底卡在哪？」</td>
+    </tr>
+    <tr>
+      <td>P5</td>
+      <td>对比页</td>
+      <td>Before / After — 丑 PPT vs 好看 PPT 的三个关键差距<br>
+        <span class="product-tag">排版</span><span class="product-tag">配色</span><span class="product-tag">数据可视化</span>
+      </td>
+    </tr>
+
+    <tr class="act-row">
+      <td>ACT 2</td>
+      <td colspan="2">第二幕 · 5 种 AI 做 PPT 的路线</td>
+    </tr>
+    <tr>
+      <td>P6</td>
+      <td>幕封</td>
+      <td>「5 条路线，从傻瓜到专业」</td>
+    </tr>
+    <tr>
+      <td>P7</td>
+      <td>路线一<br>本地 AI 插件</td>
+      <td>
+        <span class="product-tag">WPS AI</span><span class="url-tag">ai.wps.cn</span>
+        <span class="product-tag">Microsoft Copilot</span><span class="url-tag">copilot.microsoft.com</span><br>
+        优势：Excel 图表处理强、自动优化布局、兼容本地文件<br>
+        劣势：文案偏模板化、不擅长从零创作
+      </td>
+    </tr>
+    <tr>
+      <td>P8</td>
+      <td>路线二<br>云端 AI PPT</td>
+      <td>
+        <span class="product-tag">AIPPT</span><span class="url-tag">aippt.cn</span>
+        <span class="product-tag">Gamma</span><span class="url-tag">gamma.app</span>
+        <span class="product-tag">MindShow</span><span class="url-tag">mindshow.fun</span><br>
+        输入文本一键生成，下载兼容性好，适合快速出稿
+      </td>
+    </tr>
+    <tr>
+      <td>P9</td>
+      <td>路线三<br>大模型对话</td>
+      <td>
+        <span class="product-tag">Kimi</span><span class="url-tag">kimi.moonshot.cn</span>
+        <span class="product-tag">豆包</span><span class="url-tag">doubao.com</span><br>
+        提取 Markdown 直出 PPT，从 0 开始最快，前端酷炫可编辑
+      </td>
+    </tr>
+    <tr>
+      <td>P10</td>
+      <td>路线四<br>AI + HTML</td>
+      <td>
+        <span class="product-tag">Claude</span><span class="url-tag">claude.ai</span>
+        <span class="product-tag">Bolt</span><span class="url-tag">bolt.new</span>
+        <span class="product-tag">Cursor</span><span class="url-tag">cursor.com</span><br>
+        输入内容 → AI 写前端代码 → 导出 PDF，长远最稳定、结构化程度最高
+      </td>
+    </tr>
+    <tr>
+      <td>P11</td>
+      <td>路线五<br>混合工作流</td>
+      <td>先用大模型理内容 → 再用云平台出初版 → 本地 AI 插件微调<br>
+        组合拳：取长补短，适合大多数场景
+      </td>
+    </tr>
+    <tr>
+      <td>P12</td>
+      <td>横向对比矩阵</td>
+      <td>5 种路线 × 4 个维度打分对比<br>
+        <span class="product-tag">上手难度</span><span class="product-tag">视觉质量</span><span class="product-tag">数据图表</span><span class="product-tag">适合场景</span>
+      </td>
+    </tr>
+
+    <tr class="act-row">
+      <td>ACT 3</td>
+      <td colspan="2">第三幕 · 怎么选 —— 你的场景决定你的工具</td>
+    </tr>
+    <tr>
+      <td>P13</td>
+      <td>幕封</td>
+      <td>「你的场景决定你的工具」</td>
+    </tr>
+    <tr>
+      <td>P14</td>
+      <td>决策流程图</td>
+      <td>简单决策树：<br>
+        赶时间？→ 路线 2/3 · 要好看？→ 路线 4/5 · 数据多？→ 路线 1
+      </td>
+    </tr>
+    <tr>
+      <td>P15</td>
+      <td>推荐组合</td>
+      <td>给销售团队的 3 个实战推荐场景：<br>
+        ① 客户提案（快 + 好看）<br>
+        ② 季度汇报（数据多 + 严谨）<br>
+        ③ 产品介绍（要惊艳 + 有个性）
+      </td>
+    </tr>
+
+    <tr class="act-row">
+      <td>END</td>
+      <td colspan="2">收束</td>
+    </tr>
+    <tr>
+      <td>P16</td>
+      <td>核心 Takeaway</td>
+      <td>3 条金句总结：<br>
+        ① 工具不重要，内容才重要<br>
+        ② 没有最好，只有最顺手<br>
+        ③ 混合工作流是安全牌
+      </td>
+    </tr>
+    <tr>
+      <td>P17</td>
+      <td>行动建议</td>
+      <td>「今天回去试一个工具」— 推荐从 Gamma 或 Kimi 开始，零门槛，5 分钟出第一版</td>
+    </tr>
+    <tr>
+      <td>P18</td>
+      <td>Q&A / 致谢</td>
+      <td>收尾 + 全部工具链接汇总 + 欢迎提问</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  <div class="footer-section">
+    <h3>审批签字</h3>
+    <div class="sign-line">
+      <span class="role">编制人</span>
+      <span class="blank"></span>
+      <span class="date-field">日期：____.____.____</span>
+    </div>
+    <div class="sign-line">
+      <span class="role">审批人</span>
+      <span class="blank"></span>
+      <span class="date-field">日期：____.____.____</span>
+    </div>
+  </div>
+  <div class="footer-section">
+    <h3>备注</h3>
+    <div class="note-box">
+      <strong>交付形式：</strong>单文件 HTML 网页，浏览器直接打开演示<br>
+      <strong>演示方式：</strong>← → 方向键翻页，ESC 查看索引，支持触屏<br>
+      <strong>设计风格：</strong>瑞士国际主义（Swiss Style），携程蓝 #2C61FE 为主色<br>
+      <strong>涉及产品：</strong>WPS AI / Copilot / AIPPT / Gamma / MindShow / Kimi / 豆包 / Claude / Bolt / Cursor
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
