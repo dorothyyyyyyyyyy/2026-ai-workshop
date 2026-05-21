@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<p:tagLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:tag name="MIO_USER_INPUT_LANGUAGE" val="zh-SG"/>
+  <p:tag name="MIO_USER_INPUT_OPTIONS" val="版权所有Schaeffler Holding (China) Co., Ltd. 保留所有权利, 客户特殊要求, 使用内部放行标准. |;版权所有Schaeffler AG保留所有权利, 客户特殊要求, 使用内部放行标准. |;版权所有Schaeffler Technologies AG &amp; Co. KG保留所有权利, 客户特殊要求, 使用内部放行标准. |;版权所有Schaeffler Automotive Buehl GmbH &amp; Co. KG保留所有权利, 客户特殊要求, 使用内部放行标准. |;版权所有 Schaeffler Global Services Europe Sp. z o.o. – 保留所有权利, 客户特殊要求，使用内部放行标准. |;版权所有Schaeffler Brasil Ltda.保留所有权利, 客户特殊要求，使用内部放行标准. |;版权所有Schaeffler AP,保留所有权利, 客户特殊要求，使用内部放行标准. |; "/>
+  <p:tag name="MIO_USER_INPUT_REQUIRED" val="Copyright;Insert the right Copyright for your organization"/>
+</p:tagLst>

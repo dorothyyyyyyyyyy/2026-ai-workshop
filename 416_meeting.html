@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4.16 例会 — 携程礼品卡营销周报</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;background:#0e0e12;font-family:'Inter','Noto Sans SC',Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+
+/* === SLIDE ENGINE === */
+.deck{display:flex;height:100vh;transition:transform 0.55s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.slide{
+  flex:0 0 100vw;width:100vw;height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.slide-inner{
+  aspect-ratio:16/9;
+  width:100%;
+  max-width:177.78vh;
+  max-height:100vh;
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 8px 60px rgba(0,0,0,.45);
+}
+
+/* === NAV === */
+.nav{
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:100;
+  display:flex;align-items:center;gap:12px;
+  background:rgba(20,20,28,.85);backdrop-filter:blur(12px);
+  padding:8px 16px;border-radius:999px;
+  color:#fff;font-size:13px;font-family:'JetBrains Mono',monospace;
+  user-select:none;
+}
+.nav button{
+  width:32px;height:32px;border:none;border-radius:50%;
+  background:rgba(255,255,255,.12);color:#fff;font-size:16px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.nav button:hover{background:rgba(255,255,255,.25);}
+.nav button:disabled{opacity:.3;cursor:default;}
+.nav .page-info{min-width:60px;text-align:center;}
+
+/* === PROGRESS === */
+.progress{position:fixed;top:0;left:0;height:3px;background:#2346FF;z-index:101;transition:width .4s ease;}
+
+/* === SLIDE STYLES === */
+:root{
+  --blue:#2346FF;--blue-dark:#1A35CC;--blue-light:#EEF1FF;
+  --agile:#59C8FF;--purple:#8A73FF;--yellow:#FFB400;
+  --green:#57D957;--pink:#FF6699;
+  --gray-50:#F0F5FA;--gray-400:#959691;--gray-500:#465573;--gray-700:#1B1E32;
+  --text:#222;--text-m:#5F6369;--text-s:#8A8F96;
+  --mono:'JetBrains Mono',monospace;
+}
+
+/* Slide padding helper */
+.sp{position:absolute;top:0;left:0;right:0;bottom:0;padding:5.5% 6%;}
+
+/* Cover slide */
+.cover-bg{background:#2346FF;color:#fff;}
+.cover-bg .logo{position:absolute;top:6%;left:6%;font-size:1.2em;font-weight:700;opacity:.7;letter-spacing:.04em;}
+.cover-bg .main-title{font-size:3.4em;font-weight:700;line-height:1.15;margin-top:12%;}
+.cover-bg .sub-title{font-size:1.15em;margin-top:.8em;opacity:.8;max-width:70%;line-height:1.6;}
+.cover-bg .meta{position:absolute;bottom:7%;left:6%;font-size:.85em;opacity:.6;display:flex;gap:2em;}
+.cover-bg .cover-accent{position:absolute;right:-5%;top:-15%;width:55%;height:130%;background:rgba(255,255,255,.04);border-radius:50%;pointer-events:none;}
+
+/* Section break */
+.break-bg{color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.break-bg .bk-num{font-family:var(--mono);font-size:.9em;letter-spacing:.25em;opacity:.6;margin-bottom:.5em;}
+.break-bg .bk-title{font-size:2.6em;font-weight:700;}
+.break-bg .bk-sub{font-size:1em;opacity:.6;margin-top:.6em;max-width:60%;}
+
+/* Back cover */
+.back-bg{background:#465573;color:#fff;}
+
+/* Content slide */
+.content-bg{background:#fff;color:var(--text);}
+.content-bg .slide-header{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:3.5%;
+}
+.content-bg .slide-title{font-size:1.65em;font-weight:700;color:var(--text);}
+.content-bg .slide-tag{
+  font-family:var(--mono);font-size:.7em;color:var(--blue);
+  background:var(--blue-light);padding:3px 10px;border-radius:4px;
+}
+.content-bg .slide-footer{
+  position:absolute;bottom:3.5%;right:6%;
+  font-size:.65em;color:var(--text-s);font-family:var(--mono);
+}
+
+/* Data table */
+.dt{width:100%;border-collapse:collapse;font-size:.78em;}
+.dt th{background:var(--blue);color:#fff;padding:6px 10px;text-align:center;font-weight:500;white-space:nowrap;}
+.dt th:first-child{text-align:left;border-radius:6px 0 0 0;}
+.dt th:last-child{border-radius:0 6px 0 0;}
+.dt td{padding:6px 10px;text-align:center;border-bottom:1px solid #eee;}
+.dt td:first-child{text-align:left;font-weight:600;}
+.dt tr.hl td{background:rgba(35,70,255,.06);font-weight:600;}
+.dt tr:last-child td{border-bottom:none;}
+
+/* Stat cards */
+.stats-row{display:flex;gap:2%;margin-top:2%;}
+.stat-box{flex:1;background:var(--gray-50);border-radius:10px;padding:3% 3%;text-align:center;}
+.stat-box .sn{font-size:1.8em;font-weight:700;color:var(--blue);line-height:1.1;}
+.stat-box .sl{font-size:.7em;color:var(--text-m);margin-top:4px;}
+
+/* Analysis list */
+.analysis{background:var(--gray-50);border-radius:10px;padding:2.5% 3%;margin-top:2%;border-left:3px solid var(--blue);}
+.analysis .a-title{font-size:.85em;font-weight:600;margin-bottom:.5em;display:flex;align-items:center;gap:6px;}
+.analysis ul{list-style:none;font-size:.75em;color:var(--text-m);line-height:1.8;}
+.analysis ul li{padding-left:14px;position:relative;}
+.analysis ul li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--blue);}
+
+/* Pie charts */
+.pie-row{display:flex;gap:2%;margin-top:2%;}
+.pie-box{flex:1;background:var(--gray-50);border-radius:10px;padding:2%;text-align:center;}
+.pie-box .pt{font-size:.72em;font-weight:500;margin-bottom:6px;}
+.pie-legend{display:flex;gap:8px;justify-content:center;margin-top:6px;font-size:.6em;color:var(--text-m);flex-wrap:wrap;}
+.pie-legend span{display:flex;align-items:center;gap:3px;}
+.pie-legend .d{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+
+/* Image row */
+.img-row{display:flex;gap:2%;margin-top:2%;}
+.img-box{flex:1;border-radius:10px;overflow:hidden;background:var(--gray-50);}
+.img-box img{width:100%;height:auto;display:block;object-fit:contain;}
+.img-box .ic{padding:6px 10px;font-size:.65em;color:var(--text-m);text-align:center;}
+
+/* Task cards */
+.task-row{display:flex;gap:2%;margin-top:2%;}
+.task-card{flex:1;background:var(--gray-50);border-radius:10px;padding:2.5% 3%;border-top:3px solid var(--blue);}
+.task-card.tp{border-top-color:var(--purple);}
+.task-card.tg{border-top-color:var(--green);}
+.task-card.ty{border-top-color:var(--yellow);}
+.task-card .tt{font-size:.85em;font-weight:600;margin-bottom:.5em;}
+.task-card ul{list-style:none;font-size:.72em;color:var(--text-m);line-height:1.7;}
+.task-card ul li{padding-left:12px;position:relative;}
+.task-card ul li::before{content:'';position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:50%;background:var(--blue);}
+.task-card.tp ul li::before{background:var(--purple);}
+.task-card.tg ul li::before{background:var(--green);}
+.task-card.ty ul li::before{background:var(--yellow);}
+
+/* Timeline table */
+.tlt{width:100%;border-collapse:collapse;font-size:.62em;}
+.tlt th{background:var(--blue);color:#fff;padding:5px 4px;text-align:center;font-weight:500;}
+.tlt td{padding:4px;text-align:center;border:1px solid #eee;vertical-align:middle;}
+.tlt td:first-child{text-align:left;font-weight:500;white-space:nowrap;background:var(--gray-50);min-width:72px;font-size:1em;}
+.tb{display:inline-block;height:18px;line-height:18px;border-radius:3px;padding:0 5px;font-size:.85em;white-space:nowrap;color:#fff;font-weight:500;}
+
+/* Two columns */
+.cols{display:flex;gap:3%;}
+.col-6{flex:1;}
+
+/* Responsive font sizing */
+.slide-inner{font-size:min(1.6vh, 0.9vw);}
+@media(max-aspect-ratio:16/9){.slide-inner{font-size:0.9vw;}}
+@media(min-aspect-ratio:16/9){.slide-inner{font-size:1.6vh;}}
+
+/* Keyboard hint */
+.kbd-hint{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,.35);font-size:11px;font-family:var(--mono);
+  pointer-events:none;transition:opacity 1s;
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="deck" id="deck">
+
+<!-- ====== SLIDE 1: COVER ====== -->
+<div class="slide"><div class="slide-inner cover-bg">
+  <div class="sp">
+    <div class="logo">Trip.com</div>
+    <div class="cover-accent"></div>
+    <div class="main-title">踏青赏花季<br>活动周报</div>
+    <div class="sub-title">花开路上，好礼在途，山系露营装备等你来抽！<br>营销主题活动 · 4.1 – 4.15 · 抽奖机制</div>
+    <div class="meta">
+      <span>4.16 例会</span>
+      <span>礼品卡营销团队</span>
+      <span>2026</span>
+    </div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 2: KEY METRICS ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">踏青赏花季 — 活动概览</div>
+      <div class="slide-tag">4.1 – 4.15</div>
+    </div>
+
+    <div style="display:flex;gap:2%;align-items:flex-start;">
+      <div style="flex:1;">
+        <div class="stats-row" style="margin-top:0;">
+          <div class="stat-box"><div class="sn">118</div><div class="sl">订单量</div></div>
+          <div class="stat-box"><div class="sn">678,684</div><div class="sl">GMV (元)</div></div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box"><div class="sn">5,751</div><div class="sl">客单价 (元)</div></div>
+          <div class="stat-box"><div class="sn" style="color:var(--green);">75%</div><div class="sl">15天使用率</div></div>
+        </div>
+        <div style="margin-top:2.5%;font-size:.78em;color:var(--text-m);line-height:1.7;">
+          <strong>活动机制：</strong>购卡面满 3,000 元即可获得抽奖机会一次<br>
+          <strong>推广渠道：</strong>礼品卡首页、门票、租车、包车、星球号、小程序
+        </div>
+      </div>
+      <div style="flex:0 0 42%;">
+        <div class="img-box"><img src="416_assets/spring_banner.png" alt="活动Banner"><div class="ic">活动主 Banner — 清明出游季</div></div>
+        <div class="img-box" style="margin-top:2%;"><img src="416_assets/spring_card.png" alt="电子卡面" style="max-height:10em;margin:0 auto;"><div class="ic">电子卡面</div></div>
+      </div>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 3: CHANNEL DISPLAY ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">推广渠道展示</div>
+      <div class="slide-tag">Channels</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2%;font-size:.75em;">
+      <div style="background:var(--gray-50);border-radius:10px;padding:3%;text-align:center;">
+        <div style="font-size:2.4em;margin-bottom:.3em;">🎫</div>
+        <div style="font-weight:600;">门票首页</div>
+        <div style="color:var(--text-m);margin-top:.3em;">顶部 Banner</div>
+      </div>
+      <div style="background:var(--gray-50);border-radius:10px;padding:3%;text-align:center;">
+        <div style="font-size:2.4em;margin-bottom:.3em;">🎁</div>
+        <div style="font-weight:600;">礼品卡首页</div>
+        <div style="color:var(--text-m);margin-top:.3em;">中部 Banner + 小程序首页</div>
+      </div>
+      <div style="background:var(--gray-50);border-radius:10px;padding:3%;text-align:center;">
+        <div style="font-size:2.4em;margin-bottom:.3em;">🚗</div>
+        <div style="font-weight:600;">租车 / 包车</div>
+        <div style="color:var(--text-m);margin-top:.3em;">顶部 Banner</div>
+      </div>
+      <div style="background:var(--gray-50);border-radius:10px;padding:3%;text-align:center;">
+        <div style="font-size:2.4em;margin-bottom:.3em;">🌍</div>
+        <div style="font-weight:600;">携程小程序</div>
+        <div style="color:var(--text-m);margin-top:.3em;">首页 Banner</div>
+      </div>
+      <div style="background:var(--gray-50);border-radius:10px;padding:3%;text-align:center;">
+        <div style="font-size:2.4em;margin-bottom:.3em;">🪐</div>
+        <div style="font-weight:600;">社区星球号</div>
+        <div style="color:var(--text-m);margin-top:.3em;">内容点位</div>
+      </div>
+      <div style="background:var(--gray-50);border-radius:10px;padding:3%;text-align:center;">
+        <div style="font-size:2.4em;margin-bottom:.3em;">💳</div>
+        <div style="font-weight:600;">定制联名卡</div>
+        <div style="color:var(--text-m);margin-top:.3em;">营销页</div>
+      </div>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 4: SPRING DATA TABLE ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">踏青赏花活动数据（4.1 – 4.15）</div>
+      <div class="slide-tag">电子卡</div>
+    </div>
+    <table class="dt">
+      <thead><tr><th></th><th>GMV</th><th>订单数</th><th>UID</th><th>客单价</th><th>15天使用率</th><th>新客GMV</th><th>新客UID</th><th>新客客单价</th><th>新客15天使用率</th></tr></thead>
+      <tbody>
+        <tr><td>大盘 (电子卡)</td><td>32,586,909</td><td>19,807</td><td>8,486</td><td>3,838</td><td>57%</td><td>4,880,177</td><td>1,957</td><td>2,493</td><td>63%</td></tr>
+        <tr class="hl"><td>营销活动</td><td>678,684</td><td>118</td><td>118</td><td>5,751</td><td>75%</td><td>21,000</td><td>4</td><td>5,250</td><td>52%</td></tr>
+      </tbody>
+    </table>
+    <div class="analysis">
+      <div class="a-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> 数据分析</div>
+      <ul>
+        <li>开票订单数为 21 单，GMV 共 159,200，15天使用 49%，机票占比 98%</li>
+        <li>银行活动订单 19 单，GMV 共 63,000，15天使用率 97%，机票占比 100%</li>
+        <li>流水单大约 45 单，GMV 共 278,269</li>
+        <li>春季活动 4 个新客，主要来源为携程大首页和小程序</li>
+      </ul>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 5: USER SEGMENTATION ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">用户分层分析</div>
+      <div class="slide-tag">剔除流水单和银行活动</div>
+    </div>
+    <table class="dt">
+      <thead><tr><th></th><th>GMV</th><th>订单数</th><th>UID</th><th>客单价</th><th>15天使用率</th><th>新客GMV</th><th>新客UID</th><th>新客客单价</th><th>新客15天使用率</th></tr></thead>
+      <tbody>
+        <tr><td>大盘 (电子卡)</td><td>20,649,530</td><td>6,196</td><td>2,453</td><td>8,418</td><td>34%</td><td>2,372,222</td><td>574</td><td>4,132</td><td>25%</td></tr>
+        <tr class="hl"><td>营销活动</td><td>337,415</td><td>54</td><td>54</td><td>6,248</td><td>51%</td><td>15,000</td><td>2</td><td>7,500</td><td>33%</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:2%;">
+      <table class="dt">
+        <thead><tr><th>分层</th><th>1000 &lt; X ≤ 10000</th><th>10000 &lt; X ≤ 20000</th><th>X &gt; 20000</th></tr></thead>
+        <tbody>
+          <tr><td>UID数量</td><td>49</td><td>3</td><td>2</td></tr>
+          <tr><td>GMV</td><td>219,045</td><td>55,000</td><td>63,370</td></tr>
+          <tr><td>订单量</td><td>49</td><td>3</td><td>2</td></tr>
+          <tr><td>30天使用率</td><td>43%</td><td>73%</td><td>61%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 6: PIE CHARTS ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">用户下单分布</div>
+      <div class="slide-tag">GMV & 订单</div>
+    </div>
+    <div class="pie-row">
+      <div class="pie-box">
+        <div class="pt">GMV：1000 &lt; X ≤ 10000</div>
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#eee" stroke-width="14"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#2346FF" stroke-width="14" stroke-dasharray="256 8" stroke-dashoffset="66"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#59C8FF" stroke-width="14" stroke-dasharray="4 260" stroke-dashoffset="-190"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#8A73FF" stroke-width="14" stroke-dasharray="4 260" stroke-dashoffset="-186"/>
+        </svg>
+        <div class="pie-legend"><span><span class="d" style="background:#2346FF"></span>机票 97%</span><span><span class="d" style="background:#59C8FF"></span>酒店</span><span><span class="d" style="background:#8A73FF"></span>度假</span></div>
+      </div>
+      <div class="pie-box">
+        <div class="pt">GMV：10000 &lt; X ≤ 20000</div>
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#eee" stroke-width="14"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#2346FF" stroke-width="14" stroke-dasharray="264 0" stroke-dashoffset="66"/>
+        </svg>
+        <div class="pie-legend"><span><span class="d" style="background:#2346FF"></span>机票 100%</span></div>
+      </div>
+      <div class="pie-box">
+        <div class="pt">GMV：X &gt; 20000</div>
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#eee" stroke-width="14"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#2346FF" stroke-width="14" stroke-dasharray="264 0" stroke-dashoffset="66"/>
+        </svg>
+        <div class="pie-legend"><span><span class="d" style="background:#2346FF"></span>机票 100%</span></div>
+      </div>
+    </div>
+    <div class="pie-row">
+      <div class="pie-box">
+        <div class="pt">订单：1000 &lt; X ≤ 10000</div>
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#eee" stroke-width="14"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#2346FF" stroke-width="14" stroke-dasharray="223 41" stroke-dashoffset="66"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#59C8FF" stroke-width="14" stroke-dasharray="20 244" stroke-dashoffset="-157"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#8A73FF" stroke-width="14" stroke-dasharray="20 244" stroke-dashoffset="-137"/>
+        </svg>
+        <div class="pie-legend"><span><span class="d" style="background:#2346FF"></span>机票 85%</span><span><span class="d" style="background:#59C8FF"></span>酒店</span><span><span class="d" style="background:#8A73FF"></span>度假</span></div>
+      </div>
+      <div class="pie-box">
+        <div class="pt">订单：10000 &lt; X ≤ 20000</div>
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#eee" stroke-width="14"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#2346FF" stroke-width="14" stroke-dasharray="264 0" stroke-dashoffset="66"/>
+        </svg>
+        <div class="pie-legend"><span><span class="d" style="background:#2346FF"></span>机票 100%</span></div>
+      </div>
+      <div class="pie-box">
+        <div class="pt">订单：X &gt; 20000</div>
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#eee" stroke-width="14"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#2346FF" stroke-width="14" stroke-dasharray="176 88" stroke-dashoffset="66"/>
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#8A73FF" stroke-width="14" stroke-dasharray="88 176" stroke-dashoffset="-110"/>
+        </svg>
+        <div class="pie-legend"><span><span class="d" style="background:#2346FF"></span>机票 67%</span><span><span class="d" style="background:#8A73FF"></span>度假 33%</span></div>
+      </div>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 7: BREAK ====== -->
+<div class="slide"><div class="slide-inner break-bg" style="background:#465573;">
+  <div class="bk-num">PART 02</div>
+  <div class="bk-title">产品改版 & 年度规划</div>
+  <div class="bk-sub">礼品卡首页 icon 改版 · 2026 携程通全年活动规划</div>
+</div></div>
+
+<!-- ====== SLIDE 8: ICON REVAMP ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">礼品卡首页 icon 位改版</div>
+      <div class="slide-tag">Product</div>
+    </div>
+    <div class="cols">
+      <div class="col-6">
+        <div style="font-size:.85em;font-weight:600;margin-bottom:1em;">本次改动</div>
+        <div style="display:flex;flex-direction:column;gap:1.2em;">
+          <div style="background:var(--gray-50);border-radius:10px;padding:3%;border-left:3px solid var(--blue);">
+            <div style="font-size:.8em;font-weight:600;">第一行调整</div>
+            <div style="font-size:.75em;color:var(--text-m);margin-top:.3em;">去掉 <span style="color:var(--pink);text-decoration:line-through;">"心意送礼"</span>，加上 <span style="color:var(--green);font-weight:600;">"企业定制"</span></div>
+          </div>
+          <div style="background:var(--gray-50);border-radius:10px;padding:3%;border-left:3px solid var(--purple);">
+            <div style="font-size:.8em;font-weight:600;">第二行新增</div>
+            <div style="font-size:.75em;color:var(--text-m);margin-top:.3em;">增加新主题：<span style="color:var(--blue);font-weight:600;">"当季限定"</span></div>
+          </div>
+        </div>
+        <div style="margin-top:1.5em;font-size:.72em;color:var(--text-s);">
+          icon 位布局变更将随下次版本更新上线
+        </div>
+      </div>
+      <div class="col-6">
+        <div style="font-size:.85em;font-weight:600;margin-bottom:1em;">改版前后对比</div>
+        <div style="display:flex;gap:2%;">
+          <div style="flex:1;background:var(--gray-50);border-radius:10px;padding:2%;text-align:center;">
+            <div style="font-size:.7em;color:var(--text-s);margin-bottom:.5em;">改版前</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;font-size:.62em;">
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">实体经典</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">联名主题</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">商务答谢</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">生日庆贺</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;color:var(--pink);text-decoration:line-through;">心意送礼</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">纪念祝贺</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">商联套餐</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">福袋套餐</div>
+            </div>
+          </div>
+          <div style="flex:1;background:var(--blue-light);border-radius:10px;padding:2%;text-align:center;border:2px solid var(--blue);">
+            <div style="font-size:.7em;color:var(--blue);margin-bottom:.5em;font-weight:600;">改版后</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;font-size:.62em;">
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">实体经典</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">联名主题</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">商务答谢</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">生日庆贺</div>
+              <div style="background:var(--green);color:#fff;border-radius:6px;padding:6px 2px;font-weight:600;">企业定制</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">纪念祝贺</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">商联套餐</div>
+              <div style="background:#fff;border-radius:6px;padding:6px 2px;">福袋套餐</div>
+              <div style="background:var(--blue);color:#fff;border-radius:6px;padding:6px 2px;font-weight:600;">当季限定</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 9: ANNUAL PLAN ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">2026 携程通活动规划</div>
+      <div class="slide-tag">Annual Plan</div>
+    </div>
+    <table class="tlt">
+      <thead><tr><th></th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th><th>10月</th><th>11月</th><th>12月</th></tr></thead>
+      <tbody>
+        <tr><td>四季时令</td><td colspan="2"><span class="tb" style="background:var(--agile);color:#0A4466;">冰雪温泉</span></td><td colspan="2"><span class="tb" style="background:var(--green);color:#0D3A0D;">踏青赏花</span></td><td colspan="3"><span class="tb" style="background:var(--yellow);color:#422D00;">避暑玩夏</span></td><td colspan="2"><span class="tb" style="background:var(--pink);">赏秋</span></td><td colspan="3"><span class="tb" style="background:var(--agile);color:#0A4466;">冰雪温泉</span></td></tr>
+        <tr><td>旺季大促</td><td><span class="tb" style="background:var(--blue);">春节</span></td><td></td><td></td><td></td><td><span class="tb" style="background:var(--blue);">五一</span></td><td></td><td colspan="2"><span class="tb" style="background:var(--blue);">暑期</span></td><td></td><td><span class="tb" style="background:var(--blue);">国庆</span></td><td></td><td></td></tr>
+        <tr><td>淡季大促</td><td></td><td></td><td><span class="tb" style="background:var(--purple);">318划算节</span></td><td></td><td></td><td></td><td></td><td></td><td><span class="tb" style="background:var(--purple);">919划算节</span></td><td></td><td></td><td></td></tr>
+        <tr><td>携程通</td><td><span class="tb" style="background:var(--blue);">春节</span></td><td></td><td colspan="2"><span class="tb" style="background:var(--green);color:#0D3A0D;">踏青赏花</span></td><td><span class="tb" style="background:var(--gray-400);">端午</span></td><td></td><td colspan="2"><span class="tb" style="background:var(--yellow);color:#422D00;">暑期</span></td><td><span class="tb" style="background:var(--pink);">中秋</span></td><td></td><td></td><td><span class="tb" style="background:var(--blue);">元旦</span></td></tr>
+        <tr><td>特色专题</td><td colspan="12" style="text-align:left;font-size:.95em;color:var(--text-m);">长期投放：红色线路 & 携程农庄、老友会、北京环影（门票+酒店）、长隆（门票+酒店）</td></tr>
+      </tbody>
+    </table>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 10: Q1 PLAN ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">2026 Q1 携程通活动规划</div>
+      <div class="slide-tag">Q1 Detail</div>
+    </div>
+    <table class="dt">
+      <thead><tr><th>活动</th><th>时间</th><th>形式</th></tr></thead>
+      <tbody>
+        <tr><td>畅享冰雪季</td><td>12.20 – 2.28</td><td>内容整合：携程冰雪季、江浙沪滑雪专题、新疆滑雪专题</td></tr>
+        <tr><td>冬日温泉季</td><td>预计 2.5 – 2.28</td><td>酒店专题：四大区温泉酒店、套餐、日历房</td></tr>
+        <tr><td>318 划算节</td><td>1.29 – 3.21</td><td>大市场促销整合</td></tr>
+        <tr><td>踏青赏花</td><td>3.1 – 4.30</td><td>四大区景区门票 + 搭售酒店</td></tr>
+        <tr><td>老友会</td><td>2月初 – 长期</td><td>入会权益、酒店折扣、老有意思产品</td></tr>
+      </tbody>
+    </table>
+    <div class="analysis" style="margin-top:3%;">
+      <div class="a-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg> BD 资源拓展（12.18 – 1.4）</div>
+      <ul>
+        <li><strong>内部：</strong>大市场雪季活动、江浙雪季活动、新疆雪季活动</li>
+        <li><strong>外部：</strong>思念</li>
+        <li><strong>品牌项目：</strong>思念、雪季营销页 · <strong>权益：</strong>丸子/烧卖礼盒</li>
+      </ul>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 11: BREAK ====== -->
+<div class="slide"><div class="slide-inner break-bg" style="background:#465573;">
+  <div class="bk-num">PART 03</div>
+  <div class="bk-title">中秋活动数据回顾</div>
+  <div class="bk-sub">9.1 – 9.30 整体数据 · 电子卡 vs 实体卡 · 开票订单分析</div>
+</div></div>
+
+<!-- ====== SLIDE 12: MID-AUTUMN DATA ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">中秋活动整体数据（9.1 – 9.30）</div>
+      <div class="slide-tag">Mid-Autumn</div>
+    </div>
+    <div class="stats-row" style="margin-top:0;">
+      <div class="stat-box"><div class="sn">3,277,608</div><div class="sl">营销活动 GMV</div></div>
+      <div class="stat-box"><div class="sn">406</div><div class="sl">订单数</div></div>
+      <div class="stat-box"><div class="sn">389</div><div class="sl">UID</div></div>
+      <div class="stat-box"><div class="sn">8,425</div><div class="sl">客单价</div></div>
+      <div class="stat-box"><div class="sn">42%</div><div class="sl">15天使用率</div></div>
+    </div>
+    <table class="dt" style="margin-top:2%;">
+      <thead><tr><th></th><th>GMV</th><th>订单数</th><th>UID</th><th>客单价</th><th>15天使用率</th><th>新客GMV</th><th>新客UID</th><th>新客客单价</th><th>新客15天使用率</th></tr></thead>
+      <tbody>
+        <tr><td>大盘</td><td>38,174,917</td><td>14,117</td><td>7,481</td><td>5,102</td><td>50%</td><td>3,662,040</td><td>1,537</td><td>2,382</td><td>28%</td></tr>
+        <tr class="hl"><td>营销活动</td><td>3,277,608</td><td>406</td><td>389</td><td>8,425</td><td>42%</td><td>631,658</td><td>108</td><td>5,848</td><td>20%</td></tr>
+      </tbody>
+    </table>
+    <div class="analysis">
+      <div class="a-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> 关键洞察</div>
+      <ul>
+        <li>新客 108 人，GMV 631,658，客单价 ~5,848，受新客门槛限制在 5,000 左右</li>
+        <li>14,117 个常规订单中包含送礼订单</li>
+      </ul>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 13: MID-AUTUMN CARDS ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">中秋实体卡营销数据</div>
+      <div class="slide-tag">9.1 – 9.30</div>
+    </div>
+    <div class="cols">
+      <div class="col-6">
+        <div class="stats-row" style="margin-top:0;">
+          <div class="stat-box"><div class="sn">2,523,180</div><div class="sl">实体卡 GMV</div></div>
+          <div class="stat-box"><div class="sn">302</div><div class="sl">UID</div></div>
+          <div class="stat-box"><div class="sn">308</div><div class="sl">订单数</div></div>
+        </div>
+        <table class="dt" style="margin-top:2%;">
+          <thead><tr><th></th><th>GMV</th><th>订单</th><th>客单价</th><th>15天使用率</th></tr></thead>
+          <tbody>
+            <tr style="font-weight:600"><td>营销总和</td><td>3,437,150</td><td>415</td><td>8,657</td><td>45%</td></tr>
+            <tr><td>电子卡</td><td>913,970</td><td>107</td><td>9,326</td><td style="color:var(--green);font-weight:600;">69%</td></tr>
+            <tr><td>实体卡</td><td>2,523,180</td><td>308</td><td>8,354</td><td style="color:var(--pink);font-weight:600;">36%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <div style="font-size:.85em;font-weight:600;margin-bottom:.8em;">中秋卡套设计</div>
+        <div class="img-row" style="margin-top:0;">
+          <div class="img-box"><img src="416_assets/midautumn_card1.png" alt="中秋卡A"><div class="ic">实体卡面 A</div></div>
+          <div class="img-box"><img src="416_assets/midautumn_card2.png" alt="中秋卡B"><div class="ic">实体卡面 B</div></div>
+        </div>
+        <div class="img-row">
+          <div class="img-box"><img src="416_assets/midautumn_sleeve.png" alt="卡套"><div class="ic">中秋实体卡套</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 14: E-CARD VS INVOICE ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">电子卡 vs 开票订单对比</div>
+      <div class="slide-tag">Breakdown</div>
+    </div>
+    <table class="dt">
+      <thead><tr><th></th><th>GMV</th><th>订单数</th><th>UID</th><th>客单价</th><th>15天使用率</th><th>新客GMV</th><th>新客UID</th><th>新客客单价</th><th>新客15天使用率</th></tr></thead>
+      <tbody>
+        <tr style="font-weight:600"><td>营销总和</td><td>3,277,608</td><td>406</td><td>389</td><td>8,425</td><td>42%</td><td>631,658</td><td>108</td><td>5,848</td><td>20%</td></tr>
+        <tr><td>电子卡</td><td>784,040</td><td>99</td><td>91</td><td>8,615</td><td style="color:var(--green);font-weight:600;">65%</td><td>66,000</td><td>8</td><td>8,250</td><td style="color:var(--green);font-weight:600;">70%</td></tr>
+        <tr><td>开票订单</td><td>2,493,568</td><td>307</td><td>301</td><td>8,284</td><td style="color:var(--pink);font-weight:600;">35%</td><td>565,658</td><td>100</td><td>5,656</td><td style="color:var(--pink);font-weight:600;">14%</td></tr>
+      </tbody>
+    </table>
+    <div class="analysis">
+      <div class="a-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> 开票订单分析</div>
+      <ul>
+        <li>开票订单 GMV 1,993,486，订单数 214，UID 206，客单价 9,677</li>
+        <li>不开票且完全未使用：UID 44，订单 45，GMV 228,790 → 归类为一级用户</li>
+        <li>次级用户 49 人，订单 53（7天使用率 &gt; 70%，机票使用率 &gt; 90%）</li>
+        <li>一级用户 157 人，订单 161（企业营销 & 福利采购用户）</li>
+      </ul>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 15: BREAK ====== -->
+<div class="slide"><div class="slide-inner break-bg" style="background:#465573;">
+  <div class="bk-num">PART 04</div>
+  <div class="bk-title">后续工作计划</div>
+  <div class="bk-sub">企业定制 · 营销准备 · 携程通活动 · 权益更新</div>
+</div></div>
+
+<!-- ====== SLIDE 16: WORK PLAN ====== -->
+<div class="slide"><div class="slide-inner content-bg">
+  <div class="sp">
+    <div class="slide-header">
+      <div class="slide-title">后续工作计划</div>
+      <div class="slide-tag">Next Steps</div>
+    </div>
+    <div class="task-row">
+      <div class="task-card">
+        <div class="tt">企业定制</div>
+        <ul>
+          <li>企业定制页面</li>
+          <li>华西、华北 26年生日券包制作 & 推送</li>
+          <li>需等权益延期更新后，1月可能暂停两次推送</li>
+        </ul>
+      </div>
+      <div class="task-card tp">
+        <div class="tt">营销活动准备</div>
+        <ul>
+          <li>元旦活动</li>
+          <li>农历新年活动</li>
+          <li>雪季第二期（阿尔卑斯）</li>
+        </ul>
+      </div>
+      <div class="task-card tg">
+        <div class="tt">携程通活动</div>
+        <ul>
+          <li>和大市场同步 26年活动规划</li>
+          <li>携程通用户画像、消费属性</li>
+          <li>活动效果（环影、长隆、苏州专题）</li>
+        </ul>
+      </div>
+      <div class="task-card ty">
+        <div class="tt">26年携程通权益</div>
+        <ul>
+          <li>酒店权益更新</li>
+          <li>度假 98 折、环影权益延期</li>
+          <li>租车权益：88折 → 95折</li>
+          <li>机票、签证、海昌及外部品牌待确认</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-footer">© Trip.com</div>
+  </div>
+</div></div>
+
+<!-- ====== SLIDE 17: THANK YOU ====== -->
+<div class="slide"><div class="slide-inner back-bg">
+  <div class="sp" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+    <div style="font-size:.9em;font-family:var(--mono);letter-spacing:.2em;opacity:.5;margin-bottom:1em;">Trip.com</div>
+    <div style="font-size:3.2em;font-weight:700;">Thank you.</div>
+    <div style="font-size:1em;opacity:.6;margin-top:.8em;">礼品卡营销团队 · 4.16 例会</div>
+    <div style="font-size:.8em;opacity:.4;margin-top:.4em;">© Trip.com All Rights Reserved.</div>
+  </div>
+</div></div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav">
+  <button id="prevBtn" aria-label="Previous">&#8249;</button>
+  <span class="page-info" id="pageInfo">1 / 17</span>
+  <button id="nextBtn" aria-label="Next">&#8250;</button>
+</div>
+<div class="kbd-hint" id="kbdHint">← → / swipe to navigate</div>
+
+<script>
+const deck = document.getElementById('deck');
+const total = deck.children.length;
+let current = 0;
+
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const pageInfo = document.getElementById('pageInfo');
+const progress = document.getElementById('progress');
+const kbdHint = document.getElementById('kbdHint');
+
+function go(n) {
+  current = Math.max(0, Math.min(total - 1, n));
+  deck.style.transform = `translateX(-${current * 100}vw)`;
+  pageInfo.textContent = `${current + 1} / ${total}`;
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === total - 1;
+  progress.style.width = `${((current + 1) / total) * 100}%`;
+}
+
+prevBtn.addEventListener('click', () => go(current - 1));
+nextBtn.addEventListener('click', () => go(current + 1));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(current + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+  if (e.key === 'Home') { e.preventDefault(); go(0); }
+  if (e.key === 'End') { e.preventDefault(); go(total - 1); }
+});
+
+// Touch / swipe
+let tx = 0;
+deck.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive: true});
+deck.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 50) go(current + (dx < 0 ? 1 : -1));
+}, {passive: true});
+
+// Mouse wheel horizontal
+document.addEventListener('wheel', e => {
+  if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 30) {
+    go(current + (e.deltaX > 0 ? 1 : -1));
+  } else if (Math.abs(e.deltaY) > 30) {
+    go(current + (e.deltaY > 0 ? 1 : -1));
+  }
+}, {passive: true});
+
+// Hide hint after first nav
+function hideHint() { kbdHint.style.opacity = '0'; document.removeEventListener('keydown', hideHint); }
+document.addEventListener('keydown', hideHint);
+setTimeout(() => { kbdHint.style.opacity = '0'; }, 5000);
+
+go(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "trip-spec",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": ["-run", "-e", "httpd", "/tmp/workshop_serve", "-p", "8766"],
+      "port": 8766
+    },
+    {
+      "name": "ppt-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-c", "import http.server,socketserver,os;os.chdir('ppt');h=http.server.SimpleHTTPRequestHandler;s=socketserver.TCPServer(('',8765),h);s.serve_forever()"],
+      "port": 8765
+    }
+  ]
+}

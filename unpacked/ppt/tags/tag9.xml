@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<p:tagLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:tag name="MIO_USER_INPUT_LANGUAGE" val="en-GB"/>
+  <p:tag name="MIO_USER_INPUT_OPTIONS" val="Copyright Schaeffler Technologies AG &amp; Co. KG, 2024 – All rights reserved. |;Copyright Schaeffler AG, 2024 – All rights reserved. |;Copyright Schaeffler Automotive Buehl GmbH &amp; Co. KG, 2024 – All rights reserved. |;Copyright Schaeffler Global Services Europe Sp. z o.o. – All rights reserved. |;Copyright Schaeffler Brasil Ltda., 2024 – All rights reserved. |;Copyright Schaeffler AP, 2024 – All rights reserved. |;Copyright Schaeffler Group USA, Inc., 2024 – All rights reserved. | ;Copyright Schaeffler Digital Solutions GmbH, 2024 – All rights reserved. |;Copyright Schaeffler Aerospace Germany GmbH &amp; Co. KG, 2024 – All rights reserved. |;Copyright Schaeffler Vehicle Lifetime Solutions Germany GmbH &amp; Co. KG, 2024 – All rights reserved. |;Copyright Schaeffler ByWire Technologie GmbH &amp; Co. KG, 2024 – All rights reserved. |; "/>
+  <p:tag name="MIO_USER_INPUT_REQUIRED" val="Copyright;Insert the right Copyright for your organization"/>
+</p:tagLst>

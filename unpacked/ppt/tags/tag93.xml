@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<p:tagLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:tag name="MIO_EKGUID" val="911a6970-a340-4bb2-b9ba-6ae1ec50dd2e"/>
+  <p:tag name="MIO_GUID" val="befe4234-6d3a-4f53-b772-2e6c9e6cbb78"/>
+  <p:tag name="MIO_UPDATE" val="True"/>
+  <p:tag name="MIO_VERSION" val="21.11.2023 13:04:58"/>
+  <p:tag name="MIO_DBID" val="E0259410-156D-4F1A-B326-E95E43C8DB51"/>
+  <p:tag name="MIO_LASTDOWNLOADED" val="04.12.2023 16:34:30.269"/>
+  <p:tag name="MIO_OBJECTNAME" val="Number Tag Honey 8 pt / 0,6 mm (free placement)"/>
+  <p:tag name="MIO_LASTEDITORNAME" val="Jezabel Brasch"/>
+</p:tagLst>

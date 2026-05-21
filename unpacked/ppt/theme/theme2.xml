@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<a:theme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="Schaeffler Master 2024">
+  <a:themeElements>
+    <a:clrScheme name="Schaeffler 2024">
+      <a:dk1>
+        <a:srgbClr val="2C2C2C"/>
+      </a:dk1>
+      <a:lt1>
+        <a:sysClr val="window" lastClr="FFFFFF"/>
+      </a:lt1>
+      <a:dk2>
+        <a:srgbClr val="646464"/>
+      </a:dk2>
+      <a:lt2>
+        <a:srgbClr val="EBEBEB"/>
+      </a:lt2>
+      <a:accent1>
+        <a:srgbClr val="619685"/>
+      </a:accent1>
+      <a:accent2>
+        <a:srgbClr val="AFC2C7"/>
+      </a:accent2>
+      <a:accent3>
+        <a:srgbClr val="67898F"/>
+      </a:accent3>
+      <a:accent4>
+        <a:srgbClr val="B5D384"/>
+      </a:accent4>
+      <a:accent5>
+        <a:srgbClr val="20617C"/>
+      </a:accent5>
+      <a:accent6>
+        <a:srgbClr val="94BF99"/>
+      </a:accent6>
+      <a:hlink>
+        <a:srgbClr val="00893D"/>
+      </a:hlink>
+      <a:folHlink>
+        <a:srgbClr val="00893D"/>
+      </a:folHlink>
+    </a:clrScheme>
+    <a:fontScheme name="Schaeffler Font">
+      <a:majorFont>
+        <a:latin typeface="Noto Sans"/>
+        <a:ea typeface=""/>
+        <a:cs typeface=""/>
+      </a:majorFont>
+      <a:minorFont>
+        <a:latin typeface="Noto Sans"/>
+        <a:ea typeface=""/>
+        <a:cs typeface=""/>
+      </a:minorFont>
+    </a:fontScheme>
+    <a:fmtScheme name="Office">
+      <a:fillStyleLst>
+        <a:solidFill>
+          <a:schemeClr val="phClr"/>
+        </a:solidFill>
+        <a:gradFill rotWithShape="1">
+          <a:gsLst>
+            <a:gs pos="0">
+              <a:schemeClr val="phClr">
+                <a:lumMod val="110000"/>
+                <a:satMod val="105000"/>
+                <a:tint val="67000"/>
+              </a:schemeClr>
+            </a:gs>
+            <a:gs pos="50000">
+              <a:schemeClr val="phClr">
+                <a:lumMod val="105000"/>
+                <a:satMod val="103000"/>
+                <a:tint val="73000"/>
+              </a:schemeClr>
+            </a:gs>
+            <a:gs pos="100000">
+              <a:schemeClr val="phClr">
+                <a:lumMod val="105000"/>
+                <a:satMod val="109000"/>
+                <a:tint val="81000"/>
+              </a:schemeClr>
+            </a:gs>
+          </a:gsLst>
+          <a:lin ang="5400000" scaled="0"/>
+        </a:gradFill>
+        <a:gradFill rotWithShape="1">
+          <a:gsLst>
+            <a:gs pos="0">
+              <a:schemeClr val="phClr">
+                <a:satMod val="103000"/>
+                <a:lumMod val="102000"/>
+                <a:tint val="94000"/>
+              </a:schemeClr>
+            </a:gs>
+            <a:gs pos="50000">
+              <a:schemeClr val="phClr">
+                <a:satMod val="110000"/>
+                <a:lumMod val="100000"/>
+                <a:shade val="100000"/>
+              </a:schemeClr>
+            </a:gs>
+            <a:gs pos="100000">
+              <a:schemeClr val="phClr">
+                <a:lumMod val="99000"/>
+                <a:satMod val="120000"/>
+                <a:shade val="78000"/>
+              </a:schemeClr>
+            </a:gs>
+          </a:gsLst>
+          <a:lin ang="5400000" scaled="0"/>
+        </a:gradFill>
+      </a:fillStyleLst>
+      <a:lnStyleLst>
+        <a:ln w="6350" cap="flat" cmpd="sng" algn="ctr">
+          <a:solidFill>
+            <a:schemeClr val="phClr"/>
+          </a:solidFill>
+          <a:prstDash val="solid"/>
+          <a:miter lim="800000"/>
+        </a:ln>
+        <a:ln w="12700" cap="flat" cmpd="sng" algn="ctr">
+          <a:solidFill>
+            <a:schemeClr val="phClr"/>
+          </a:solidFill>
+          <a:prstDash val="solid"/>
+          <a:miter lim="800000"/>
+        </a:ln>
+        <a:ln w="19050" cap="flat" cmpd="sng" algn="ctr">
+          <a:solidFill>
+            <a:schemeClr val="phClr"/>
+          </a:solidFill>
+          <a:prstDash val="solid"/>
+          <a:miter lim="800000"/>
+        </a:ln>
+      </a:lnStyleLst>
+      <a:effectStyleLst>
+        <a:effectStyle>
+          <a:effectLst/>
+        </a:effectStyle>
+        <a:effectStyle>
+          <a:effectLst/>
+        </a:effectStyle>
+        <a:effectStyle>
+          <a:effectLst>
+            <a:outerShdw blurRad="57150" dist="19050" dir="5400000" algn="ctr" rotWithShape="0">
+              <a:srgbClr val="000000">
+                <a:alpha val="63000"/>
+              </a:srgbClr>
+            </a:outerShdw>
+          </a:effectLst>
+        </a:effectStyle>
+      </a:effectStyleLst>
+      <a:bgFillStyleLst>
+        <a:solidFill>
+          <a:schemeClr val="phClr"/>
+        </a:solidFill>
+        <a:solidFill>
+          <a:schemeClr val="phClr">
+            <a:tint val="95000"/>
+            <a:satMod val="170000"/>
+          </a:schemeClr>
+        </a:solidFill>
+        <a:gradFill rotWithShape="1">
+          <a:gsLst>
+            <a:gs pos="0">
+              <a:schemeClr val="phClr">
+                <a:tint val="93000"/>
+                <a:satMod val="150000"/>
+                <a:shade val="98000"/>
+                <a:lumMod val="102000"/>
+              </a:schemeClr>
+            </a:gs>
+            <a:gs pos="50000">
+              <a:schemeClr val="phClr">
+                <a:tint val="98000"/>
+                <a:satMod val="130000"/>
+                <a:shade val="90000"/>
+                <a:lumMod val="103000"/>
+              </a:schemeClr>
+            </a:gs>
+            <a:gs pos="100000">
+              <a:schemeClr val="phClr">
+                <a:shade val="63000"/>
+                <a:satMod val="120000"/>
+              </a:schemeClr>
+            </a:gs>
+          </a:gsLst>
+          <a:lin ang="5400000" scaled="0"/>
+        </a:gradFill>
+      </a:bgFillStyleLst>
+    </a:fmtScheme>
+  </a:themeElements>
+  <a:objectDefaults>
+    <a:spDef>
+      <a:spPr>
+        <a:solidFill>
+          <a:srgbClr val="EBEBEB"/>
+        </a:solidFill>
+        <a:ln>
+          <a:noFill/>
+        </a:ln>
+      </a:spPr>
+      <a:bodyPr lIns="54000" tIns="72000" rIns="54000" bIns="72000" rtlCol="0" anchor="ctr"/>
+      <a:lstStyle>
+        <a:defPPr algn="ctr">
+          <a:lnSpc>
+            <a:spcPct val="120000"/>
+          </a:lnSpc>
+          <a:spcBef>
+            <a:spcPts val="600"/>
+          </a:spcBef>
+          <a:defRPr sz="1200" dirty="0">
+            <a:solidFill>
+              <a:schemeClr val="tx1"/>
+            </a:solidFill>
+          </a:defRPr>
+        </a:defPPr>
+      </a:lstStyle>
+      <a:style>
+        <a:lnRef idx="2">
+          <a:schemeClr val="accent1">
+            <a:shade val="15000"/>
+          </a:schemeClr>
+        </a:lnRef>
+        <a:fillRef idx="1">
+          <a:schemeClr val="accent1"/>
+        </a:fillRef>
+        <a:effectRef idx="0">
+          <a:schemeClr val="accent1"/>
+        </a:effectRef>
+        <a:fontRef idx="minor">
+          <a:schemeClr val="lt1"/>
+        </a:fontRef>
+      </a:style>
+    </a:spDef>
+    <a:lnDef>
+      <a:spPr>
+        <a:ln w="6350" cap="rnd">
+          <a:solidFill>
+            <a:srgbClr val="878787"/>
+          </a:solidFill>
+        </a:ln>
+      </a:spPr>
+      <a:bodyPr/>
+      <a:lstStyle/>
+      <a:style>
+        <a:lnRef idx="1">
+          <a:schemeClr val="accent1"/>
+        </a:lnRef>
+        <a:fillRef idx="0">
+          <a:schemeClr val="accent1"/>
+        </a:fillRef>
+        <a:effectRef idx="0">
+          <a:schemeClr val="accent1"/>
+        </a:effectRef>
+        <a:fontRef idx="minor">
+          <a:schemeClr val="tx1"/>
+        </a:fontRef>
+      </a:style>
+    </a:lnDef>
+    <a:txDef>
+      <a:spPr>
+        <a:noFill/>
+      </a:spPr>
+      <a:bodyPr wrap="square" lIns="0" tIns="0" rIns="0" bIns="0" rtlCol="0">
+        <a:noAutofit/>
+      </a:bodyPr>
+      <a:lstStyle>
+        <a:defPPr algn="l">
+          <a:lnSpc>
+            <a:spcPct val="120000"/>
+          </a:lnSpc>
+          <a:spcBef>
+            <a:spcPts val="600"/>
+          </a:spcBef>
+          <a:defRPr sz="1200" dirty="0"/>
+        </a:defPPr>
+      </a:lstStyle>
+    </a:txDef>
+  </a:objectDefaults>
+  <a:extraClrSchemeLst/>
+  <a:custClrLst>
+    <a:custClr name="Carbon 100 %">
+      <a:srgbClr val="646464"/>
+    </a:custClr>
+    <a:custClr name="Forest 100 %">
+      <a:srgbClr val="005E46"/>
+    </a:custClr>
+    <a:custClr name="Apple 100 %">
+      <a:srgbClr val="A1C861"/>
+    </a:custClr>
+    <a:custClr name="Jade 100 %">
+      <a:srgbClr val="73B281"/>
+    </a:custClr>
+    <a:custClr name="Navy 100 %">
+      <a:srgbClr val="00445F"/>
+    </a:custClr>
+    <a:custClr name="Aqua 100 %">
+      <a:srgbClr val="1C98B5"/>
+    </a:custClr>
+    <a:custClr name="Pigeon 100 %">
+      <a:srgbClr val="476E75"/>
+    </a:custClr>
+    <a:custClr name="empty">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+    <a:custClr name="Chili 100%">
+      <a:srgbClr val="CB0B15"/>
+    </a:custClr>
+    <a:custClr name="Honey 100%">
+      <a:srgbClr val="E9B300"/>
+    </a:custClr>
+    <a:custClr name="Carbon 80 %">
+      <a:srgbClr val="878787"/>
+    </a:custClr>
+    <a:custClr name="Forest 80 %">
+      <a:srgbClr val="237864"/>
+    </a:custClr>
+    <a:custClr name="Apple 80 %">
+      <a:srgbClr val="B5D384"/>
+    </a:custClr>
+    <a:custClr name="Jade 80 %">
+      <a:srgbClr val="94BF99"/>
+    </a:custClr>
+    <a:custClr name="Navy 80 %">
+      <a:srgbClr val="20617C"/>
+    </a:custClr>
+    <a:custClr name="Aqua 80 %">
+      <a:srgbClr val="60ABC4"/>
+    </a:custClr>
+    <a:custClr name="Pigeon 80 %">
+      <a:srgbClr val="67898F"/>
+    </a:custClr>
+    <a:custClr name="empty">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+    <a:custClr name="Chili 50%">
+      <a:srgbClr val="E79278"/>
+    </a:custClr>
+    <a:custClr name="Honey 50%">
+      <a:srgbClr val="F6D890"/>
+    </a:custClr>
+    <a:custClr name="Carbon 60 %">
+      <a:srgbClr val="A8A8A8"/>
+    </a:custClr>
+    <a:custClr name="Forest 60 %">
+      <a:srgbClr val="619685"/>
+    </a:custClr>
+    <a:custClr name="Apple 60 %">
+      <a:srgbClr val="C9DEA5"/>
+    </a:custClr>
+    <a:custClr name="Jade 60 %">
+      <a:srgbClr val="B2CFB3"/>
+    </a:custClr>
+    <a:custClr name="Navy 60 %">
+      <a:srgbClr val="59839B"/>
+    </a:custClr>
+    <a:custClr name="Aqua 60 %">
+      <a:srgbClr val="8CBFD3"/>
+    </a:custClr>
+    <a:custClr name="Pigeon 60 %">
+      <a:srgbClr val="8BA6AB"/>
+    </a:custClr>
+    <a:custClr name="empty1">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+    <a:custClr name="empty2">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+    <a:custClr name="empty3">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+    <a:custClr name="Carbon 40 %">
+      <a:srgbClr val="C6C6C6"/>
+    </a:custClr>
+    <a:custClr name="Forest 40 %">
+      <a:srgbClr val="95B7AB"/>
+    </a:custClr>
+    <a:custClr name="Apple 40 %">
+      <a:srgbClr val="DCE9C5"/>
+    </a:custClr>
+    <a:custClr name="Jade 40 %">
+      <a:srgbClr val="CDDFCD"/>
+    </a:custClr>
+    <a:custClr name="Navy 40 %">
+      <a:srgbClr val="8DA8BC"/>
+    </a:custClr>
+    <a:custClr name="Aqua 40 %">
+      <a:srgbClr val="B4D4E2"/>
+    </a:custClr>
+    <a:custClr name="Pigeon 40 %">
+      <a:srgbClr val="AFC2C7"/>
+    </a:custClr>
+    <a:custClr name="Empty">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+    <a:custClr name="Empty">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+    <a:custClr name="Empty">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+    <a:custClr name="Carbon 20 %">
+      <a:srgbClr val="E3E3E3"/>
+    </a:custClr>
+    <a:custClr name="Forest 20 %">
+      <a:srgbClr val="C9DAD4"/>
+    </a:custClr>
+    <a:custClr name="Apple 20 %">
+      <a:srgbClr val="EDF4E3"/>
+    </a:custClr>
+    <a:custClr name="Jade 20 %">
+      <a:srgbClr val="E7EFE6"/>
+    </a:custClr>
+    <a:custClr name="Navy 20 %">
+      <a:srgbClr val="C4D1DD"/>
+    </a:custClr>
+    <a:custClr name="Aqua 20 %">
+      <a:srgbClr val="D9E9F1"/>
+    </a:custClr>
+    <a:custClr name="Pigeon 20 %">
+      <a:srgbClr val="D6E0E3"/>
+    </a:custClr>
+    <a:custClr name="Empty">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+    <a:custClr name="Empty">
+      <a:srgbClr val="FFFFFF"/>
+    </a:custClr>
+  </a:custClrLst>
+  <a:extLst>
+    <a:ext uri="{05A4C25C-085E-4340-85A3-A5531E510DB2}">
+      <thm15:themeFamily xmlns:thm15="http://schemas.microsoft.com/office/thememl/2012/main" name="Default Theme.pptx" id="{FDE66662-3856-4F95-B2AB-A433F6464905}" vid="{D278EA60-29E6-4D5F-AA5F-7F6296B98B9B}"/>
+    </a:ext>
+  </a:extLst>
+</a:theme>

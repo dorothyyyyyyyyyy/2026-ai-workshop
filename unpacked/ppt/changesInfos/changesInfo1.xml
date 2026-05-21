@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pc:chgInfo xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:ac="http://schemas.microsoft.com/office/drawing/2013/main/command" xmlns:pc="http://schemas.microsoft.com/office/powerpoint/2013/main/command">
+  <pc:docChgLst>
+    <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}"/>
+    <pc:docChg chg="undo custSel mod addSld delSld modSld delMainMaster modMainMaster">
+      <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+      <pc:docMkLst>
+        <pc:docMk/>
+      </pc:docMkLst>
+      <pc:sldChg chg="add del">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:00.561" v="12"/>
+        <pc:sldMkLst>
+          <pc:docMk/>
+          <pc:sldMk cId="3853168014" sldId="262"/>
+        </pc:sldMkLst>
+      </pc:sldChg>
+      <pc:sldChg chg="add del">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:00:37.568" v="4" actId="47"/>
+        <pc:sldMkLst>
+          <pc:docMk/>
+          <pc:sldMk cId="3989189933" sldId="311"/>
+        </pc:sldMkLst>
+      </pc:sldChg>
+      <pc:sldChg chg="new add del">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+        <pc:sldMkLst>
+          <pc:docMk/>
+          <pc:sldMk cId="965325906" sldId="312"/>
+        </pc:sldMkLst>
+      </pc:sldChg>
+      <pc:sldChg chg="new del">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:46.943" v="13" actId="47"/>
+        <pc:sldMkLst>
+          <pc:docMk/>
+          <pc:sldMk cId="2131600072" sldId="313"/>
+        </pc:sldMkLst>
+      </pc:sldChg>
+      <pc:sldChg chg="add del">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:00.561" v="12"/>
+        <pc:sldMkLst>
+          <pc:docMk/>
+          <pc:sldMk cId="509482950" sldId="371"/>
+        </pc:sldMkLst>
+      </pc:sldChg>
+      <pc:sldChg chg="add del">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:00.561" v="12"/>
+        <pc:sldMkLst>
+          <pc:docMk/>
+          <pc:sldMk cId="3352625891" sldId="372"/>
+        </pc:sldMkLst>
+      </pc:sldChg>
+      <pc:sldChg chg="add del">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:51.187" v="15" actId="47"/>
+        <pc:sldMkLst>
+          <pc:docMk/>
+          <pc:sldMk cId="1419514581" sldId="2147479702"/>
+        </pc:sldMkLst>
+      </pc:sldChg>
+      <pc:sldChg chg="add">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:58.555" v="16"/>
+        <pc:sldMkLst>
+          <pc:docMk/>
+          <pc:sldMk cId="3106615330" sldId="2147479798"/>
+        </pc:sldMkLst>
+      </pc:sldChg>
+      <pc:sldMasterChg chg="addSp modSp mod">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:03:14.375" v="8" actId="33475"/>
+        <pc:sldMasterMkLst>
+          <pc:docMk/>
+          <pc:sldMasterMk cId="2829962561" sldId="2147483648"/>
+        </pc:sldMasterMkLst>
+        <pc:spChg chg="add mod">
+          <ac:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:03:14.375" v="8" actId="33475"/>
+          <ac:spMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2829962561" sldId="2147483648"/>
+            <ac:spMk id="8" creationId="{E9801249-D5A7-EDF1-4ECD-48DDDD21BFC3}"/>
+          </ac:spMkLst>
+        </pc:spChg>
+      </pc:sldMasterChg>
+      <pc:sldMasterChg chg="addSp modSp del mod delSldLayout">
+        <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+        <pc:sldMasterMkLst>
+          <pc:docMk/>
+          <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+        </pc:sldMasterMkLst>
+        <pc:spChg chg="add mod">
+          <ac:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:03:14.375" v="8" actId="33475"/>
+          <ac:spMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <ac:spMk id="100" creationId="{58DCFDA2-AFEF-20D0-C65B-839BAC3837D6}"/>
+          </ac:spMkLst>
+        </pc:spChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="4085190870" sldId="2147483661"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="560014957" sldId="2147483662"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="4163873953" sldId="2147483663"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="623614177" sldId="2147483664"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="584945819" sldId="2147483665"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="3824779624" sldId="2147483666"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="1052580234" sldId="2147483667"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="3214126815" sldId="2147483668"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="2630832171" sldId="2147483669"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="263562061" sldId="2147483670"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="418354252" sldId="2147483671"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="1297292114" sldId="2147483672"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="2012304459" sldId="2147483673"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="1393722441" sldId="2147483674"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="2999194196" sldId="2147483675"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="2649946892" sldId="2147483676"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="2705768807" sldId="2147483677"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="2565893560" sldId="2147483678"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="3042649628" sldId="2147483679"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="3398126025" sldId="2147483680"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+        <pc:sldLayoutChg chg="del">
+          <pc:chgData name="Cui, Ziwen" userId="df483861-e123-4e2f-9e7d-2e1debabe1c3" providerId="ADAL" clId="{A7D1E7F2-5C8E-42C8-BFB6-120106A75C0B}" dt="2026-05-15T10:05:59.905" v="17" actId="47"/>
+          <pc:sldLayoutMkLst>
+            <pc:docMk/>
+            <pc:sldMasterMk cId="2422730112" sldId="2147483660"/>
+            <pc:sldLayoutMk cId="1799732438" sldId="2147483681"/>
+          </pc:sldLayoutMkLst>
+        </pc:sldLayoutChg>
+      </pc:sldMasterChg>
+    </pc:docChg>
+  </pc:docChgLst>
+</pc:chgInfo>

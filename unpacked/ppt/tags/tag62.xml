@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<p:tagLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:tag name="MIO_HDS" val="True"/>
+  <p:tag name="MIO_SKIPVERSION" val="01.01.0001 00:00:00"/>
+  <p:tag name="MIO_UPDATE" val="True"/>
+  <p:tag name="MIO_FALLBACK_LAYOUT" val="7"/>
+  <p:tag name="MIO_SHOW_FOOTER" val="False"/>
+  <p:tag name="MIO_AVOID_BLANK_LAYOUT" val="True"/>
+  <p:tag name="MIO_CD_LAYOUT_VALID_AREA" val="False"/>
+  <p:tag name="MIO_NUMBER_OF_VALID_LAYOUTS" val="21"/>
+  <p:tag name="MIO_DBID" val="E0259410-156D-4F1A-B326-E95E43C8DB51"/>
+  <p:tag name="MIO_SHOW_DATE" val="True"/>
+  <p:tag name="MIO_SHOW_PAGENUMBER" val="True"/>
+  <p:tag name="MIO_MATCH_COLOR_SCHEME" val="True"/>
+  <p:tag name="MIO_OBJECTNAME" val="Schaeffler Master"/>
+  <p:tag name="MIO_EKGUID" val="16064225-d431-4d89-8319-b2b03cb591f4"/>
+  <p:tag name="MIO_EMBED_FONT" val="False"/>
+  <p:tag name="MIO_VERSION" val="23.09.2024 12:59:41"/>
+  <p:tag name="MIO_LASTDOWNLOADED" val="08.10.2024 11:48:33.146"/>
+  <p:tag name="MIO_CDID" val="94cc635b-7ecc-4deb-9b4b-78c085535d71"/>
+</p:tagLst>
