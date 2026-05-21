@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 全面提效实战指南 — 大纲 V3</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans SC','PingFang SC',sans-serif;background:#f7f8fc;color:#333;padding:2.5rem 3rem;line-height:1.7}
+h1{color:#2346FF;font-size:1.5rem;font-weight:700}
+.meta{color:#888;font-size:.8rem;margin:.4rem 0 1.8rem}
+.changelog{background:#FFF8E1;border-left:4px solid #FFB400;padding:.8rem 1.2rem;margin-bottom:1.5rem;border-radius:8px;font-size:13px;line-height:1.8}
+.changelog strong{color:#b8860b}
+.wrap{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.06);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:1100px}
+thead{position:sticky;top:0;z-index:2}
+th{background:#2346FF;color:#fff;font-weight:600;padding:11px 16px;text-align:left;white-space:nowrap}
+td{padding:11px 16px;border-bottom:1px solid #eef1f6;vertical-align:top}
+tr:hover td{background:#f8f9ff}
+.a td:first-child{border-left:4px solid #8A73FF}
+.b td:first-child{border-left:4px solid #FFB400}
+.c td:first-child{border-left:4px solid #57D957}
+.d td:first-child{border-left:4px solid #FF6699}
+.intro td:first-child{border-left:4px solid #2346FF}
+.ch td{background:#4B5064;color:#fff}
+.cv td{background:#2346FF;color:#fff}
+.lt td{background:#F0F5FB}
+.dk td{background:#1B1E32;color:#fff}
+.new td{background:#FFF8E1}
+.show td{background:#E8F4FF}
+td ul,td ol{margin:0;padding-left:1.2em}
+td li{margin-bottom:2px}
+.t{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:3px;margin:1px 3px;white-space:nowrap}
+.t-b{background:rgba(35,70,255,.08);color:#2346FF}
+.t-y{background:rgba(255,180,0,.15);color:#b8860b}
+.t-g{background:rgba(87,217,87,.15);color:#2d8a2d}
+.t-p{background:rgba(138,115,255,.12);color:#6a5acd}
+.t-r{background:rgba(255,102,153,.12);color:#cc3366}
+.t-k{background:#1B1E32;color:#fff}
+.tool{display:inline-block;background:#fff;border:1px dashed #2346FF;color:#2346FF;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;margin:2px 3px}
+.cta{background:#FFB400;color:#1B1E32;padding:3px 8px;border-radius:4px;font-weight:700;font-size:11px;display:inline-block}
+a{color:#2346FF;text-decoration:none}
+a:hover{text-decoration:underline}
+.sec{font-weight:700;color:#2346FF;font-size:12px}
+.sec-w{color:#fff;font-weight:700;font-size:12px}
+.box{background:#F0F5FB;border-radius:6px;padding:8px 12px;margin-top:6px;font-size:12px;border-left:3px solid #2346FF}
+.box strong{color:#2346FF}
+@media print{th{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{padding:.5rem}}
+</style>
+</head>
+<body>
+
+<h1>AI 全面提效实战指南 — 详细大纲</h1>
+<div class="meta">共 42 页 · 4 大板块 · 生成 V3 版</div>
+
+<div class="changelog">
+<strong>V3 重大调整：</strong>① 删除原"AI 工具箱"独立板块，所有小工具分散到对应场景中（Typeless 放收尾彩蛋演示）&nbsp; ② 原板块 B（合同标书）→ 升级为板块 A，<strong>标书内容大幅扩充为 8 个场景，合同精简为 1 页</strong>&nbsp; ③ 原板块 C/D 顺移为 B/C&nbsp; ④ <strong>每个板块开头加"成品展示"页</strong>——先给听众看 AI 能做出什么，再倒推怎么做&nbsp; ⑤ 全场只剩 4 个板块：合同标书 → 数据可视化 → AI PPT → 收尾彩蛋
+</div>
+
+<div class="wrap">
+<table>
+<thead>
+<tr>
+<th style="width:140px">页面信息</th>
+<th style="width:210px">主标题</th>
+<th style="width:140px">副标题</th>
+<th>主要内容 / 要点</th>
+<th style="width:180px">底部金句 / CTA</th>
+</tr>
+</thead>
+<tbody>
+
+<!-- ==================== 导入篇 3页 ==================== -->
+
+<tr class="cv intro">
+<td><strong>P1</strong> · 封面<br><span class="sec-w">导入篇</span></td>
+<td>AI 全面提效实战指南</td>
+<td>标书·合同·数据·PPT — 四个场景，一套方法</td>
+<td>封面页。Canvas 世界地图 + 0/1 数字流动画背景。</td>
+<td>—</td>
+</tr>
+
+<tr class="intro">
+<td><strong>P2</strong> · 内容页<br><span class="sec">导入篇</span></td>
+<td>AI 帮你节约更多时间花在客户身上</td>
+<td>—</td>
+<td>
+<strong>时间节省对比表（4 列：工作类型 / 传统耗时 / AI 辅助后 / 节省）：</strong>
+<ul>
+<li>标书撰写：3-4h → 1h，省 ~70%（重点）</li>
+<li>合同审阅：2-3h → 30min，省 ~80%</li>
+<li>数据整理 & 图表：2-3h → 40min，省 ~75%</li>
+<li>PPT 制作：6-8h → 1-2h，省 ~80%</li>
+<li><strong>合计：约 13-18h/周 → 约 3-4h/周</strong></li>
+</ul>
+</td>
+<td><span class="cta">今天的目标 — 帮你省出 10 小时/周，把时间花在客户身上</span></td>
+</tr>
+
+<tr class="intro">
+<td><strong>P3</strong> · 导航页<br><span class="sec">导入篇</span></td>
+<td>今天讲什么：四个板块速览</td>
+<td>—</td>
+<td>
+<strong>4 板块卡片（grid4）：</strong>
+<ul>
+<li><span class="t t-p">A</span> 合同 & 标书 — 8 大标书场景 + 合同 3 合 1（25min）<strong>重点</strong></li>
+<li><span class="t t-y">B</span> 数据可视化分析 — 从 Excel 到洞察的五步法（15min）</li>
+<li><span class="t t-g">C</span> AI PPT 设计 — 5 条路线做 PPT（20min）</li>
+<li><span class="t t-r">D</span> 收尾彩蛋 — 还有这些好用的小工具 + 行动清单（5min）</li>
+</ul>
+<strong>讲解方式：每个板块开头先展示成品 — 看 AI 能做出什么，再倒推怎么做。</strong>
+</td>
+<td>—</td>
+</tr>
+
+<!-- ==================== 板块 A · 合同标书 16页 ==================== -->
+
+<tr class="ch a">
+<td><strong>P4</strong> · 章节封面<br><span class="sec-w">板块 A</span></td>
+<td>合同 & 标书<span style="color:#FFB404">.</span></td>
+<td>你的 AI 法务助手 & 标书写作教练</td>
+<td>8 大标书场景 + 合同 3 合 1 · 重点中的重点</td>
+<td>—</td>
+</tr>
+
+<tr class="show a">
+<td><strong>P5</strong> · 成品展示 <span class="t t-y">新增</span><br><span class="sec">板块 A · 先看成品</span></td>
+<td>先看 AI 能产出什么样的标书</td>
+<td>不讲过程，先看结果</td>
+<td>
+<strong>3 组成品对比展示：</strong>
+<ul>
+<li><strong>对比 1 — 项目案例段落：</strong>原始素材（120 字）→ AI 改写后（带量化指标、客户证言、行业背景的 350 字专业表述）</li>
+<li><strong>对比 2 — 技术方案章节：</strong>3 个要点的口语笔记 → AI 生成的完整章节结构（项目背景/需求理解/总体架构/功能设计/部署方案）</li>
+<li><strong>对比 3 — 整本标书：</strong>展示一份 AI 辅助完成的 80 页投标文件目录截图 + 关键页节选</li>
+</ul>
+</td>
+<td><span class="cta">这是终点 — 接下来 13 页教你怎么走到这里</span></td>
+</tr>
+
+<tr class="new a">
+<td><strong>P6</strong> · 工具申请 <span class="t t-y">新增</span><br><span class="sec">板块 A · 准备工作</span></td>
+<td>Trip Coding Plan — 免费申请 AI 工具</td>
+<td>公司福利，$50/月 Token 额度</td>
+<td>
+<strong>申请网址：</strong><a href="https://aicoding.portal.ctripcorp.com/codingPlan" target="_blank">aicoding.portal.ctripcorp.com/codingPlan</a><br>
+<strong>两步搞定：</strong>① 打开网址 → Lite Plan「查看套餐」激活（无需审批）&nbsp; ② Console 获取 Token → 选 AI 工具 → 按文档安装<br>
+<strong>支持工具：</strong><span class="t t-b">Claude Code 桌面/插件/CLI</span><span class="t t-k">Codex 桌面/CLI</span><span class="t t-p">OpenCode 桌面/CLI</span><br>
+<strong>安装文档：</strong><a href="https://trip.larkenterprise.com/wiki/ZX9Mw6Q6EihZAWkYYecckYvsnZh" target="_blank">飞书 Wiki · Claude Code 安装指南</a>（每种工具 Console 都挂了对应文档）
+</td>
+<td><span class="cta">Lite Plan 无需审批，3 分钟激活</span></td>
+</tr>
+
+<tr class="a">
+<td><strong>P7</strong> · 内容页<br><span class="sec">板块 A · Prompt 基础</span></td>
+<td>Prompt（提示词）— 给 AI 的「任务说明书」</td>
+<td>—</td>
+<td>
+<strong>类比 + 五要素：</strong>
+<ul>
+<li>模糊指令「帮我写段标书」vs 清晰指令「以乙方身份写技术方案的需求理解章节，500 字，含 3 条痛点+对应解决方案」</li>
+</ul>
+<strong>五要素卡片：</strong>① 角色设定 · ② 任务描述 · ③ 输入信息 · ④ 输出要求 · ⑤ 约束条件<br>
+<strong>核心通用 AI 平台：</strong><span class="tool">Kimi</span><span class="tool">通义千问</span><span class="tool">豆包</span><span class="tool">Claude</span><span class="tool">ChatGPT</span> — 这些是本板块要用的"AI 大脑"
+</td>
+<td><span class="cta">今天所有 Prompt 我都帮你写好了，复制粘贴就行</span></td>
+</tr>
+
+<tr class="a">
+<td><strong>P8</strong> · 全景图<br><span class="sec">板块 A · 全景图</span></td>
+<td>标书工作的 8 个场景 + 合同的 3 合 1</td>
+<td>—</td>
+<td>
+<strong>标书 8 场景（按流程时间轴排列）：</strong>
+<ol>
+<li>招标文件解读 — 80 页 PDF 提取核心需求</li>
+<li>AI 搜 benchmark — 找行业基准、竞品标书</li>
+<li>标书大纲生成 — 响应招标文件的章节框架</li>
+<li>项目背景 & 需求理解章节撰写</li>
+<li>技术方案撰写 — 架构 / 创新点 / 可行性</li>
+<li>公司介绍 & 项目案例包装</li>
+<li>标书措辞优化 — 口语→书面、模糊→量化</li>
+<li>标书合规检查 — 防废标自查</li>
+</ol>
+<strong>合同 3 合 1：</strong>审阅风险排查 · 关键条款提取 · 续约对比分析（合并 1 页讲）
+</td>
+<td>—</td>
+</tr>
+
+<tr class="a">
+<td><strong>P9</strong> · 场景页<br><span class="sec">板块 A · 场景 ①</span></td>
+<td>场景 ①：招标文件解读 — 80 页 PDF，5 分钟读完</td>
+<td>用 AI 长文档能力快速吸收</td>
+<td>
+<strong>痛点：</strong>招标文件动辄几十上百页，人工读 2 小时，容易漏关键条款<br>
+<strong>Prompt 输出要求：</strong>
+<ul>
+<li>提取项目背景、核心需求清单（功能/非功能）、技术要求、商务要求</li>
+<li>提取评分标准 + 权重表、资质硬门槛、时间节点（投标截止/答疑/开标）</li>
+<li>识别必填项 + 废标条款（红线）</li>
+<li>输出：需求矩阵表 + 评分权重热力图 + 风险提示清单</li>
+</ul>
+<div class="box"><strong>🛠 配套工具：</strong><span class="tool">Kimi（首选，20 万字长文档）</span><span class="tool">通义千问（企业安全）</span> — 直接上传 PDF/Word/图片</div>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="a">
+<td><strong>P10</strong> · 场景页<br><span class="sec">板块 A · 场景 ②</span></td>
+<td>场景 ②：AI 搜 benchmark — 写之前先找标杆</td>
+<td>用 AI 搜索找行业标准+竞品标书</td>
+<td>
+<strong>痛点：</strong>不知道这个领域的标书"长什么样"，从零开始堆字数<br>
+<strong>3 类搜索任务：</strong>
+<ul>
+<li>① 行业基准 — 「[行业]+[产品类型] 投标技术方案 范本」</li>
+<li>② 竞品分析 — 「[竞争对手名] 中标公告 / 公开项目案例」</li>
+<li>③ 甲方背景 — 「[招标方] 历史合作伙伴 / 业务重点 / 战略关键词」</li>
+</ul>
+<div class="box"><strong>🛠 配套工具：</strong><span class="tool">秘塔 AI 搜索 metaso.cn（无广告·结构化答案）</span><span class="tool">Perplexity perplexity.ai（全球最强·英文资料）</span><span class="tool">天工 AI search.tiangong.cn（整合 DeepSeek-R1）</span></div>
+<strong>用法：</strong>把搜到的优秀样本喂给 AI，让它"对照学习"再写
+</td>
+<td>—</td>
+</tr>
+
+<tr class="a">
+<td><strong>P11</strong> · 场景页<br><span class="sec">板块 A · 场景 ③</span></td>
+<td>场景 ③：标书大纲生成 — 让 AI 出响应框架</td>
+<td>基于招标文件，反推标书目录</td>
+<td>
+<strong>Prompt 结构：</strong>
+<ul>
+<li>输入：① 招标文件摘要（来自场景 ①）② 公司能力清单 ③ 评分标准</li>
+<li>输出要求：完整章节目录（一级/二级/三级标题）+ 每章字数建议 + 重点章节提示</li>
+<li>必须响应招标文件中所有"应答""须""必须"条款，逐条对应</li>
+</ul>
+<strong>大纲模板（参考国标）：</strong>第一部分 商务标 · 第二部分 技术标（项目背景→需求理解→设计方案→实施方案→服务培训）· 第三部分 报价 · 附件
+</td>
+<td>—</td>
+</tr>
+
+<tr class="a">
+<td><strong>P12</strong> · 场景页<br><span class="sec">板块 A · 场景 ④</span></td>
+<td>场景 ④：项目背景 & 需求理解章节</td>
+<td>标书的"开场白" — 让甲方觉得你懂他</td>
+<td>
+<strong>这个章节核心要做 3 件事：</strong>
+<ol>
+<li>复述甲方业务现状（"我懂你的处境"）</li>
+<li>提炼 3-5 个核心痛点（"我看到了你的问题"）</li>
+<li>引出我方解决思路（"我有办法"）</li>
+</ol>
+<strong>Prompt 输入：</strong>客户行业 + 招标背景 + 拜访纪要要点<br>
+<strong>输出要求：</strong>800-1200 字，含行业数据引用、痛点列表、过渡到下一章
+<div class="box"><strong>🛠 配套工具：</strong><span class="tool">通义听悟 tingwu.aliyun.com</span> — 把拜访录音转纪要，AI 直接从中提取需求</div>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="a">
+<td><strong>P13</strong> · 场景页<br><span class="sec">板块 A · 场景 ⑤</span></td>
+<td>场景 ⑤：技术方案撰写 — 标书的"主菜"</td>
+<td>架构 / 创新点 / 可行性论证</td>
+<td>
+<strong>技术标 5 个子章节，AI 都能帮你写：</strong>
+<ul>
+<li>① 总体架构设计 — 让 AI 用文字描述架构图，配合 Mermaid 出图</li>
+<li>② 功能设计 — 按招标需求逐条列功能点 + 实现方式</li>
+<li>③ 技术架构 & 数据结构 — 技术栈选型 + 数据流</li>
+<li>④ 部署 / 性能 / 安全 — 三个非功能性章节（高频考点）</li>
+<li>⑤ 项目实施方案 — WBS 工作分解 + 里程碑甘特图</li>
+</ul>
+<strong>关键技巧：</strong>每个子章节都要"踩"招标文件评分点，AI 容易写得空泛，要把评分标准粘进去
+</td>
+<td>—</td>
+</tr>
+
+<tr class="a">
+<td><strong>P14</strong> · 场景页<br><span class="sec">板块 A · 场景 ⑥</span></td>
+<td>场景 ⑥：公司介绍 & 项目案例包装</td>
+<td>把自己讲得既专业又可信</td>
+<td>
+<strong>3 类素材升级：</strong>
+<ul>
+<li>公司介绍 — 模糊的"行业领先"→ 量化（成立 X 年 / 团队 X 人 / 客户 X 家 / 营收增速）</li>
+<li>资质介绍 — 把零散证书组织成"能力图谱"</li>
+<li>项目案例 — 关键转化：背景 → 挑战 → 解决方案 → 量化成果（用 STAR 法）</li>
+</ul>
+<strong>Prompt：</strong>「按 STAR 框架重写以下项目案例，要求每条量化成果都标注百分比或绝对数字」<br>
+<strong>避坑：</strong>AI 容易编造数据 — 必须用真实数据喂进去，让 AI 只做"措辞包装"，不做"事实虚构"
+</td>
+<td>—</td>
+</tr>
+
+<tr class="a">
+<td><strong>P15</strong> · 场景页<br><span class="sec">板块 A · 场景 ⑦</span></td>
+<td>场景 ⑦：标书措辞优化（保留 Before/After 实战）</td>
+<td>—</td>
+<td>
+<strong>四原则（对比表）：</strong>口语→书面 · 模糊→量化 · 主观→客观 · 感性→数据<br>
+<strong>3 组 Before/After 案例：</strong>
+<ol>
+<li>项目经验：「做过很多类似项目」→「累计交付 47 个，续约率 92.3%」</li>
+<li>技术方案：「系统很稳定速度快」→「可用性 99.97%，响应≤200ms(P99)」</li>
+<li>服务承诺：「出了问题尽快处理」→「P0 级 15min 响应/2h 定位；P1 级 30min/4h」</li>
+</ol>
+<strong>Prompt：</strong>措辞规范 + 逻辑优化 + 格式规范 → 输出优化全文 + 修改对照表
+</td>
+<td>—</td>
+</tr>
+
+<tr class="a">
+<td><strong>P16</strong> · 场景页<br><span class="sec">板块 A · 场景 ⑧</span></td>
+<td>场景 ⑧：标书合规检查 — 防废标自查</td>
+<td>提交前最后一道关</td>
+<td>
+<strong>三维度检查：</strong>
+<ul>
+<li>【格式合规】实质性条款逐条响应 / 目录页码 / 必填项 / 公司名称一致（防其他项目残留）</li>
+<li>【内容合规】技术方案覆盖度 / 报价符合计价要求 / 资质有效期 / 废标硬伤</li>
+<li>【表述合规】虚假承诺 / 法规标准现行 / 贬低竞对</li>
+</ul>
+<strong>输出：</strong>序号 | 检查项 | 状态 | 问题 | 建议 | 优先级(P0/P1/P2) → 最后给"是否建议提交"结论
+</td>
+<td><span class="cta">每次提交前花 3 分钟，避免一次废标</span></td>
+</tr>
+
+<tr class="a">
+<td><strong>P17</strong> · 内容页<br><span class="sec">板块 A · 合同 3 合 1</span></td>
+<td>合同：3 个高频场景，1 页讲完</td>
+<td>合同审阅不是刚需，但这 3 个 Prompt 你迟早用得上</td>
+<td>
+<strong>合同场景 ①：全面审阅风险排查</strong> — 基础信息核验 + 权利义务 + 风险条款 + 合规检查 → 输出风险清单+签署建议<br>
+<strong>合同场景 ②：关键条款提取</strong> — 7 类信息（基本/商务/服务/违约/特殊/终止/争议）→ 每项标注是否对我方有利<br>
+<strong>合同场景 ③：合同对比分析</strong> — 旧版 vs 新版逐条对比 → 5 条谈判策略，常用于续约
+<div class="box"><strong>🛠 用同样的 AI 平台：</strong>Kimi / 通义千问 / Claude — 拍照/上传 PDF 即可</div>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="lt a">
+<td><strong>P18</strong> · 小结页<br><span class="sec">板块 A · 小结</span></td>
+<td>一张图看懂合同标书 AI 工作流</td>
+<td>—</td>
+<td>
+<strong>标书完整工作流（时间轴）：</strong>拿到招标文件 → ①解读 → ②搜 benchmark → ③大纲 → ④需求理解 → ⑤技术方案 → ⑥案例包装 → ⑦措辞优化 → ⑧合规检查 → 投标<br>
+<strong>合同工作流：</strong>拿到合同 → 审阅风险 → 条款提取 → （续约时）对比分析 → 输出审阅报告
+</td>
+<td><span class="cta">8 大场景 + 3 合 1 共 11 套 Prompt，会后发到群里</span></td>
+</tr>
+
+<!-- ==================== 板块 B · 数据可视化 9页 ==================== -->
+
+<tr class="ch b">
+<td><strong>P19</strong> · 章节封面<br><span class="sec-w">板块 B</span></td>
+<td>数据可视化分析<span style="color:#FFB404">.</span></td>
+<td>让数据自己讲故事</td>
+<td>五步工作流 — 从 Excel 到洞察</td>
+<td>—</td>
+</tr>
+
+<tr class="show b">
+<td><strong>P20</strong> · 成品展示 <span class="t t-y">新增</span><br><span class="sec">板块 B · 先看成品</span></td>
+<td>先看 AI 能整理出什么样的数据洞察</td>
+<td>—</td>
+<td>
+<strong>3 组成品展示：</strong>
+<ul>
+<li><strong>对比 1 — 一份杂乱的 Excel：</strong>原始数据（合并单元格、混入文字、日期格式不统一）→ AI 清洗后的标准表格</li>
+<li><strong>对比 2 — 一张丑陋柱图：</strong>Excel 默认输出 → AI 出图（带核心结论标题、强调色、关键数据标签）</li>
+<li><strong>对比 3 — Q2 销售业绩复盘：</strong>2 句话的口头汇报 → AI 生成的完整复盘报告（Executive Summary + 归因 + 预测 + 行动计划）</li>
+</ul>
+</td>
+<td><span class="cta">这是终点 — 接下来 7 页教你怎么走到这里</span></td>
+</tr>
+
+<tr class="b">
+<td><strong>P21</strong> · 工具页<br><span class="sec">板块 B · 工具</span></td>
+<td>数据工具推荐（2026 升级版）</td>
+<td>有了 AI，做表也能聊天</td>
+<td>
+<strong>4 款重点推荐（替代旧版的镝数+Flourish 一刀切方案）：</strong>
+<ul>
+<li><span class="t t-b">ChatExcel</span> <a href="https://chatexcel.com" target="_blank">chatexcel.com</a> — 国内最强 AI 表格，PDF/图片转 Excel，聊天式做透视表、出图</li>
+<li><span class="t t-k">办公小浣熊</span>（商汤）— 自然语言输入 → 自动出多种图表（柱/饼/折线），支持预测分析</li>
+<li><span class="t t-y">畅图</span> — AI 对话生成思维导图/流程图/鱼骨图/看板，支持 PDF/网页解析</li>
+<li><span class="t t-p">WPS AI / Microsoft Copilot</span> — 本地 Excel 直插 AI 助手</li>
+</ul>
+<strong>大模型辅助：</strong><span class="tool">ChatGPT 上传 Excel 直接分析</span><span class="tool">Kimi 长表格摘要</span>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="b">
+<td><strong>P22</strong> · 五步法<br><span class="sec">板块 B · STEP 1</span></td>
+<td>STEP 1 · 数据清洗 — 垃圾进，垃圾出</td>
+<td>—</td>
+<td>
+<strong>正确 vs 错误格式对比：</strong>✅ 每列一维度/表头/日期 YYYY-MM-DD/数值纯数字/无合并单元格 &nbsp; ❌ 合并单元格/混入文字/日期不统一<br>
+<strong>清洗 Prompt：</strong>检查空值 + 异常值(3σ) + 日期统一 + 重复行 + 列名 → 输出清洗后数据 + 质量报告
+</td>
+<td>—</td>
+</tr>
+
+<tr class="b">
+<td><strong>P23</strong> · 五步法<br><span class="sec">板块 B · STEP 2</span></td>
+<td>STEP 2 · 分析洞察 — 先有观点，再有图表</td>
+<td>不要直接画图，先让 AI 理解数据</td>
+<td>
+<strong>三维度分析 Prompt：</strong>
+<ul>
+<li>趋势：整体趋势/拐点 · 同比增长率 · 环比季节性</li>
+<li>结构：业务线占比 · 客户分层(二八法则) · 区域差异</li>
+<li>异常：数据异常点 + 反常趋势</li>
+</ul>
+输出：3 条 Executive Summary → 详细分析 → 推荐 5 个可视化维度+图表类型
+</td>
+<td>—</td>
+</tr>
+
+<tr class="b">
+<td><strong>P24</strong> · 五步法<br><span class="sec">板块 B · STEP 3</span></td>
+<td>STEP 3 · 表达策略 — 图表是表达观点，不是展示数据</td>
+<td>—</td>
+<td>
+<strong>图表选择指南：</strong>趋势→折线 · 比较→柱状 · 占比→饼图 · 关系→散点 · 流转→漏斗 · 地域→地图热力<br>
+<strong>四原则：</strong>① 强调色 vs 弱化色 &nbsp; ② 标题写观点（"华东区 Q2 增速领跑+23%"）&nbsp; ③ 数据标签少即是多 &nbsp; ④ 一图一观点
+</td>
+<td>—</td>
+</tr>
+
+<tr class="b">
+<td><strong>P25</strong> · 五步法<br><span class="sec">板块 B · STEP 4</span></td>
+<td>STEP 4 · 图表美化 — 让 AI 帮你出图</td>
+<td>—</td>
+<td>
+<strong>出图 Prompt：</strong>视觉风格(主色 #2346FF / 辅 #FFB400 / 白底) · 标题=一句话核心发现 · 只标关键点 · 输出 PNG+Python 代码<br>
+<strong>3 种实操方式：</strong>
+<ul>
+<li>ChatGPT/ChatExcel 一键出图（最快）</li>
+<li>办公小浣熊自然语言出图</li>
+<li>Kimi 分析 → 手动喂给畅图 / WPS AI</li>
+</ul>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="b">
+<td><strong>P26</strong> · 五步法<br><span class="sec">板块 B · STEP 5</span></td>
+<td>STEP 5 · 数据复盘 — 图表不是终点，洞察才是</td>
+<td>—</td>
+<td>
+<strong>四步框架：</strong>数据表现 → 原因分析 → 风险提示 → 行动建议<br>
+<strong>复盘 Prompt：</strong>核心指标回顾(本期vs目标) → 归因分析 → 未来预测(乐观/悲观/最可能) → 行动计划(短期 3 件/中期 2 项/长期 1 战略)<br>
+输出：≤5 句 Executive Summary → 展开
+</td>
+<td>—</td>
+</tr>
+
+<tr class="lt b">
+<td><strong>P27</strong> · 小结页<br><span class="sec">板块 B · 小结</span></td>
+<td>一张图看懂数据分析五步法</td>
+<td>—</td>
+<td>5 步卡片：清洗→分析→策略→出图→复盘<br>总结：「先分析，再画图，最后复盘」— 从"展示数据"升级为"提供洞察"</td>
+<td><span class="cta">三步让你的汇报从"展示数据"升级为"提供洞察"</span></td>
+</tr>
+
+<!-- ==================== 板块 C · AI PPT 10页 ==================== -->
+
+<tr class="ch c">
+<td><strong>P28</strong> · 章节封面<br><span class="sec-w">板块 C</span></td>
+<td>AI PPT 设计<span style="color:#FFB404">.</span></td>
+<td>5 种方法，选你顺手的</td>
+<td>从傻瓜级到专业级，总有一条适合你</td>
+<td>—</td>
+</tr>
+
+<tr class="show c">
+<td><strong>P29</strong> · 成品展示 <span class="t t-y">新增</span><br><span class="sec">板块 C · 先看成品</span></td>
+<td>先看 AI 能做出什么样的 PPT</td>
+<td>—</td>
+<td>
+<strong>3 组成品展示：</strong>
+<ul>
+<li><strong>对比 1 — 传统 PowerPoint：</strong>大段文字、模板配色、Excel 截图 → 用 WPS AI 一键优化后</li>
+<li><strong>对比 2 — Gamma 云端 AI：</strong>3 行大纲 → 出 10 页带配图设计感强的 PPT</li>
+<li><strong>对比 3 — Claude + HTML：</strong>就是你现在看到的这个 PPT —— 横向滑动 + 动画背景 + 品牌定制</li>
+</ul>
+</td>
+<td><span class="cta">这是终点 — 接下来 9 页教你怎么走到这里</span></td>
+</tr>
+
+<tr class="c">
+<td><strong>P30</strong> · 内容页<br><span class="sec">板块 C · 痛点</span></td>
+<td>PPT 做不好看，到底卡在哪？</td>
+<td>—</td>
+<td>
+3 大痛点：<span class="t t-b">排版</span>间距/对齐 → AI 自动栅格 &nbsp; <span class="t t-k">配色</span>颜色太多 → AI 一键品牌色 &nbsp; <span class="t t-y">数据可视化</span> → 板块 B 已学
+</td>
+<td><span class="cta">PPT 核心不是"好看"，是"清晰" — 一页一观点</span></td>
+</tr>
+
+<tr class="c">
+<td><strong>P31</strong> · 路线<br><span class="sec">板块 C · ROUTE 01</span></td>
+<td>路线一 · 本地 AI 插件</td>
+<td>—</td>
+<td>
+工具：<span class="tool">WPS AI ai.wps.cn</span><span class="tool">Microsoft Copilot</span><br>
+流程：①打开 AI 助手 → ②输入主题 → ③生成初稿 → ④Excel 直接插入图表<br>
+✅ Excel 图表强/本地兼容 · ✗ 模板化严重<br>
+<strong>最适合：季度汇报、数据报告</strong>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="c">
+<td><strong>P32</strong> · 路线<br><span class="sec">板块 C · ROUTE 02</span></td>
+<td>路线二 · 云端 AI PPT</td>
+<td>—</td>
+<td>
+工具：<span class="tool">AIPPT aippt.cn</span><span class="tool">Gamma gamma.app</span><span class="tool">MindShow mindshow.fun</span><br>
+流程：①文字大纲 → ②粘贴+选风格 → ③AI 自动生成 → ④下载 .pptx<br>
+进阶：Kimi 先出大纲 → 再喂给 Gamma → 效果翻倍<br>
+<strong>最适合：客户提案、项目介绍</strong>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="c">
+<td><strong>P33</strong> · 路线<br><span class="sec">板块 C · ROUTE 03</span></td>
+<td>路线三 · 大模型对话</td>
+<td>对着 AI 说，PPT 就出来了</td>
+<td>
+工具：<span class="tool">Kimi</span><span class="tool">豆包</span><br>
+Prompt 示例：根据内容生成 10 页 PPT 大纲，每页标题+3-5 要点+设计建议<br>
+组合技：Kimi 想内容 → Gamma 做视觉 → WPS AI 加数据图表<br>
+<strong>最适合：从零开始、需要 AI 帮想内容</strong>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="c">
+<td><strong>P34</strong> · 路线<br><span class="sec">板块 C · ROUTE 04</span></td>
+<td>路线四 · AI + HTML — 代码级定制</td>
+<td>你现在看到的这个 PPT 就是案例</td>
+<td>
+4 优势：视觉远超传统 PPT / 完全自定义 / 一个 HTML 文件走天下 / 可嵌入实时数据<br>
+工具：<span class="tool">Claude</span><span class="tool">Bolt</span><span class="tool">Cursor</span><br>
+流程：①描述内容和风格 → ②要求输出单文件 HTML → ③浏览器打开 → ④不满意继续调
+</td>
+<td>—</td>
+</tr>
+
+<tr class="lt c">
+<td><strong>P35</strong> · 内容页<br><span class="sec">板块 C · 为什么选 HTML</span></td>
+<td>HTML PPT 的四大传播优势</td>
+<td>—</td>
+<td>
+<ol>
+<li><strong>零门槛打开</strong> iPad/手机/微信/飞书/邮件链接，有浏览器就能看</li>
+<li><strong>传播路径短</strong> 链接或二维码直接发，客户扫码即看</li>
+<li><strong>视觉表现强</strong> 动效/数据可视化/视频嵌入，像产品官网</li>
+<li><strong>版本永远最新</strong> 在线改一次，告别 V1/V2/最终版</li>
+</ol>
+</td>
+<td><span class="cta">你现在看到的这份材料，就是最好的证明</span></td>
+</tr>
+
+<tr class="c">
+<td><strong>P36</strong> · 路线<br><span class="sec">板块 C · ROUTE 05</span></td>
+<td>路线五 · 混合工作流 — 万能组合拳</td>
+<td>以「Q2 销售业绩汇报」为例</td>
+<td>
+4 阶段：①Kimi 理大纲(10min) → ②Gamma 出视觉(5min) → ③AI 分析+出图(10min) → ④WPS AI 微调(5min)<br>
+对比：传统 6-8h → 混合流 30min → <strong>节省 87%+</strong>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="c">
+<td><strong>P37</strong> · 对比页<br><span class="sec">板块 C · 对比 & 推荐</span></td>
+<td>5 条路线哪条适合你 + 三个实战场景推荐</td>
+<td>—</td>
+<td>
+<strong>5 路线对比：</strong>①本地插件→数据报告 · ②云端AI→快速出稿 · ③大模型→内容驱动 · ④AI+HTML→高端定制 · ⑤混合流→万能（推荐）<br>
+<strong>3 实战推荐：</strong>客户提案(Kimi+Gamma 20min) · 季度汇报(ChatGPT+WPS AI 40min) · 产品介绍(Claude HTML 30min)
+</td>
+<td>—</td>
+</tr>
+
+<!-- ==================== 板块 D · 收尾彩蛋 4页 ==================== -->
+
+<tr class="ch d">
+<td><strong>P38</strong> · 章节封面<br><span class="sec-w">板块 D</span></td>
+<td>收尾彩蛋<span style="color:#FFB404">.</span></td>
+<td>还有这些小工具，等着你回去用</td>
+<td>5 分钟 · 现场演示 · 行动清单</td>
+<td>—</td>
+</tr>
+
+<tr class="d">
+<td><strong>P39</strong> · 工具彩蛋 <span class="t t-y">新增</span><br><span class="sec">板块 D · 小工具集锦</span></td>
+<td>那些一直在帮我的小工具</td>
+<td>现场演示 — 看完就能装</td>
+<td>
+<strong>5 款日常小工具（现场演示）：</strong>
+<ul>
+<li><span class="t t-b">Typeless</span> <a href="https://typeless.ch" target="_blank">typeless.ch</a> — <strong>其实我整场都开着它，刚刚很多话都是说出来的</strong>（现场演示）</li>
+<li><span class="t t-k">沉浸式翻译</span> <a href="https://immersivetranslate.com" target="_blank">immersivetranslate.com</a> — 看英文资料神器，浏览器一键双语</li>
+<li><span class="t t-g">Grammarly</span> <a href="https://grammarly.com" target="_blank">grammarly.com</a> — 英文邮件纠错润色</li>
+<li><span class="t t-y">Monica</span> <a href="https://monica.im" target="_blank">monica.im</a> — 浏览器助手，选中即翻译/摘要/改写</li>
+<li><span class="t t-p">飞书妙记</span> — 会议自动转写 + 摘要 + 待办</li>
+</ul>
+<strong>选装建议：</strong>先装 Typeless + 沉浸式翻译 — 立刻见效，零学习成本
+</td>
+<td><span class="cta">这些工具我都在用 — 不用学，装上就行</span></td>
+</tr>
+
+<tr class="dk d">
+<td><strong>P40</strong> · 内容页<br><span class="sec-w">板块 D · 认知</span></td>
+<td>3 条带走的认知</td>
+<td>—</td>
+<td>
+<ol>
+<li><strong>工具不重要，思维方式才重要</strong> — AI 是放大器，不是替代者</li>
+<li><strong>没有最好的工具，只有最顺手的</strong> — 先跑通一条路线再说</li>
+<li><strong style="color:#FFB400">结构化 Prompt 是最值钱的技能</strong> — 给 AI 越清晰的指令，结果越好</li>
+</ol>
+</td>
+<td>—</td>
+</tr>
+
+<tr class="d">
+<td><strong>P41</strong> · 行动页<br><span class="sec">板块 D · 行动</span></td>
+<td>今天回去做 3 件事</td>
+<td>—</td>
+<td>
+<ol>
+<li>☐ <strong>申请 Trip Coding Plan</strong> — 3 分钟激活 Lite Plan，先把工具装上</li>
+<li>☐ <strong>试一次标书 Prompt</strong> — 下次写标书时用板块 A 的 8 个场景挑一个跑</li>
+<li>☐ <strong>做一版 AI PPT</strong> — 用 Gamma 或 Claude 做下周要用的初版</li>
+</ol>
+</td>
+<td><span class="cta">不要想太多，先做起来。第一次可能不完美，但第三次你就回不去了</span></td>
+</tr>
+
+<tr class="cv d">
+<td><strong>P42</strong> · 结束页<br><span class="sec-w">Q&A</span></td>
+<td>有什么问题，现在就问</td>
+<td>11 套 Prompt 模板会后发到群里</td>
+<td>
+<strong>资源汇总：</strong>
+<ul>
+<li>核心 AI 平台：Kimi · 通义千问 · 豆包 · Claude · ChatGPT</li>
+<li>AI 搜索：秘塔 · Perplexity · 天工</li>
+<li>数据工具：ChatExcel · 办公小浣熊 · 畅图 · WPS AI</li>
+<li>PPT 工具：WPS AI · AIPPT · Gamma · MindShow</li>
+<li>日常小工具：Typeless · 沉浸式翻译 · Grammarly · Monica · 飞书妙记 · 通义听悟</li>
+</ul>
+</td>
+<td>—</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<div style="margin-top:1.5rem;padding:1rem 1.5rem;background:#fff;border-radius:10px;font-size:12px;color:#888;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+<strong>结构统计：</strong>导入篇 3 页 · 板块 A 合同标书 15 页（含成品展示 + 8 大标书场景 + 合同 1 页）· 板块 B 数据可视化 9 页 · 板块 C AI PPT 10 页 · 板块 D 收尾彩蛋 5 页 · <strong>共 42 页</strong><br>
+<strong>"成品展示先行"原则：</strong>P5 / P20 / P29 — 每个板块开头都先看 AI 能产出什么<br>
+<strong>"小工具分散"原则：</strong>AI 搜索→P10 · Kimi 长文档→P9 · 通义听悟→P12 · ChatExcel 等数据工具→P21 · Typeless 等日常工具→P39
+</div>
+
+</body>
+</html>
